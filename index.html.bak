@@ -1,0 +1,411 @@
+Page: Tech Fest 2024 Experimental Landing
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Bebas+Neue&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --accent-yellow: #FFFF00;
+            --bg-dark: #0A0A0A;
+        }
+
+        body {
+            font-family: 'Space+Grotesk', sans-serif;
+            background-color: var(--bg-dark);
+            color: white;
+            cursor: crosshair;
+        }
+
+        .heading-font {
+            font-family: 'Bebas+Neue', sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        .mono-font {
+            font-family: 'JetBrains+Mono', monospace;
+        }
+
+        .grid-line {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .grid-line-yellow {
+            border-color: var(--accent-yellow);
+        }
+
+        .marquee {
+            white-space: nowrap;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .marquee-content {
+            display: flex;
+            animation: marquee 20s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .scanline {
+            width: 100%;
+            height: 2px;
+            background: rgba(255, 255, 0, 0.05);
+            position: fixed;
+            top: 0;
+            z-index: 99;
+            pointer-events: none;
+            animation: scanline 8s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% {
+                top: -2%;
+            }
+
+            100% {
+                top: 100%;
+            }
+        }
+
+        .speaker-card:hover .speaker-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="min-h-screen relative flex flex-col" data-sd-id="1">
+        <div class="scanline" data-sd-id="2"></div>
+
+        <!-- Global Grid Background Layer -->
+        <div class="fixed inset-0 pointer-events-none opacity-5" data-sd-id="3">
+            <div class="grid grid-cols-6 h-full border-x border-white" data-sd-id="4">
+                <div class="border-r border-white" data-sd-id="5"></div>
+                <div class="border-r border-white" data-sd-id="6"></div>
+                <div class="border-r border-white" data-sd-id="7"></div>
+                <div class="border-r border-white" data-sd-id="8"></div>
+                <div class="border-r border-white" data-sd-id="9"></div>
+            </div>
+        </div>
+
+        <!-- Header / Navigation -->
+        <nav class="fixed top-0 w-full z-50 border-b grid-line bg-black/80 backdrop-blur-sm" data-sd-id="10">
+            <div class="flex justify-between items-stretch h-16" data-sd-id="11">
+                <a href="#" id="nav-logo"
+                    class="flex items-center px-8 border-r grid-line-yellow bg-yellow-400 text-black font-bold tracking-tighter text-2xl uppercase"
+                    data-sd-id="12">
+                    TF.24
+                </a>
+                <div class="flex flex-grow items-center justify-end md:justify-start overflow-x-auto" data-sd-id="13">
+                    <a href="#schedule" id="nav-schedule-link"
+                        class="px-8 h-full flex items-center hover:bg-yellow-400 hover:text-black transition-all border-r grid-line mono-font text-xs uppercase"
+                        data-sd-id="14">[01] Schedule</a>
+                    <a href="#speakers" id="nav-speakers-link"
+                        class="px-8 h-full flex items-center hover:bg-yellow-400 hover:text-black transition-all border-r grid-line mono-font text-xs uppercase"
+                        data-sd-id="15">[02] Speakers</a>
+                    <a href="#workshops" id="nav-workshops-link"
+                        class="px-8 h-full flex items-center hover:bg-yellow-400 hover:text-black transition-all border-r grid-line mono-font text-xs uppercase"
+                        data-sd-id="16">[03] Workshops</a>
+                    <a href="#tickets" id="nav-tickets-link"
+                        class="px-8 h-full flex items-center hover:bg-yellow-400 hover:text-black transition-all border-r grid-line mono-font text-xs uppercase"
+                        data-sd-id="17">[04] Tickets</a>
+                </div>
+                <div class="hidden md:flex items-center px-8 mono-font text-[10px] text-gray-500 uppercase tracking-widest"
+                    data-sd-id="18">
+                    Status: Enrollment Open // V.4.0.1_BETA
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="pt-16 min-h-[90vh] flex flex-col" data-sd-id="19">
+            <div class="flex-1 flex flex-col justify-center px-8 md:px-16" data-sd-id="20">
+                <div class="border-l-4 border-yellow-400 pl-8 mb-8 mt-12" data-sd-id="21">
+                    <span class="mono-font text-yellow-400 block mb-2" data-sd-id="22">AN EXPERIMENTAL
+                        CONVERGENCE</span>
+                    <h1 class="heading-font text-[12vw] leading-[0.85] uppercase" data-sd-id="23">
+                        TECH <br> FEST.24
+                    </h1>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-b grid-line py-8 mt-8"
+                    data-sd-id="24">
+                    <div class="max-w-xl" data-sd-id="25">
+                        <p class="text-xl md:text-2xl font-light leading-snug" data-sd-id="26">
+                            NEURAL ARCHITECTURE, SYNTHETIC BIOLOGY, AND DECENTRALIZED PROTOCOLS. HELD ANNUALLY IN THE
+                            VOID.
+                        </p>
+                    </div>
+                    <div class="flex flex-col justify-between items-start md:items-end" data-sd-id="27">
+                        <div class="mono-font text-sm text-right leading-relaxed" data-sd-id="28">
+                            <p data-sd-id="29">LOCATION: BERLIN_V.02</p>
+                            <p data-sd-id="30">DATE: 12.08 — 14.08</p>
+                            <p data-sd-id="31">INDEX_ID: TF24_00912</p>
+                        </div>
+                        <a href="#tickets" id="hero-cta-btn"
+                            class="mt-8 px-10 py-5 bg-yellow-400 text-black font-bold uppercase hover:bg-white transition-colors flex items-center gap-3 group"
+                            data-sd-id="32">
+                            Secure Access Token
+                            <iconify-icon icon="lucide:arrow-right"
+                                class="group-hover:translate-x-2 transition-transform"></iconify-icon>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scrolling Marquee -->
+            <div class="bg-black border-y-2 border-yellow-400 py-4 marquee" data-sd-id="33">
+                <div class="marquee-content heading-font text-5xl uppercase" data-sd-id="34">
+                    <span class="mx-8" data-sd-id="35">Neural Logic</span> <span class="text-yellow-400"
+                        data-sd-id="36">•</span>
+                    <span class="mx-8" data-sd-id="37">Synthetic Realities</span> <span class="text-yellow-400"
+                        data-sd-id="38">•</span>
+                    <span class="mx-8" data-sd-id="39">Crypto-Ecology</span> <span class="text-yellow-400"
+                        data-sd-id="40">•</span>
+                    <span class="mx-8" data-sd-id="41">Post-Humanism</span> <span class="text-yellow-400"
+                        data-sd-id="42">•</span>
+                    <span class="mx-8" data-sd-id="43">Neural Logic</span> <span class="text-yellow-400"
+                        data-sd-id="44">•</span>
+                    <span class="mx-8" data-sd-id="45">Synthetic Realities</span> <span class="text-yellow-400"
+                        data-sd-id="46">•</span>
+                    <span class="mx-8" data-sd-id="47">Crypto-Ecology</span> <span class="text-yellow-400"
+                        data-sd-id="48">•</span>
+                    <span class="mx-8" data-sd-id="49">Post-Humanism</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Speakers -->
+        <section id="speakers" class="py-24 px-8 md:px-16 border-b grid-line" data-sd-id="50">
+            <div class="flex justify-between items-end mb-16" data-sd-id="51">
+                <h2 class="heading-font text-8xl uppercase" data-sd-id="52">Speakers</h2>
+                <span class="mono-font text-yellow-400" data-sd-id="53">[02 // AGENTS]</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-0 border grid-line" data-sd-id="54">
+                <!-- Speaker 1 -->
+                <div class="border grid-line p-10 flex flex-col speaker-card transition-all hover:bg-zinc-900 group"
+                    data-sd-id="55">
+                    <div class="flex justify-between items-start mb-12" data-sd-id="56">
+                        <div data-sd-id="57">
+                            <span class="mono-font text-xs text-yellow-400 mb-1 block" data-sd-id="58">UNIT_001</span>
+                            <h3 class="text-3xl font-bold uppercase" data-sd-id="59">Dr. Aris Thorne</h3>
+                        </div>
+                        <div class="border-2 border-yellow-400 p-1 text-[10px] font-bold" data-sd-id="60">A a</div>
+                    </div>
+                    <div class="flex-1 flex items-center justify-center py-12" data-sd-id="61">
+                        <div class="speaker-icon w-32 h-32 border-4 border-yellow-400 relative transition-transform duration-500"
+                            data-sd-id="62">
+                            <div class="absolute inset-0 bg-yellow-400 transform -translate-x-4 translate-y-4"
+                                data-sd-id="63"></div>
+                            <div class="absolute inset-0 flex items-center justify-center" data-sd-id="64">
+                                <iconify-icon icon="lucide:cpu" class="text-6xl text-black"></iconify-icon>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="mt-8 text-gray-400 text-sm mono-font" data-sd-id="65">FIELD: NEURAL INTERFACING // QUANTUM
+                        BIOLOGY</p>
+                </div>
+
+                <!-- Speaker 2 -->
+                <div class="border grid-line p-10 flex flex-col speaker-card transition-all hover:bg-zinc-900"
+                    data-sd-id="66">
+                    <div class="flex justify-between items-start mb-12" data-sd-id="67">
+                        <div data-sd-id="68">
+                            <span class="mono-font text-xs text-yellow-400 mb-1 block" data-sd-id="69">UNIT_042</span>
+                            <h3 class="text-3xl font-bold uppercase" data-sd-id="70">Lex Machina</h3>
+                        </div>
+                        <div class="border-2 border-yellow-400 p-1 text-[10px] font-bold" data-sd-id="71">B b</div>
+                    </div>
+                    <div class="flex-1 flex items-center justify-center py-12" data-sd-id="72">
+                        <div class="speaker-icon w-32 h-32 flex items-center justify-center transition-transform duration-500"
+                            data-sd-id="73">
+                            <svg class="w-full h-full text-yellow-400" viewBox="0 0 100 100" data-sd-id="74">
+                                <rect x="25" y="25" width="50" height="50" fill="currentColor"></rect>
+                                <rect x="10" y="10" width="10" height="10" fill="currentColor"></rect>
+                                <rect x="80" y="80" width="10" height="10" fill="currentColor"></rect>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="mt-8 text-gray-400 text-sm mono-font" data-sd-id="75">FIELD: AUTONOMOUS GOVERNANCE // WEB
+                        5.0</p>
+                </div>
+
+                <!-- Speaker 3 -->
+                <div class="border grid-line p-10 flex flex-col speaker-card transition-all hover:bg-zinc-900"
+                    data-sd-id="76">
+                    <div class="flex justify-between items-start mb-12" data-sd-id="77">
+                        <div data-sd-id="78">
+                            <span class="mono-font text-xs text-yellow-400 mb-1 block" data-sd-id="79">UNIT_099</span>
+                            <h3 class="text-3xl font-bold uppercase" data-sd-id="80">Sara Vance</h3>
+                        </div>
+                        <div class="border-2 border-yellow-400 p-1 text-[10px] font-bold" data-sd-id="81">C c</div>
+                    </div>
+                    <div class="flex-1 flex items-center justify-center py-12" data-sd-id="82">
+                        <div class="speaker-icon w-32 h-32 rounded-full border-2 border-yellow-400 border-dashed animate-spin-slow flex items-center justify-center transition-transform duration-500"
+                            data-sd-id="83">
+                            <div class="w-12 h-12 bg-yellow-400 rounded-full" data-sd-id="84"></div>
+                        </div>
+                    </div>
+                    <p class="mt-8 text-gray-400 text-sm mono-font" data-sd-id="85">FIELD: CRYPTO-ECOLOGY // BIO-HACKING
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Highlights / Agenda Split -->
+        <section id="schedule" class="flex flex-col md:flex-row" data-sd-id="86">
+            <div class="md:w-1/2 border-r grid-line p-16" data-sd-id="87">
+                <h2 class="heading-font text-6xl uppercase mb-12" data-sd-id="88">The Agenda</h2>
+                <div class="space-y-0 border-t border-b grid-line" data-sd-id="89">
+                    <div class="py-8 border-b grid-line flex justify-between items-center group cursor-pointer"
+                        data-sd-id="90">
+                        <div data-sd-id="91">
+                            <span class="mono-font text-yellow-400 text-sm" data-sd-id="92">09:00 — 11:00</span>
+                            <h4 class="text-2xl font-medium uppercase" data-sd-id="93">Opening Protocols</h4>
+                        </div>
+                        <iconify-icon icon="lucide:plus"
+                            class="text-3xl transition-transform group-hover:rotate-90"></iconify-icon>
+                    </div>
+                    <div class="py-8 border-b grid-line flex justify-between items-center group cursor-pointer"
+                        data-sd-id="94">
+                        <div data-sd-id="95">
+                            <span class="mono-font text-yellow-400 text-sm" data-sd-id="96">13:00 — 15:30</span>
+                            <h4 class="text-2xl font-medium uppercase" data-sd-id="97">Synthetic Brain Labs</h4>
+                        </div>
+                        <iconify-icon icon="lucide:plus"
+                            class="text-3xl transition-transform group-hover:rotate-90"></iconify-icon>
+                    </div>
+                    <div class="py-8 flex justify-between items-center group cursor-pointer" data-sd-id="98">
+                        <div data-sd-id="99">
+                            <span class="mono-font text-yellow-400 text-sm" data-sd-id="100">18:00 — LATE</span>
+                            <h4 class="text-2xl font-medium uppercase" data-sd-id="101">Void Party // Networking</h4>
+                        </div>
+                        <iconify-icon icon="lucide:plus"
+                            class="text-3xl transition-transform group-hover:rotate-90"></iconify-icon>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-1/2 p-16 bg-yellow-400 text-black" data-sd-id="102">
+                <h2 class="heading-font text-6xl uppercase mb-12" data-sd-id="103">Why Attend?</h2>
+                <div class="space-y-12" data-sd-id="104">
+                    <div data-sd-id="105">
+                        <span class="block mono-font font-bold mb-4" data-sd-id="106">[CRITICAL INQUIRY]</span>
+                        <p class="text-2xl leading-tight" data-sd-id="107">
+                            Break the simulation. Engage with experts who are redefining the boundaries between
+                            biological life and silicon-based systems.
+                        </p>
+                    </div>
+                    <div data-sd-id="108">
+                        <span class="block mono-font font-bold mb-4" data-sd-id="109">[DEEP NETWORKING]</span>
+                        <p class="text-2xl leading-tight" data-sd-id="110">
+                            Connect with an autonomous zone of developers, artists, and bio-hackers operating on the
+                            visible spectrum's edge.
+                        </p>
+                    </div>
+                    <div class="pt-12" data-sd-id="111">
+                        <a href="#" id="agenda-cta-link"
+                            class="inline-block border-2 border-black px-12 py-4 font-bold uppercase hover:bg-black hover:text-yellow-400 transition-colors"
+                            data-sd-id="112">Full Catalog</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section id="tickets"
+            class="py-32 flex flex-col items-center justify-center text-center px-8 border-b grid-line bg-zinc-950"
+            data-sd-id="113">
+            <div class="max-w-4xl" data-sd-id="114">
+                <iconify-icon icon="lucide:shield-check" class="text-8xl text-yellow-400 mb-8"></iconify-icon>
+                <h2 class="heading-font text-7xl md:text-9xl uppercase mb-8" data-sd-id="115">
+                    Ready to Initialize?
+                </h2>
+                <p class="mono-font text-gray-400 mb-12 max-w-2xl mx-auto" data-sd-id="116">
+                    TICKETS ARE LIMITED. NO DATA IS HARVESTED. NO COOKIES ARE STORED. WE OPERATE ON AN ENCRYPTED
+                    CONNECTION.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center" data-sd-id="117">
+                    <button id="cta-primary-buy"
+                        class="bg-yellow-400 text-black px-16 py-6 text-xl font-black uppercase hover:scale-105 transition-transform"
+                        data-sd-id="118">
+                        Buy Pass — 0.05 ETH
+                    </button>
+                    <button id="cta-secondary-info"
+                        class="border border-white/20 text-white px-16 py-6 text-xl font-bold uppercase hover:bg-white hover:text-black transition-all"
+                        data-sd-id="119">
+                        View Tiers
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer
+            class="py-12 px-8 md:px-16 border-t grid-line-yellow flex flex-col md:flex-row justify-between items-center gap-8"
+            data-sd-id="120">
+            <div class="flex flex-col" data-sd-id="121">
+                <span class="mono-font text-xs text-yellow-400 uppercase" data-sd-id="122">© 2024 Tech Fest Index</span>
+                <span class="mono-font text-[10px] text-gray-600 uppercase mt-1" data-sd-id="123">VER: 4.0.1_BETA //
+                    INDEX_0001 // END</span>
+            </div>
+
+            <div class="flex gap-12" data-sd-id="124">
+                <a href="#" id="footer-twitter"
+                    class="text-gray-400 hover:text-yellow-400 transition-colors uppercase mono-font text-xs tracking-tighter"
+                    data-sd-id="125">X / Twitter</a>
+                <a href="#" id="footer-discord"
+                    class="text-gray-400 hover:text-yellow-400 transition-colors uppercase mono-font text-xs tracking-tighter"
+                    data-sd-id="126">Discord</a>
+                <a href="#" id="footer-github"
+                    class="text-gray-400 hover:text-yellow-400 transition-colors uppercase mono-font text-xs tracking-tighter"
+                    data-sd-id="127">Github</a>
+            </div>
+
+            <div class="text-right flex items-center gap-4" data-sd-id="128">
+                <div class="h-2 w-2 rounded-full bg-green-500 animate-pulse" data-sd-id="129"></div>
+                <span class="mono-font text-xs uppercase text-gray-400" data-sd-id="130">Secure Connection: True</span>
+            </div>
+        </footer>
+    </div>
+
+    <style>
+        @keyframes spin-slow {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .animate-spin-slow {
+            animation: spin-slow 10s linear infinite;
+        }
+    </style>
+
+</body>
+
+</html>
+```
+
+Please reference this design and implement it into our codebase; Try to understand the structure, which part of our
+codebase is relevant and implement

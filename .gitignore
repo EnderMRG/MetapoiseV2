@@ -16,6 +16,9 @@
 # next.js
 /.next/
 /out/
+/.agents/
+/.aider-desk/
+
 
 # production
 /build
@@ -39,3 +42,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# generated docs
+AGENTS.md
+CLAUDE.md

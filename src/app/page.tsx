@@ -1,69 +1,373 @@
+"use client";
+
+import { useRef } from "react";
+import { ArrowRight, Cpu, Plus, ShieldCheck } from "@phosphor-icons/react";
+import Link from "next/link";
 import Image from "next/image";
+import { motion, useScroll, useTransform } from "framer-motion";
+import Grainient from "@/components/Grainient";
 
 export default function Home() {
+  const heroRef = useRef<HTMLDivElement>(null);
+  const { scrollY } = useScroll();
+
+  // All transforms driven by scroll: 0px (top) → 300px
+  const logoRotate = useTransform(scrollY, [0, 300], [0, 180]);
+  const logoScale = useTransform(scrollY, [0, 300], [1, 0.5]);
+  const logoOpacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const navLogoOpacity = useTransform(scrollY, [200, 400], [0, 1]);
+  const navLogoWidth = useTransform(scrollY, [200, 400], ["0px", "84px"]);
+  const navLogoBorder = useTransform(scrollY, [200, 400], ["0px", "4px"]);
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <div className="min-h-screen relative flex flex-col">
+      <div className="scanline"></div>
+
+      {/* Global Background */}
+      <div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
+        <Grainient
+          color1="#a8afe0"
+          color2="#8b83ab"
+          color3="#aa8ec4"
+          timeSpeed={0.9}
+          colorBalance={-0.06}
+          warpStrength={0.8}
+          warpFrequency={2}
+          warpSpeed={2}
+          warpAmplitude={50}
+          blendAngle={0}
+          blendSoftness={0.05}
+          rotationAmount={500}
+          noiseScale={2}
+          grainAmount={0.1}
+          grainScale={2}
+          grainAnimated={false}
+          contrast={1.5}
+          gamma={1}
+          saturation={1}
+          centerX={0}
+          centerY={0}
+          zoom={0.9}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      </div>
+
+      {/* Hero Section */}
+      <section
+        ref={heroRef}
+        className="pt-8 md:pt-12 pb-8 flex flex-col justify-center px-8 md:px-16 min-h-[50dvh]"
+      >
+        <div className="mb-8 mt-4 flex flex-col md:flex-row justify-center md:justify-between items-center gap-8 md:gap-0">
+          <motion.div
+            style={{
+              rotate: logoRotate,
+              scale: logoScale,
+              opacity: logoOpacity,
+            }}
+            className="w-3/4 md:w-[25vw] flex-shrink-0 origin-center"
+            initial={false}
           >
             <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
+              src="/logo.svg"
+              alt="Metapoise Logo"
+              width={300}
+              height={300}
+              className="w-full h-auto object-contain"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </motion.div>
+          <h1 className="heading-font text-[10vw] md:text-[12vw] leading-[0.85] uppercase text-center md:text-right">
+            <span className="higuen-font normal-case">
+              METAPOISE
+              <br /> V2.0
+            </span>
+          </h1>
         </div>
-      </main>
+      </section>
+
+      {/* Sticky Navigation */}
+      <nav className="sticky top-0 w-full border-y-4 grid-line backdrop-blur-md bg-white/30 z-50">
+        <div className="flex w-full items-stretch h-16">
+          <motion.div
+            style={{ opacity: navLogoOpacity, width: navLogoWidth, borderRightWidth: navLogoBorder }}
+            className="flex items-center justify-center border-solid grid-line hover:bg-accent/20 transition-colors overflow-hidden flex-shrink-0"
+          >
+            <button 
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="flex items-center justify-center h-full w-full cursor-pointer outline-none min-w-[80px]"
+              aria-label="Scroll to top"
+            >
+              <Image
+                src="/logo.svg"
+                alt="Metapoise Logo"
+                width={48}
+                height={48}
+                className="w-12 h-12 object-contain"
+              />
+            </button>
+          </motion.div>
+          <Link
+            href="#schedule"
+            id="nav-schedule-link"
+            className="flex-1 flex justify-center items-center hover:bg-accent hover: transition-all border-r-4 grid-line mono-font text-xs uppercase text-center px-2"
+          >
+            [01] Schedule
+          </Link>
+          <Link
+            href="#speakers"
+            id="nav-speakers-link"
+            className="flex-1 flex justify-center items-center hover:bg-accent hover: transition-all border-r-4 grid-line mono-font text-xs uppercase text-center px-2"
+          >
+            [02] Speakers
+          </Link>
+          <Link
+            href="#workshops"
+            id="nav-workshops-link"
+            className="flex-1 flex justify-center items-center hover:bg-accent hover: transition-all border-r-4 grid-line mono-font text-xs uppercase text-center px-2"
+          >
+            [03] Workshops
+          </Link>
+          <Link
+            href="#tickets"
+            id="nav-tickets-link"
+            className="flex-1 flex justify-center items-center hover:bg-accent hover: transition-all mono-font text-xs uppercase text-center px-2"
+          >
+            [04] Tickets
+          </Link>
+        </div>
+      </nav>
+
+      {/* Hero Bottom Details */}
+      <section className="flex flex-col">
+        <div className="px-8 md:px-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 border-b-4 grid-line py-8 mb-8">
+            <div className="max-w-xl">
+              <p className="text-xl md:text-2xl font-light leading-snug">
+                A CELEBRATION OF INNOVATION, WHERE IDEAS MEET CREATIVITY AND
+                CUTTING-EDGE TECHNOLOGY TO SHOWCASE FUTURISTIC SOLUTIONS THAT
+                SHAPE TOMORROW AND DRIVE CHANGE.
+              </p>
+            </div>
+            <div className="flex flex-col justify-between items-center md:items-end mt-4 md:mt-0">
+              <div className="mono-font text-sm text-center md:text-right leading-relaxed">
+                <p>
+                  LOCATION: Department of Computer Science and Engineering,
+                  DUIET
+                </p>
+                <p>DATE: 30.10 - 01.11</p>
+                <p>INDEX_ID: MP_v_2.0</p>
+              </div>
+              {/* <Link href="#tickets" id="hero-cta-btn" className="mt-8 px-10 py-5 bg-accent  font-bold uppercase hover:bg-white transition-colors flex items-center gap-3 group">
+                Secure Access Token
+                <ArrowRight weight="bold" className="group-hover:translate-x-2 transition-transform" />
+              </Link> */}
+            </div>
+          </div>
+        </div>
+
+        {/* Scrolling Marquee */}
+        <div className=" border-y-4 border-accent py-4 marquee">
+          <div className="marquee-content heading-font text-5xl uppercase">
+            <span className="mx-8">Hackathon</span> <span className="">•</span>
+            <span className="mx-8">Ideathon</span> <span className="">•</span>
+            <span className="mx-8">Alumini-Meet</span>{" "}
+            <span className="">•</span>
+            <span className="mx-8">Tech-Expo</span> <span className="">•</span>
+            <span className="mx-8">Seminar</span> <span className="">•</span>
+            <span className="mx-8">Workshop</span> <span className="">•</span>
+            <span className="mx-8">Open-Mic</span> <span className="">•</span>
+            <span className="mx-8">Photography</span>{" "}
+            <span className="">•</span>
+            <span className="mx-8">Hackathon</span> <span className="">•</span>
+            <span className="mx-8">Ideathon</span> <span className="">•</span>
+            <span className="mx-8">Alumini-Meet</span>{" "}
+            <span className="">•</span>
+            <span className="mx-8">Tech-Expo</span> <span className="">•</span>
+            <span className="mx-8">Seminar</span> <span className="">•</span>
+            <span className="mx-8">Workshop</span> <span className="">•</span>
+            <span className="mx-8">Open-Mic</span> <span className="">•</span>
+            <span className="mx-8">Photography</span>{" "}
+            <span className="">•</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Speakers */}
+      {/* <section id="speakers" className="py-24 px-8 md:px-16 border-b-4 grid-line">
+        <div className="flex justify-between items-end mb-16">
+          <h2 className="heading-font text-8xl uppercase">Speakers</h2>
+          <span className="mono-font ">[02 // AGENTS]</span>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border-4 grid-line">
+          <div className="border-r-4 border-b-4 md:border-b-0 grid-line p-10 flex flex-col speaker-card transition-all hover:bg-white/5 group">
+            <div className="flex justify-between items-start mb-12">
+              <div>
+                <span className="mono-font text-xs  mb-1 block">UNIT_001</span>
+                <h3 className="text-3xl font-bold uppercase">Dr. Aris Thorne</h3>
+              </div>
+              <div className="border-4 border-accent p-1 text-[10px] font-bold">A a</div>
+            </div>
+            <div className="flex-1 flex items-center justify-center py-12">
+              <div className="speaker-icon w-32 h-32 border-4 border-accent relative transition-transform duration-500 group-hover:scale-105">
+                <div className="absolute inset-0 bg-accent transform -translate-x-4 translate-y-4"></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <Cpu weight="duotone" className="text-6xl " />
+                </div>
+              </div>
+            </div>
+            <p className="mt-8  text-sm mono-font">FIELD: NEURAL INTERFACING // QUANTUM BIOLOGY</p>
+          </div> 
+          <div className="border-b-4 md:border-b-0 grid-line p-10 flex flex-col speaker-card transition-all hover:bg-white/5 group">
+            <div className="flex justify-between items-start mb-12">
+              <div>
+                <span className="mono-font text-xs  mb-1 block">UNIT_042</span>
+                <h3 className="text-3xl font-bold uppercase">Lex Machina</h3>
+              </div>
+              <div className="border-4 border-accent p-1 text-[10px] font-bold">B b</div>
+            </div>
+            <div className="flex-1 flex items-center justify-center py-12">
+              <div className="speaker-icon w-32 h-32 flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
+                <svg className="w-full h-full " viewBox="0 0 100 100">
+                  <rect x="25" y="25" width="50" height="50" fill="currentColor"></rect>
+                  <rect x="10" y="10" width="10" height="10" fill="currentColor"></rect>
+                  <rect x="80" y="80" width="10" height="10" fill="currentColor"></rect>
+                </svg>
+              </div>
+            </div>
+            <p className="mt-8  text-sm mono-font">FIELD: AUTONOMOUS GOVERNANCE // WEB 5.0</p>
+          </div>
+
+          <div className="border-t-4 grid-line p-10 flex flex-col md:flex-row md:col-span-2 speaker-card transition-all hover:bg-white/5 group">
+            <div className="flex-1 flex flex-col justify-between">
+              <div className="flex justify-between items-start mb-12 md:mb-0">
+                <div>
+                  <span className="mono-font text-xs  mb-1 block">UNIT_099</span>
+                  <h3 className="text-5xl font-bold uppercase">Sara Vance</h3>
+                  <p className="mt-8  text-sm mono-font">FIELD: CRYPTO-ECOLOGY // BIO-HACKING</p>
+                </div>
+              </div>
+            </div>
+            <div className="flex-1 flex items-center justify-center py-12 md:py-0">
+              <div className="speaker-icon w-48 h-48 rounded-full border-4 border-accent border-dashed animate-spin-slow flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
+                <div className="w-16 h-16 bg-accent rounded-full"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+*/}
+      {/* Highlights / Agenda Split */}
+      {/* <section id="schedule" className="flex flex-col md:flex-row">
+        <div className="md:w-1/2 border-r-4 grid-line p-16">
+          <h2 className="heading-font text-6xl uppercase mb-12">The Agenda</h2>
+          <div className="space-y-0 border-t-4 border-b-4 grid-line">
+            <div className="py-8 border-b-4 grid-line flex justify-between items-center group cursor-pointer">
+              <div>
+                <span className="mono-font  text-sm">09:00 - 11:00</span>
+                <h4 className="text-2xl font-medium uppercase">Opening Protocols</h4>
+              </div>
+              <Plus weight="bold" className="text-3xl transition-transform group-hover:rotate-90" />
+            </div>
+            <div className="py-8 border-b-4 grid-line flex justify-between items-center group cursor-pointer">
+              <div>
+                <span className="mono-font  text-sm">13:00 - 15:30</span>
+                <h4 className="text-2xl font-medium uppercase">Synthetic Brain Labs</h4>
+              </div>
+              <Plus weight="bold" className="text-3xl transition-transform group-hover:rotate-90" />
+            </div>
+            <div className="py-8 flex justify-between items-center group cursor-pointer">
+              <div>
+                <span className="mono-font  text-sm">18:00 - LATE</span>
+                <h4 className="text-2xl font-medium uppercase">Void Party // Networking</h4>
+              </div>
+              <Plus weight="bold" className="text-3xl transition-transform group-hover:rotate-90" />
+            </div>
+          </div>
+        </div>
+        <div className="md:w-1/2 p-16 bg-accent ">
+          <h2 className="heading-font text-6xl uppercase mb-12">Why Attend?</h2>
+          <div className="space-y-12">
+            <div>
+              <span className="block mono-font font-bold mb-4">[CRITICAL INQUIRY]</span>
+              <p className="text-2xl leading-tight">
+                Break the simulation. Engage with experts who are redefining the boundaries between biological life and silicon-based systems.
+              </p>
+            </div>
+            <div>
+              <span className="block mono-font font-bold mb-4">[DEEP NETWORKING]</span>
+              <p className="text-2xl leading-tight">
+                Connect with an autonomous zone of developers, artists, and bio-hackers operating on the visible spectrum&apos;s edge.
+              </p>
+            </div>
+            <div className="pt-12">
+              <Link href="#" id="agenda-cta-link" className="inline-block border-4 border-b-2g-dark px-12 py-4 font-bold uppercase hover: hover: transition-colors">
+                Full Catalog
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section> */}
+
+      {/* Final CTA */}
+      <section
+        id="tickets"
+        className="py-32 flex flex-col items-center justify-center text-center px-8 border-b-4 grid-line"
+      >
+        <div className="max-w-4xl">
+          <h2 className="heading-font text-7xl md:text-9xl uppercase mb-8">
+            Ready to Initialize?
+          </h2>
+          <p className="mono-font  mb-12 max-w-2xl mx-auto">
+            DATA HARVESTED.COOKIES STORED.CONNECTION ENCRYPTED.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <button
+              id="cta-primary-buy"
+              className="bg-accent px-8 md:px-16 py-4 md:py-6 text-lg md:text-xl font-black uppercase hover:scale-105 transition-transform"
+            >
+              Secure Access Token
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-12 px-8 md:px-16 border-t-4 grid-line-accent flex flex-col md:flex-row justify-between items-center gap-8">
+        <div className="flex flex-col items-center md:items-start text-center md:text-left">
+          <span className="mono-font text-xs  uppercase">© 2026 METAPOSE</span>
+          <span className="mono-font text-[10px]  uppercase mt-1">
+            VER: 2.0_BETA // INDEX_MP_v_2.0 // END
+          </span>
+        </div>
+
+        <div className="flex gap-12 justify-center">
+          <Link
+            href="#"
+            id="footer-twitter"
+            className=" hover: transition-colors uppercase mono-font text-xs tracking-tighter"
+          >
+            X
+          </Link>
+          <Link
+            href="#"
+            id="footer-discord"
+            className=" hover: transition-colors uppercase mono-font text-xs tracking-tighter"
+          >
+            Discord
+          </Link>
+          <Link
+            href="#"
+            id="footer-github"
+            className=" hover: transition-colors uppercase mono-font text-xs tracking-tighter"
+          >
+            Github
+          </Link>
+        </div>
+
+        <div className="text-center md:text-right flex items-center justify-center md:justify-end gap-4">
+          <span className="mono-font text-xs uppercase ">
+            Secure Connection: True
+          </span>
+        </div>
+      </footer>
     </div>
   );
 }
