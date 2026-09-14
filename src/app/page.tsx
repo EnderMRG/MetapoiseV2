@@ -164,7 +164,7 @@ export default function Home() {
 
         {/* Scrolling Marquee */}
         <div className=" border-y-4 border-accent py-4 marquee">
-          <div className="marquee-content heading-font text-5xl uppercase">
+          <div className="marquee-content heading-font text-3xl md:text-5xl uppercase">
             <span className="mx-8">Hackathon</span> <span className="">•</span>
             <span className="mx-8">Ideathon</span> <span className="">•</span>
             <span className="mx-8">Alumini-Meet</span>{" "}
@@ -312,16 +312,16 @@ export default function Home() {
         className="py-32 flex flex-col items-center justify-center text-center px-8 border-b-4 grid-line"
       >
         <div className="max-w-4xl">
-          <h2 className="heading-font text-7xl md:text-9xl uppercase mb-8">
+          <h2 className="heading-font text-5xl sm:text-7xl md:text-9xl uppercase mb-8">
             Ready to Initialize?
           </h2>
-          <p className="mono-font  mb-12 max-w-2xl mx-auto">
+          <p className="mono-font text-xs sm:text-sm md:text-base mb-12 max-w-2xl mx-auto px-4 md:px-0">
             DATA HARVESTED.COOKIES STORED.CONNECTION ENCRYPTED.
           </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center px-4 md:px-0">
             <button
               id="cta-primary-buy"
-              className="bg-accent px-8 md:px-16 py-4 md:py-6 text-lg md:text-xl font-black uppercase hover:scale-105 transition-transform"
+              className="bg-accent px-6 md:px-16 py-3 md:py-6 text-sm sm:text-base md:text-xl font-black uppercase hover:scale-105 transition-transform"
             >
               Secure Access Token
             </button>
