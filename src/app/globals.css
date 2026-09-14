@@ -51,6 +51,11 @@
   --color-text-inverse: var(--text-inverse);
 }
 
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 body {
   font-family: var(--font-space-grotesk), sans-serif;
   background-color: var(--bg-dark);
