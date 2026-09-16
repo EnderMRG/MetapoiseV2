@@ -132,12 +132,12 @@ export default function Home() {
             <span className="truncate">Workshops</span>
           </Link>
           <Link
-            href="#tickets"
-            id="nav-tickets-link"
+            href="/about"
+            id="nav-about-link"
             className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all mono-font text-[10px] sm:text-xs uppercase text-center px-1 sm:px-2 py-1 leading-tight"
           >
             <span className="opacity-70 sm:opacity-100 sm:mr-1">[04]</span>
-            <span className="truncate">Tickets</span>
+            <span className="truncate">About Us</span>
           </Link>
         </div>
       </nav>
