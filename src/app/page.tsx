@@ -1,13 +1,15 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { ArrowRight, Cpu, Plus, ShieldCheck } from "@phosphor-icons/react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Grainient from "@/components/Grainient";
+import LoadingScreen from "@/components/LoadingScreen";
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(true);
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
 
@@ -20,6 +22,7 @@ export default function Home() {
   const navLogoBorder = useTransform(scrollY, [200, 400], ["0px", "4px"]);
   return (
     <div className="min-h-screen relative w-full overflow-x-clip">
+      <LoadingScreen onComplete={() => setIsLoading(false)} />
       <div className="scanline"></div>
 
       {/* Global Background */}
@@ -50,11 +53,12 @@ export default function Home() {
         />
       </div>
 
-      {/* Hero Section */}
-      <section
-        ref={heroRef}
-        className="pt-8 md:pt-12 pb-8 flex flex-col justify-center px-4 sm:px-8 md:px-16 min-h-[50dvh]"
-      >
+      <div className={`transition-opacity duration-700 ${isLoading ? "opacity-0 pointer-events-none" : "opacity-100 pointer-events-auto"}`}>
+        {/* Hero Section */}
+        <section
+          ref={heroRef}
+          className="pt-8 md:pt-12 pb-8 flex flex-col justify-center px-4 sm:px-8 md:px-16 min-h-[50dvh]"
+        >
         <div className="mb-8 mt-4 flex flex-col md:flex-row justify-center md:justify-between items-center gap-8 md:gap-0">
           <motion.div
             style={{
@@ -372,6 +376,7 @@ export default function Home() {
           </span>
         </div>
       </footer>
+      </div>
     </div>
   );
 }
