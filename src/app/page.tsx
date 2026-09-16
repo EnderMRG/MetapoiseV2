@@ -19,7 +19,7 @@ export default function Home() {
   const navLogoWidth = useTransform(scrollY, [200, 400], ["0px", "84px"]);
   const navLogoBorder = useTransform(scrollY, [200, 400], ["0px", "4px"]);
   return (
-    <div className="min-h-screen relative flex flex-col overflow-hidden">
+    <div className="min-h-screen relative">
       <div className="scanline"></div>
 
       {/* Global Background */}
