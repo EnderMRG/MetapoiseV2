@@ -19,7 +19,7 @@ export default function Home() {
   const navLogoWidth = useTransform(scrollY, [200, 400], ["0px", "84px"]);
   const navLogoBorder = useTransform(scrollY, [200, 400], ["0px", "4px"]);
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen relative w-full overflow-x-clip">
       <div className="scanline"></div>
 
       {/* Global Background */}
@@ -53,7 +53,7 @@ export default function Home() {
       {/* Hero Section */}
       <section
         ref={heroRef}
-        className="pt-8 md:pt-12 pb-8 flex flex-col justify-center px-8 md:px-16 min-h-[50dvh]"
+        className="pt-8 md:pt-12 pb-8 flex flex-col justify-center px-4 sm:px-8 md:px-16 min-h-[50dvh]"
       >
         <div className="mb-8 mt-4 flex flex-col md:flex-row justify-center md:justify-between items-center gap-8 md:gap-0">
           <motion.div
@@ -62,7 +62,7 @@ export default function Home() {
               scale: logoScale,
               opacity: logoOpacity,
             }}
-            className="w-3/4 md:w-[25vw] flex-shrink-0 origin-center"
+            className="w-48 sm:w-3/4 md:w-[25vw] flex-shrink-0 origin-center"
             initial={false}
           >
             <Image
@@ -83,15 +83,15 @@ export default function Home() {
       </section>
 
       {/* Sticky Navigation */}
-      <nav className="sticky top-0 w-full border-y-4 grid-line backdrop-blur-md bg-white/30 z-50">
-        <div className="flex w-full items-stretch h-16">
+      <nav className="sticky top-0 w-full border-y-2 sm:border-y-4 grid-line backdrop-blur-md bg-white/30 z-50 overflow-x-auto no-scrollbar">
+        <div className="flex w-full items-stretch h-14 sm:h-16">
           <motion.div
             style={{ opacity: navLogoOpacity, width: navLogoWidth, borderRightWidth: navLogoBorder }}
-            className="flex items-center justify-center border-solid grid-line hover:bg-accent/20 transition-colors overflow-hidden flex-shrink-0"
+            className="flex items-center justify-center border-solid grid-line hover:bg-accent/20 transition-colors overflow-hidden flex-shrink-0 max-w-[52px] sm:max-w-[84px]"
           >
             <button 
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="flex items-center justify-center h-full w-full cursor-pointer outline-none min-w-[80px]"
+              className="flex items-center justify-center h-full w-full cursor-pointer outline-none min-w-0 px-2 sm:px-0"
               aria-label="Scroll to top"
             >
               <Image
@@ -99,54 +99,58 @@ export default function Home() {
                 alt="Metapoise Logo"
                 width={48}
                 height={48}
-                className="w-12 h-12 object-contain"
+                className="w-8 h-8 sm:w-12 sm:h-12 object-contain"
               />
             </button>
           </motion.div>
           <Link
             href="#schedule"
             id="nav-schedule-link"
-            className="flex-1 flex justify-center items-center hover:bg-accent hover: transition-all border-r-4 grid-line mono-font text-xs uppercase text-center px-2"
+            className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs uppercase text-center px-1 sm:px-2 py-1 leading-tight"
           >
-            [01] Schedule
+            <span className="opacity-70 sm:opacity-100 sm:mr-1">[01]</span>
+            <span className="truncate">Schedule</span>
           </Link>
           <Link
             href="#speakers"
             id="nav-speakers-link"
-            className="flex-1 flex justify-center items-center hover:bg-accent hover: transition-all border-r-4 grid-line mono-font text-xs uppercase text-center px-2"
+            className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs uppercase text-center px-1 sm:px-2 py-1 leading-tight"
           >
-            [02] Speakers
+            <span className="opacity-70 sm:opacity-100 sm:mr-1">[02]</span>
+            <span className="truncate">Speakers</span>
           </Link>
           <Link
             href="#workshops"
             id="nav-workshops-link"
-            className="flex-1 flex justify-center items-center hover:bg-accent hover: transition-all border-r-4 grid-line mono-font text-xs uppercase text-center px-2"
+            className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs uppercase text-center px-1 sm:px-2 py-1 leading-tight"
           >
-            [03] Workshops
+            <span className="opacity-70 sm:opacity-100 sm:mr-1">[03]</span>
+            <span className="truncate">Workshops</span>
           </Link>
           <Link
             href="#tickets"
             id="nav-tickets-link"
-            className="flex-1 flex justify-center items-center hover:bg-accent hover: transition-all mono-font text-xs uppercase text-center px-2"
+            className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all mono-font text-[10px] sm:text-xs uppercase text-center px-1 sm:px-2 py-1 leading-tight"
           >
-            [04] Tickets
+            <span className="opacity-70 sm:opacity-100 sm:mr-1">[04]</span>
+            <span className="truncate">Tickets</span>
           </Link>
         </div>
       </nav>
 
       {/* Hero Bottom Details */}
       <section className="flex flex-col">
-        <div className="px-8 md:px-16">
+        <div className="px-4 sm:px-8 md:px-16">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 border-b-4 grid-line py-8 mb-8">
             <div className="max-w-xl">
-              <p className="text-xl md:text-2xl font-light leading-snug">
+              <p className="text-lg sm:text-xl md:text-2xl font-light leading-snug">
                 A CELEBRATION OF INNOVATION, WHERE IDEAS MEET CREATIVITY AND
                 CUTTING-EDGE TECHNOLOGY TO SHOWCASE FUTURISTIC SOLUTIONS THAT
                 SHAPE TOMORROW AND DRIVE CHANGE.
               </p>
             </div>
             <div className="flex flex-col justify-between items-center md:items-end mt-4 md:mt-0">
-              <div className="mono-font text-sm text-center md:text-right leading-relaxed">
+              <div className="mono-font text-xs sm:text-sm text-center md:text-right leading-relaxed break-words">
                 <p>
                   LOCATION: Department of Computer Science and Engineering,
                   DUIET
@@ -163,7 +167,7 @@ export default function Home() {
         </div>
 
         {/* Scrolling Marquee */}
-        <div className=" border-y-4 border-accent py-4 marquee">
+        <div className="w-full max-w-full border-y-4 border-accent py-4 marquee overflow-hidden">
           <div className="marquee-content heading-font text-3xl md:text-5xl uppercase">
             <span className="mx-8">Hackathon</span> <span className="">•</span>
             <span className="mx-8">Ideathon</span> <span className="">•</span>
@@ -309,13 +313,13 @@ export default function Home() {
       {/* Final CTA */}
       <section
         id="tickets"
-        className="py-32 flex flex-col items-center justify-center text-center px-8 border-b-4 grid-line"
+        className="py-20 md:py-32 flex flex-col items-center justify-center text-center px-4 sm:px-8 border-b-4 grid-line"
       >
-        <div className="max-w-4xl">
-          <h2 className="heading-font text-5xl sm:text-7xl md:text-9xl uppercase mb-8">
+        <div className="max-w-4xl w-full">
+          <h2 className="heading-font text-4xl sm:text-7xl md:text-9xl uppercase mb-8 break-words">
             Ready to Initialize?
           </h2>
-          <p className="mono-font text-xs sm:text-sm md:text-base mb-12 max-w-2xl mx-auto px-4 md:px-0">
+          <p className="mono-font text-xs sm:text-sm md:text-base mb-12 max-w-2xl mx-auto px-2 sm:px-4 md:px-0">
             DATA HARVESTED.COOKIES STORED.CONNECTION ENCRYPTED.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center px-4 md:px-0">
@@ -330,40 +334,40 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-8 md:px-16 border-t-4 grid-line-accent flex flex-col md:flex-row justify-between items-center gap-8">
+      <footer className="py-12 px-4 sm:px-8 md:px-16 border-t-4 grid-line-accent flex flex-col md:flex-row justify-between items-center gap-8">
         <div className="flex flex-col items-center md:items-start text-center md:text-left">
-          <span className="mono-font text-xs  uppercase">© 2026 METAPOSE</span>
-          <span className="mono-font text-[10px]  uppercase mt-1">
+          <span className="mono-font text-xs uppercase">© 2026 METAPOSE</span>
+          <span className="mono-font text-[10px] uppercase mt-1">
             VER: 2.0_BETA // INDEX_MP_v_2.0 // END
           </span>
         </div>
 
-        <div className="flex gap-12 justify-center">
+        <div className="flex flex-wrap gap-6 sm:gap-12 justify-center">
           <Link
             href="#"
             id="footer-twitter"
-            className=" hover: transition-colors uppercase mono-font text-xs tracking-tighter"
+            className="hover:text-accent transition-colors uppercase mono-font text-xs tracking-tighter"
           >
             X
           </Link>
           <Link
             href="#"
             id="footer-discord"
-            className=" hover: transition-colors uppercase mono-font text-xs tracking-tighter"
+            className="hover:text-accent transition-colors uppercase mono-font text-xs tracking-tighter"
           >
             Discord
           </Link>
           <Link
             href="#"
             id="footer-github"
-            className=" hover: transition-colors uppercase mono-font text-xs tracking-tighter"
+            className="hover:text-accent transition-colors uppercase mono-font text-xs tracking-tighter"
           >
             Github
           </Link>
         </div>
 
         <div className="text-center md:text-right flex items-center justify-center md:justify-end gap-4">
-          <span className="mono-font text-xs uppercase ">
+          <span className="mono-font text-xs uppercase">
             Secure Connection: True
           </span>
         </div>

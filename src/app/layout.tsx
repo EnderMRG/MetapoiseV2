@@ -39,7 +39,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={cn(spaceGrotesk.variable, inter.variable, jetbrainsMono.variable, higuenFallback.variable, "font-sans", geist.variable)}
     >
-      <body className="w-full">{children}</body>
+      <body className="w-full overflow-x-clip">{children}</body>
     </html>
   );
 }
