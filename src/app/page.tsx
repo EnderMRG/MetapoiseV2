@@ -4,7 +4,6 @@ import { useRef, useState } from "react";
 import { ArrowRight, Code, Cpu, Globe, RocketLaunch, Sparkle, Terminal } from "@phosphor-icons/react";
 import Link from "next/link";
 import Image from "next/image";
-import Navbar from "@/components/Navbar";
 import Grainient from "@/components/Grainient";
 import Footer from "@/components/Footer";
 import { motion, useScroll, useTransform } from "framer-motion";
