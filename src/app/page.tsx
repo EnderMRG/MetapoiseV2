@@ -26,7 +26,7 @@ export default function Home() {
       <div className="scanline"></div>
 
       {/* Global Background */}
-      <div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
+      <div className="fixed -inset-[150px] pointer-events-none z-[-1] overflow-hidden">
         <Grainient
           color1="#a8afe0"
           color2="#8b83ab"

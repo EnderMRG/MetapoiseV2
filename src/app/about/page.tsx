@@ -11,7 +11,7 @@ export default function AboutUs() {
       <div className="scanline"></div>
 
       {/* Global Background - Identical to Landing Page */}
-      <div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
+      <div className="fixed -inset-[150px] pointer-events-none z-[-1] overflow-hidden">
         <Grainient
           color1="#a8afe0"
           color2="#8b83ab"
@@ -43,45 +43,43 @@ export default function AboutUs() {
         <div className="flex w-full items-stretch h-14 sm:h-16">
           <Link
             href="/"
-            className="flex items-center justify-center border-r-2 sm:border-r-4 grid-line hover:bg-accent/20 transition-colors px-3 sm:px-6 flex-shrink-0"
+            className="flex items-center justify-center border-solid grid-line hover:bg-accent/20 transition-colors overflow-hidden flex-shrink-0 w-[52px] sm:w-[84px] border-r-2 sm:border-r-4"
             aria-label="Return to Home"
           >
-            <Image
-              src="/logo.svg"
-              alt="Metapoise Logo"
-              width={40}
-              height={40}
-              className="w-7 h-7 sm:w-9 sm:h-9 object-contain"
-            />
+            <div className="flex items-center justify-center h-full w-full cursor-pointer outline-none min-w-0 px-2 sm:px-0">
+              <Image
+                src="/logo.svg"
+                alt="Metapoise Logo"
+                width={48}
+                height={48}
+                className="w-8 h-8 sm:w-12 sm:h-12 object-contain"
+              />
+            </div>
           </Link>
-
-          <Link
-            href="/"
-            id="nav-home-link"
-            className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs uppercase text-center px-1 sm:px-2 py-1 leading-tight"
-          >
-            <span className="opacity-70 sm:opacity-100 sm:mr-1">[01]</span>
-            <span className="truncate">Home</span>
-          </Link>
-
           <Link
             href="/#schedule"
             id="nav-schedule-link"
             className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs uppercase text-center px-1 sm:px-2 py-1 leading-tight"
           >
-            <span className="opacity-70 sm:opacity-100 sm:mr-1">[02]</span>
+            <span className="opacity-70 sm:opacity-100 sm:mr-1">[01]</span>
             <span className="truncate">Schedule</span>
           </Link>
-
           <Link
             href="/#speakers"
             id="nav-speakers-link"
             className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs uppercase text-center px-1 sm:px-2 py-1 leading-tight"
           >
-            <span className="opacity-70 sm:opacity-100 sm:mr-1">[03]</span>
+            <span className="opacity-70 sm:opacity-100 sm:mr-1">[02]</span>
             <span className="truncate">Speakers</span>
           </Link>
-
+          <Link
+            href="/#workshops"
+            id="nav-workshops-link"
+            className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs uppercase text-center px-1 sm:px-2 py-1 leading-tight"
+          >
+            <span className="opacity-70 sm:opacity-100 sm:mr-1">[03]</span>
+            <span className="truncate">Workshops</span>
+          </Link>
           <Link
             href="/about"
             id="nav-about-link"
