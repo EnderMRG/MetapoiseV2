@@ -103,6 +103,7 @@ body {
 .marquee-content {
   display: flex;
   animation: marquee 20s linear infinite;
+  will-change: transform;
 }
 
 @keyframes marquee {
@@ -116,14 +117,16 @@ body {
   background: rgba(181, 192, 255, 0.1);
   position: fixed;
   top: 0;
+  left: 0;
   z-index: 99;
   pointer-events: none;
   animation: scanline 8s linear infinite;
+  will-change: transform;
 }
 
 @keyframes scanline {
-  0% { top: -2%; }
-  100% { top: 100%; }
+  0% { transform: translateY(-2vh); }
+  100% { transform: translateY(100vh); }
 }
 
 .speaker-card:hover .speaker-icon {

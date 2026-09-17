@@ -180,7 +180,7 @@ const Grainient: React.FC<GrainientProps> = ({
       webgl: 2,
       alpha: true,
       antialias: false,
-      dpr: Math.min(window.devicePixelRatio || 1, 2)
+      dpr: 1 // Hardcoded to 1 for significant performance improvement
     });
 
     const gl = renderer.gl;
