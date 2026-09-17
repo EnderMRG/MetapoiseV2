@@ -1,11 +1,103 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, ArrowRight, Cpu, Terminal, ShieldCheck, Sparkle, Globe, Code } from "@phosphor-icons/react";
+import { ArrowLeft, ArrowRight, Cpu, Terminal, ShieldCheck, Sparkle, Globe, Code, Play } from "@phosphor-icons/react";
+import { motion } from "framer-motion";
 import Grainient from "@/components/Grainient";
+import Footer from "@/components/Footer";
+
+const v1Archive = [
+  { id: "01", name: "Inauguration Ceremony", desc: "The Inauguration of Metapoise 1.0 set the stage for two days of insightful events, with leaders and experts sharing their vision for the future. The session on Intellectual Property Rights (IPR) highlighted the importance of protecting innovations and fostering a culture of creativity in the evolving tech landscape.", images: ["01 Inauguration Ceremony/01 Inauguration Ceremony - 01.webp", "01 Inauguration Ceremony/01 Inauguration Ceremony - 02.webp", "01 Inauguration Ceremony/01 Inauguration Ceremony - 03.webp", "01 Inauguration Ceremony/01 Inauguration Ceremony - 04.webp"] },
+  { id: "02", name: "Plantation Drive & Cycle Rally", desc: "A community-focused green initiative to promote environmental sustainability and physical well-being among participants and students.", images: ["02 Plantation Drive and Cycle Rally/02 Plantation Drive and Cycle Rally - 01.webp", "02 Plantation Drive and Cycle Rally/02 Plantation Drive and Cycle Rally - 02.webp", "02 Plantation Drive and Cycle Rally/02 Plantation Drive and Cycle Rally - 03.webp", "02 Plantation Drive and Cycle Rally/02 Plantation Drive and Cycle Rally - 04.webp"] },
+  { id: "03", name: "Open Mic", desc: "A vibrant cultural session allowing students to showcase their creative expressions through music, poetry, and stand-up performances.", images: ["03 Open Mic/03 Open Mic - 01.webp", "03 Open Mic/03 Open Mic - 02.webp", "03 Open Mic/03 Open Mic - 03.webp", "03 Open Mic/03 Open Mic - 04.webp"] },
+  { id: "04", name: "Digital Transformation Workshop", desc: "An intensive workshop exploring the rapid shifts in the technological landscape, guiding students on adapting to modern digital ecosystems.", images: ["04 Digital Transformation Workshop/04 Digital Transformation Workshop - 01.webp", "04 Digital Transformation Workshop/04 Digital Transformation Workshop - 02.webp", "04 Digital Transformation Workshop/04 Digital Transformation Workshop - 03.webp", "04 Digital Transformation Workshop/04 Digital Transformation Workshop - 04.webp"] },
+  { id: "05", name: "Workshop & Hackathon", desc: "Participants designed dynamic, user-friendly frontend websites in an intense collaborative sprint to solve real-world problems.", images: ["05 Workshop and Hackathon/05 Workshop and Hackathon - 01.webp", "05 Workshop and Hackathon/05 Workshop and Hackathon - 02.webp", "05 Workshop and Hackathon/05 Workshop and Hackathon - 03.webp", "05 Workshop and Hackathon/05 Workshop and Hackathon - 04.webp"] },
+  { id: "06", name: "E-Sports", desc: "A competitive gaming tournament that brought out the strategic thinking and rapid reflexes of the student community.", images: ["06 E-Sports/06 E-Sports - 01.webp", "06 E-Sports/06 E-Sports - 02.webp", "06 E-Sports/06 E-Sports - 03.webp", "06 E-Sports/06 E-Sports - 04.webp"] },
+  { id: "07", name: "IP & IT Workshop", desc: "An engaging seminar focusing on the intersection of Information Technology and Intellectual Property rights for future innovators.", images: ["07 IP and IT Workshop/07 IP and IT Workshop - 01.webp", "07 IP and IT Workshop/07 IP and IT Workshop - 02.webp"] },
+  { id: "08", name: "Tech Quiz", desc: "The Tech Quiz Competition challenged participants' expertise in various domains of technology, from programming to emerging innovations. It fostered critical thinking and teamwork, as teams competed to answer complex tech-related questions and secure the win.", images: ["08 Tech Quiz/08 Tech Quiz - 01.webp", "08 Tech Quiz/08 Tech Quiz - 02.webp", "08 Tech Quiz/08 Tech Quiz - 03.webp", "08 Tech Quiz/08 Tech Quiz - 04.webp"] },
+  { id: "09", name: "Alumni Meet", desc: "The first Techno Alumni Meet brought back graduates from 2014 to 2024 for a day of networking, reflection, and invaluable mentorship.", images: ["09 Alumni Meet/09 Alumni Meet - 01.webp", "09 Alumni Meet/09 Alumni Meet - 02.webp"] },
+  { id: "10", name: "Startup Idea Competition", desc: "Concepts were refined with feedback from industry experts. High-conviction founders presented their innovative business plans and prototypes.", images: ["10 Startup Idea Competition/10 Startup Idea Competition - 01.webp", "10 Startup Idea Competition/10 Startup Idea Competition - 02.webp", "10 Startup Idea Competition/10 Startup Idea Competition - 03.webp", "10 Startup Idea Competition/10 Startup Idea Competition - 04.webp"] },
+  { id: "11", name: "Entrepreneurship Summit", desc: "A high-impact summit connecting student visionaries with established entrepreneurs to discuss venture vectors and business strategies.", images: ["11 Entrepreneurship Summit/11 Entrepreneurship Summit - 01.webp", "11 Entrepreneurship Summit/11 Entrepreneurship Summit - 02.webp"] },
+  { id: "12", name: "Cultural Night", desc: "The grand finale of METAPOISE v1.0, featuring a vibrant cultural night that concluded with an electrifying live performance by Abstract Waves.", images: ["12 Cultural Night/12 Cultural Night - 01.webp", "12 Cultural Night/12 Cultural Night - 02.webp"] }
+];
+
+const StackedCarousel = ({ images, eventName }: { images: string[], eventName: string }) => {
+  const [index, setIndex] = useState(0);
+
+  const next = () => setIndex((prev) => (prev + 1) % images.length);
+  const prev = () => setIndex((prev) => (prev - 1 + images.length) % images.length);
+
+  if (!images || images.length === 0) return null;
+  if (images.length === 1) {
+    return (
+      <div className="relative w-full aspect-[4/3] sm:aspect-video rounded-lg overflow-hidden border-4 border-black/10">
+        <Image src={`/v1-archive/${images[0]}`} alt={eventName} fill className="object-cover transition-all duration-700" />
+      </div>
+    );
+  }
+
+  return (
+    <div className="relative w-full h-[280px] sm:h-[400px] md:h-[450px] flex flex-col items-center justify-center mt-8 mb-20">
+      <div className="relative w-full max-w-[320px] sm:max-w-[500px] md:max-w-[650px] h-full">
+        {images.map((img, i) => {
+          let offset = (i - index + images.length) % images.length;
+          if (offset > 2) return null;
+
+          let scale = 1 - offset * 0.05;
+          let y = offset * -15;
+          let rotate = offset === 0 ? 0 : offset === 1 ? 4 : -4;
+          let zIndex = 30 - offset * 10;
+          let opacity = 1 - offset * 0.15;
+
+          return (
+            <motion.div
+              key={img}
+              className={`absolute inset-0 origin-bottom ${offset === 0 ? "cursor-grab active:cursor-grabbing" : ""}`}
+              initial={false}
+              animate={{ scale, y, rotate, zIndex, opacity }}
+              drag={offset === 0 ? "x" : false}
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.8}
+              onDragEnd={(e, { offset: dragOffset, velocity }) => {
+                if (dragOffset.x < -100 || velocity.x < -500) {
+                  next();
+                } else if (dragOffset.x > 100 || velocity.x > 500) {
+                  prev();
+                }
+              }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              style={{ zIndex }}
+            >
+              <div className="w-full h-full rounded-2xl overflow-hidden border-2 border-black/20 shadow-xl bg-white relative">
+                <Image
+                  src={`/v1-archive/${img}`}
+                  alt={`${eventName} Photo ${i + 1}`}
+                  fill
+                  className="object-cover pointer-events-none transition-all duration-700"
+                />
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
+
+      <div className="absolute -bottom-16 flex gap-6 z-40">
+        <button onClick={prev} className="p-3 sm:p-4 bg-white border-2 border-black rounded-full hover:bg-black hover:text-white transition-colors shadow-[4px_4px_0_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1">
+          <ArrowLeft weight="bold" />
+        </button>
+        <button onClick={next} className="p-3 sm:p-4 bg-white border-2 border-black rounded-full hover:bg-black hover:text-white transition-colors shadow-[4px_4px_0_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1">
+          <ArrowRight weight="bold" />
+        </button>
+      </div>
+    </div>
+  );
+};
 
 export default function AboutUs() {
+  const [activeArchiveIndex, setActiveArchiveIndex] = useState(0);
+
   return (
     <div className="min-h-screen relative w-full overflow-x-clip text-black">
       <div className="scanline"></div>
@@ -57,11 +149,19 @@ export default function AboutUs() {
             </div>
           </Link>
           <Link
-            href="/#schedule"
-            id="nav-schedule-link"
+            href="/events"
+            id="nav-events-link"
             className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs uppercase text-center px-1 sm:px-2 py-1 leading-tight"
           >
             <span className="opacity-70 sm:opacity-100 sm:mr-1">[01]</span>
+            <span className="truncate">Events</span>
+          </Link>
+          <Link
+            href="/schedule"
+            id="nav-schedule-link"
+            className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs uppercase text-center px-1 sm:px-2 py-1 leading-tight"
+          >
+            <span className="opacity-70 sm:opacity-100 sm:mr-1">[02]</span>
             <span className="truncate">Schedule</span>
           </Link>
           <Link
@@ -69,16 +169,8 @@ export default function AboutUs() {
             id="nav-speakers-link"
             className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs uppercase text-center px-1 sm:px-2 py-1 leading-tight"
           >
-            <span className="opacity-70 sm:opacity-100 sm:mr-1">[02]</span>
-            <span className="truncate">Speakers</span>
-          </Link>
-          <Link
-            href="/#workshops"
-            id="nav-workshops-link"
-            className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs uppercase text-center px-1 sm:px-2 py-1 leading-tight"
-          >
             <span className="opacity-70 sm:opacity-100 sm:mr-1">[03]</span>
-            <span className="truncate">Workshops</span>
+            <span className="truncate">Speakers</span>
           </Link>
           <Link
             href="/about"
@@ -196,98 +288,139 @@ export default function AboutUs() {
         </div>
       </div>
 
-      {/* Core Pillars / Event Modules Section */}
+      {/* V1.0 Archive Section */}
       <section className="py-16 md:py-24 px-4 sm:px-8 md:px-16 border-b-4 grid-line">
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-12">
-          <div>
-            <span className="mono-font text-xs text-black/60 block mb-2">[01 // CORE_PILLARS]</span>
-            <h2 className="heading-font text-5xl sm:text-7xl uppercase">Flagship Events</h2>
+        {/* Header */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 border-b-2 border-black/20 pb-8">
+          <div className="max-w-2xl">
+            <span className="mono-font text-xs text-black/90 font-bold block mb-4 tracking-widest">[WHERE IT ALL STARTED]</span>
+            <h2 className="heading-font text-6xl sm:text-8xl uppercase leading-none mb-6">
+              Version 1.0
+            </h2>
+            <p className="text-xl sm:text-2xl font-medium leading-relaxed text-black/90">
+              A celebration of innovation, where cutting-edge technology meets creativity, showcasing futuristic ideas, gadgets, and solutions that shape tomorrow.
+            </p>
           </div>
-          <span className="mono-font text-xs sm:text-sm text-black/60 mt-2 sm:mt-0">
-            TOTAL UNITS: 04 // PROTOCOLS INITIALIZED
-          </span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border-4 grid-line">
-          {/* Card 1 */}
-          <div className="border-b-4 md:border-r-4 md:border-b-4 grid-line p-8 sm:p-10 flex flex-col justify-between hover:bg-white/10 transition-colors">
+        {/* Telemetry Stats */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-20">
+          <div className="border-t-2 border-black/30 pt-4">
+            <div className="mono-font text-[10px] text-black/70 font-bold tracking-widest mb-1">EVENTS HOSTED</div>
+            <div className="heading-font text-4xl sm:text-5xl">12</div>
+          </div>
+          <div className="border-t-2 border-black/30 pt-4">
+            <div className="mono-font text-[10px] text-black/70 font-bold tracking-widest mb-1">ALUMNI BATCHES</div>
+            <div className="heading-font text-4xl sm:text-5xl">2014-24</div>
+          </div>
+          <div className="border-t-2 border-black/30 pt-4">
+            <div className="mono-font text-[10px] text-black/70 font-bold tracking-widest mb-1">CAMPUS COLLABORATORS</div>
+            <div className="heading-font text-4xl sm:text-5xl">03</div>
+          </div>
+          <div className="border-t-2 border-black/30 pt-4">
+            <div className="mono-font text-[10px] text-black/70 font-bold tracking-widest mb-1">SPONSORS</div>
+            <div className="heading-font text-4xl sm:text-5xl">09</div>
+          </div>
+        </div>
+
+        {/* After Movie */}
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 mb-24 border-4 border-black/20 p-6 sm:p-8 md:p-10 bg-white/10 backdrop-blur-sm">
+          <div className="md:col-span-7 relative aspect-video bg-black/5 flex items-center justify-center overflow-hidden border-2 border-black/10 shadow-lg">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/WHQgqkNU3A4?rel=0"
+              title="METAPOISE v1.0 After Movie"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              className="absolute inset-0"
+            ></iframe>
+          </div>
+          <div className="md:col-span-5 flex flex-col justify-between py-2 md:py-0">
             <div>
-              <div className="flex justify-between items-start mb-6">
-                <span className="mono-font text-xs font-bold text-black/60">[UNIT_01]</span>
-                <Code weight="bold" className="text-3xl" />
-              </div>
-              <h3 className="heading-font text-3xl sm:text-4xl uppercase mb-4">
-                The Hackathon
-              </h3>
-              <p className="text-sm sm:text-base leading-relaxed text-black/80 font-light">
-                An intense, multi-hour sprint challenging developers, algorithmic thinkers,
-                and designers to engineer novel prototypes tackling autonomous systems,
-                web architectures, and AI primitives.
+              <div className="mono-font text-xs text-black/90 font-bold mb-4 tracking-widest">[YOUTUBE]</div>
+              <h3 className="heading-font text-5xl sm:text-6xl uppercase mb-6 leading-tight">The After Movie</h3>
+              <p className="text-sm sm:text-base leading-relaxed text-black/90 font-medium mb-6">
+                Two days. One campus. All in. Talks, a hackathon, e-sports, a quiz, a startup pitch arena, an alumni homecoming and a cultural night that ended with Abstract Waves live. Press play for the recap.
               </p>
             </div>
-            <div className="mt-8 pt-4 border-t-2 border-black/10 mono-font text-xs text-black/60">
-              FOCUS: AUTONOMOUS LOGIC // ACCELERATED BUILDS
-            </div>
+            {/* <Link href="https://www.youtube.com/watch?v=WHQgqkNU3A4" target="_blank" className="mono-font text-xs tracking-widest hover:text-black/60 transition-colors flex items-center gap-2 border-b border-black/30 pb-2 w-fit font-bold mt-4 md:mt-0">
+              OPEN ON YOUTUBE <ArrowRight />
+            </Link> */}
+          </div>
+        </div>
+
+        {/* The Archive Viewer */}
+        <div className="border-t-2 border-black/20 pt-16">
+          <div className="flex justify-between items-end mb-12">
+            <h3 className="heading-font text-4xl sm:text-6xl uppercase">The v1.0 Archive</h3>
+            <span className="mono-font text-xs text-black/80 font-bold hidden sm:block">12 EVENTS // 40 PHOTOS</span>
           </div>
 
-          {/* Card 2 */}
-          <div className="border-b-4 grid-line p-8 sm:p-10 flex flex-col justify-between hover:bg-white/10 transition-colors">
-            <div>
-              <div className="flex justify-between items-start mb-6">
-                <span className="mono-font text-xs font-bold text-black/60">[UNIT_02]</span>
-                <Cpu weight="bold" className="text-3xl" />
-              </div>
-              <h3 className="heading-font text-3xl sm:text-4xl uppercase mb-4">
-                Tech-Expo & Workshops
-              </h3>
-              <p className="text-sm sm:text-base leading-relaxed text-black/80 font-light">
-                A physical showfloor spotlighting hardware prototypes, IoT installations,
-                embedded systems, and synthetic intelligence demonstrations developed by
-                student researchers.
-              </p>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
+            {/* Sidebar List */}
+            <div className="lg:col-span-4 flex flex-col border-l-2 border-black/20">
+              {v1Archive.map((event, index) => (
+                <button
+                  key={event.id}
+                  onClick={() => setActiveArchiveIndex(index)}
+                  className={`text-left px-4 sm:px-6 py-4 border-b border-black/10 transition-all flex items-center gap-4 group ${activeArchiveIndex === index
+                    ? "bg-white/30 border-l-4 border-l-black"
+                    : "hover:bg-white/10 border-l-4 border-l-transparent"
+                    }`}
+                >
+                  <span className={`mono-font text-sm font-bold ${activeArchiveIndex === index ? "text-black" : "text-black/60 group-hover:text-black/90"}`}>
+                    {event.id}
+                  </span>
+                  <span className={`heading-font text-lg sm:text-xl uppercase tracking-wide truncate font-semibold ${activeArchiveIndex === index ? "text-black" : "text-black/80 group-hover:text-black"}`}>
+                    {event.name}
+                  </span>
+                </button>
+              ))}
             </div>
-            <div className="mt-8 pt-4 border-t-2 border-black/10 mono-font text-xs text-black/60">
-              FOCUS: EMBEDDED SILICON // APPLIED RESEARCH
-            </div>
-          </div>
 
-          {/* Card 3 */}
-          <div className="border-b-4 md:border-b-0 md:border-r-4 grid-line p-8 sm:p-10 flex flex-col justify-between hover:bg-white/10 transition-colors">
-            <div>
-              <div className="flex justify-between items-start mb-6">
-                <span className="mono-font text-xs font-bold text-black/60">[UNIT_03]</span>
-                <Terminal weight="bold" className="text-3xl" />
+            {/* Content View */}
+            <div className="lg:col-span-8 grid grid-cols-1 xl:grid-cols-12 gap-8 lg:gap-12 items-stretch">
+              <div className="xl:col-span-5 flex flex-col justify-between h-full py-4 xl:py-8">
+                <div>
+                  <div className="mono-font text-xs text-black/90 font-bold mb-4 tracking-widest border-b border-black/20 pb-4 inline-block">
+                    {v1Archive[activeArchiveIndex].id} // COMPETITION
+                  </div>
+                  <h4 className="heading-font text-4xl sm:text-5xl md:text-6xl uppercase mb-6 leading-none">
+                    {v1Archive[activeArchiveIndex].name}
+                  </h4>
+                  <p className="text-sm sm:text-base md:text-lg leading-relaxed text-black/90 font-medium">
+                    {v1Archive[activeArchiveIndex].desc}
+                  </p>
+                </div>
+                <div className="mt-12 hidden xl:flex justify-start">
+                  <button
+                    onClick={() => setActiveArchiveIndex((prev) => (prev + 1) % v1Archive.length)}
+                    className="mono-font text-xs tracking-widest hover:text-black/60 transition-colors flex items-center gap-2 border-b border-black/30 pb-2 uppercase font-bold"
+                  >
+                    NEXT EVENT <ArrowRight />
+                  </button>
+                </div>
               </div>
-              <h3 className="heading-font text-3xl sm:text-4xl uppercase mb-4">
-                Ideathon
-              </h3>
-              <p className="text-sm sm:text-base leading-relaxed text-black/80 font-light">
-                A forum for high-conviction founders and conceptual visionaries to articulate
-                transformative technical solutions before panels of faculty, alumni, and tech founders.
-              </p>
-            </div>
-            <div className="mt-8 pt-4 border-t-2 border-black/10 mono-font text-xs text-black/60">
-              FOCUS: ARCHITECTURAL DESIGN // VENTURE VECTORS
-            </div>
-          </div>
 
-          {/* Card 4 */}
-          <div className="p-8 sm:p-10 flex flex-col justify-between hover:bg-white/10 transition-colors">
-            <div>
-              <div className="flex justify-between items-start mb-6">
-                <span className="mono-font text-xs font-bold text-black/60">[UNIT_04]</span>
-                <Globe weight="bold" className="text-3xl" />
+              <div className="xl:col-span-7 flex flex-col items-center justify-center w-full">
+                {/* Stacked Image Carousel */}
+                <StackedCarousel
+                  key={v1Archive[activeArchiveIndex].id}
+                  images={v1Archive[activeArchiveIndex].images}
+                  eventName={v1Archive[activeArchiveIndex].name}
+                />
               </div>
-              <h3 className="heading-font text-3xl sm:text-4xl uppercase mb-4">
-                Symposia & Culture
-              </h3>
-              <p className="text-sm sm:text-base leading-relaxed text-black/80 font-light">
-                Keynotes, alumni networking forums, open-mic sessions, and workshops curated
-                to strengthen community bonds and accelerate knowledge sharing across cohorts.
-              </p>
-            </div>
-            <div className="mt-8 pt-4 border-t-2 border-black/10 mono-font text-xs text-black/60">
-              FOCUS: COMMUNITY SYNERGY // KNOWLEDGE MESH
+
+              <div className="mt-8 flex xl:hidden justify-end w-full">
+                <button
+                  onClick={() => setActiveArchiveIndex((prev) => (prev + 1) % v1Archive.length)}
+                  className="mono-font text-xs tracking-widest hover:text-black/60 transition-colors flex items-center gap-2 border-b border-black/30 pb-2 uppercase font-bold"
+                >
+                  NEXT EVENT <ArrowRight />
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -394,44 +527,7 @@ export default function AboutUs() {
       </section>
 
       {/* Footer (Identical to Landing Page) */}
-      <footer className="py-12 px-4 sm:px-8 md:px-16 border-t-4 grid-line-accent flex flex-col md:flex-row justify-between items-center gap-8">
-        <div className="flex flex-col items-center md:items-start text-center md:text-left">
-          <span className="mono-font text-xs uppercase">© 2026 METAPOISE</span>
-          <span className="mono-font text-[10px] uppercase mt-1">
-            VER: 2.0_BETA // INDEX_MP_v_2.0 // ABOUT_PAGE
-          </span>
-        </div>
-
-        <div className="flex flex-wrap gap-6 sm:gap-12 justify-center">
-          <Link
-            href="#"
-            id="footer-twitter"
-            className="hover:text-accent transition-colors uppercase mono-font text-xs tracking-tighter"
-          >
-            X
-          </Link>
-          <Link
-            href="#"
-            id="footer-discord"
-            className="hover:text-accent transition-colors uppercase mono-font text-xs tracking-tighter"
-          >
-            Discord
-          </Link>
-          <Link
-            href="#"
-            id="footer-github"
-            className="hover:text-accent transition-colors uppercase mono-font text-xs tracking-tighter"
-          >
-            Github
-          </Link>
-        </div>
-
-        <div className="text-center md:text-right flex items-center justify-center md:justify-end gap-4">
-          <span className="mono-font text-xs uppercase">
-            Secure Connection: True
-          </span>
-        </div>
-      </footer>
+      <Footer className="grid-line-accent" />
     </div>
   );
 }
