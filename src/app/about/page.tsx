@@ -75,6 +75,8 @@ const StackedCarousel = ({ images, eventName }: { images: string[], eventName: s
                   src={`/v1-archive/${img}`}
                   alt={`${eventName} Photo ${i + 1}`}
                   fill
+                  loading={i === 0 ? "eager" : "lazy"}
+                  sizes="(max-width: 640px) 320px, (max-width: 768px) 500px, 650px"
                   className="object-cover pointer-events-none transition-all duration-700"
                 />
               </div>

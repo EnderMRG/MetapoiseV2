@@ -244,11 +244,17 @@ const Grainient: React.FC<GrainientProps> = ({
     let isVisible = true;
     let isPageVisible = !document.hidden;
     const t0 = performance.now();
+    const TARGET_FPS = 30;
+    const FRAME_MS = 1000 / TARGET_FPS;
+    let lastFrameTime = 0;
 
-    const loop = (t: number) => {
+    const loop = (t: number) =>
+    {
+      raf = requestAnimationFrame(loop);
+      if (t - lastFrameTime < FRAME_MS) return;
+      lastFrameTime = t;
       (program.uniforms.iTime as { value: number }).value = (t - t0) * 0.001;
       renderer.render({ scene: mesh });
-      raf = requestAnimationFrame(loop);
     };
 
     const tryStart = () => {

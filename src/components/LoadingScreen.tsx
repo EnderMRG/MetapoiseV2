@@ -99,16 +99,15 @@ export default function LoadingScreen({
             opacity: 0,
             transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] },
           }}
-          className="fixed inset-0 z-[9999] flex flex-col justify-between text-black select-none pointer-events-auto"
+          className="fixed inset-0 z-[9999] text-black select-none pointer-events-auto"
         >
           {/* Subtle Outer Frame Grid Border */}
           <div className="absolute inset-2 sm:inset-3 md:inset-4 border border-black/80 pointer-events-none z-20" />
 
-          {/* Thin Horizontal Background Grid Line (like reference) */}
-          <div className="absolute top-[36%] left-0 right-0 h-px bg-black/30 pointer-events-none z-10" />
+
 
           {/* Top Section */}
-          <div className="relative z-30 flex items-start justify-between p-6 sm:p-8 md:p-10">
+          <div className="absolute top-0 inset-x-0 z-30 flex items-start justify-between p-6 sm:p-8 md:p-10">
             {/* Top-Left Telemetry Block (exact reference match) */}
             <div className="mono-font text-[10px] sm:text-xs leading-tight tracking-wider text-black font-semibold space-y-1">
               <div>SECURE_BOOT: ENABLED</div>
@@ -131,8 +130,9 @@ export default function LoadingScreen({
           </div>
 
           {/* Center Brand, Logo, Status & Progress Bar */}
-          <div className="relative z-30 flex flex-col items-center justify-center my-auto px-4 sm:px-8">
-            {/* Logo */}
+          <div className="absolute inset-0 z-30 flex flex-col items-center justify-center pointer-events-none px-4 sm:px-8">
+            <div className="pointer-events-auto flex flex-col items-center justify-center w-full">
+              {/* Logo */}
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -184,10 +184,12 @@ export default function LoadingScreen({
                 <span className="tabular-nums font-bold">{progress}%</span>
               </div>
             </div>
+            </div>
           </div>
 
+
           {/* Bottom Telemetry Bar (exact reference match with 4 items & top border) */}
-          <div className="relative z-30 border-t border-black px-4 sm:px-8 py-3 sm:py-4 mono-font text-[9px] sm:text-[11px] md:text-xs tracking-wider text-black font-semibold">
+          <div className="absolute bottom-0 inset-x-0 z-30 border-t border-black px-4 sm:px-8 py-3 sm:py-4 mono-font text-[9px] sm:text-[11px] md:text-xs tracking-wider text-black font-semibold bg-transparent backdrop-blur-sm">
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center sm:text-left">
               <div className="truncate">
                 UPLINK_STRENGTH: <span className="font-bold">98.4%</span>

@@ -9,12 +9,15 @@ const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const inter = Inter({
   variable: "--font-inter",
   weight: "900",
   subsets: ["latin"],
+  display: "swap",
+  preload: true,
 });
 
 const higuenFallback = localFont({
@@ -26,6 +29,7 @@ const higuenFallback = localFont({
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {

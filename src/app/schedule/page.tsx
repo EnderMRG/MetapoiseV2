@@ -5,6 +5,35 @@ import Grainient from "@/components/Grainient";
 import Footer from "@/components/Footer";
 
 export default function SchedulePage() {
+  const scheduleData = [
+    {
+      dayStr: "DAY_01",
+      dateStr: "30.10.26",
+      events: [
+        { time: "09:00 - 10:30", type: "KEYNOTE", title: "INAUGURATION & KEYNOTE SEMINAR", location: "VOID_MAIN" },
+        { time: "10:45 - 13:30", type: "WORKSHOP", title: "PRACTICAL TECHNICAL WORKSHOP", location: "LAB_02", eventId: "evt7" },
+        { time: "14:00 - 17:30", type: "EXHIBITION", title: "STARTUP & INNOVATION EXPO", location: "EXHIBITION_HALL", eventId: "evt3" }
+      ]
+    },
+    {
+      dayStr: "DAY_02",
+      dateStr: "31.10.26",
+      events: [
+        { time: "09:30 - 17:00", type: "COMPETITION", title: "APORIA", location: "VOID_MAIN", eventId: "evt2" },
+        { time: "10:00 - 17:00", type: "EXHIBITION", title: "INTERACTIVE PROJECT STALLS", location: "EXHIBITION_HALL", eventId: "evt3" }
+      ]
+    },
+    {
+      dayStr: "DAY_03",
+      dateStr: "01.11.26",
+      events: [
+        { time: "09:00 - 16:00", type: "HACKATHON", title: "CRESCENDO", location: "VOID_MAIN", eventId: "evt1" },
+        { time: "10:00 - 16:00", type: "EXHIBITION", title: "INTERACTIVE PROJECT STALLS", location: "EXHIBITION_HALL", eventId: "evt3" },
+        { time: "16:30 - 18:00", type: "CEREMONY", title: "VALEDICTORY & AWARD CEREMONY", location: "MAIN_AUDITORIUM" }
+      ]
+    }
+  ];
+
   return (
     <div className="min-h-screen relative w-full overflow-x-clip text-black">
       <div className="scanline"></div>
@@ -107,65 +136,53 @@ export default function SchedulePage() {
       </section>
 
       {/* Schedule Content */}
-      <section className="flex flex-col lg:flex-row px-4 sm:px-8 md:px-16 pb-20">
-        <div className="w-full text-black">
-          <div className="space-y-16 max-w-5xl">
-            {/* Day 1 */}
-            <div>
-              <h3 className="mono-font text-2xl font-bold mb-6 border-b-4 grid-line pb-4 inline-block pr-12">DAY 1: FRIDAY, OCT 30, 2026</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="flex flex-col group p-6 border-4 grid-line hover:bg-white/10 transition-colors">
-                  <span className="mono-font text-sm opacity-80 mb-2 font-bold">09:00 AM – 10:30 AM</span>
-                  <h4 className="text-3xl uppercase font-bold leading-none">Inauguration &amp; Keynote Seminar</h4>
-                </div>
-                <div className="flex flex-col group p-6 border-4 grid-line hover:bg-white/10 transition-colors">
-                  <span className="mono-font text-sm opacity-80 mb-2 font-bold">10:45 AM – 01:30 PM</span>
-                  <h4 className="text-3xl uppercase font-bold leading-none">Practical Technical Workshop</h4>
-                  <p className="opacity-80 mt-2 mono-font">IoT &amp; Embedded Systems</p>
-                </div>
-                <div className="flex flex-col group p-6 border-4 grid-line hover:bg-white/10 transition-colors md:col-span-2">
-                  <span className="mono-font text-sm opacity-80 mb-2 font-bold">02:00 PM – 05:30 PM</span>
-                  <h4 className="text-3xl uppercase font-bold leading-none">Startup &amp; Innovation Expo</h4>
-                </div>
-              </div>
-            </div>
+      <section className="px-4 sm:px-8 md:px-16 pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 border-4 border-black bg-white/20 backdrop-blur-sm">
+          {scheduleData.map((day, dayIndex) => (
+            <div key={day.dayStr} className={`flex flex-col border-black p-4 sm:p-6 md:p-8 ${dayIndex !== scheduleData.length - 1 ? 'border-b-4 lg:border-b-0 lg:border-r-4' : ''}`}>
 
-            {/* Day 2 */}
-            <div>
-              <h3 className="mono-font text-2xl font-bold mb-6 border-b-4 grid-line pb-4 inline-block pr-12">DAY 2: SATURDAY, OCT 31, 2026</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="flex flex-col group p-6 border-4 grid-line hover:bg-white/10 transition-colors">
-                  <span className="mono-font text-sm opacity-80 mb-2 font-bold">09:30 AM – 05:00 PM</span>
-                  <h4 className="text-3xl uppercase font-bold leading-none">Central Ideathon Track</h4>
-                  <p className="opacity-80 mt-2 mono-font">Jointly with IEEE DUSB</p>
-                </div>
-                <div className="flex flex-col group p-6 border-4 grid-line hover:bg-white/10 transition-colors">
-                  <span className="mono-font text-sm opacity-80 mb-2 font-bold">10:00 AM – 05:00 PM</span>
-                  <h4 className="text-3xl uppercase font-bold leading-none">Interactive Project &amp; Technical Stalls</h4>
-                </div>
+              {/* Day Header */}
+              <div className="flex justify-between items-end border-b-4 border-black pb-4 mb-6">
+                <h3 className="heading-font text-4xl sm:text-5xl uppercase leading-none">{day.dayStr}</h3>
+                <span className="mono-font text-sm font-bold tracking-widest">{day.dateStr}</span>
               </div>
-            </div>
 
-            {/* Day 3 */}
-            <div>
-              <h3 className="mono-font text-2xl font-bold mb-6 border-b-4 grid-line pb-4 inline-block pr-12">DAY 3: SUNDAY, NOV 01, 2026</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="flex flex-col group p-6 border-4 grid-line hover:bg-white/10 transition-colors md:col-span-2">
-                  <span className="mono-font text-sm opacity-80 mb-2 font-bold">09:00 AM – 04:00 PM</span>
-                  <h4 className="text-3xl uppercase font-bold leading-none">Flagship Hackathon Track</h4>
-                  <p className="opacity-80 mt-2 mono-font">Jointly with IEEE DUSB</p>
-                </div>
-                <div className="flex flex-col group p-6 border-4 grid-line hover:bg-white/10 transition-colors">
-                  <span className="mono-font text-sm opacity-80 mb-2 font-bold">10:00 AM – 04:00 PM</span>
-                  <h4 className="text-3xl uppercase font-bold leading-none">Interactive Project &amp; Technical Stalls</h4>
-                </div>
-                <div className="flex flex-col group p-6 border-4 grid-line hover:bg-white/10 transition-colors">
-                  <span className="mono-font text-sm opacity-80 mb-2 font-bold">04:30 PM – 06:00 PM</span>
-                  <h4 className="text-3xl uppercase font-bold leading-none">Valedictory &amp; Award Ceremony</h4>
-                </div>
+              {/* Event Stack */}
+              <div className="flex flex-col gap-6">
+                {day.events.map((event, eventIdx) => (
+                  <div
+                    key={eventIdx}
+                    className="relative border-4 border-black p-6 flex flex-col transition-all duration-200 group bg-transparent text-black hover:bg-white hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]"
+                  >
+
+                    <div className="flex justify-between items-center mb-8">
+                      <span className="mono-font text-xs font-bold tracking-widest">[{event.time}]</span>
+                      <span className="mono-font text-[10px] font-bold px-2 py-1 uppercase border-2 transition-colors border-black">
+                        {event.type}
+                      </span>
+                    </div>
+
+                    {event.eventId ? (
+                      <Link href={`/events?eventId=${event.eventId}`} prefetch={true} className="hover:underline decoration-4 underline-offset-4">
+                        <h4 className="heading-font text-3xl sm:text-4xl uppercase leading-none mb-8">
+                          {event.title}
+                        </h4>
+                      </Link>
+                    ) : (
+                      <h4 className="heading-font text-3xl sm:text-4xl uppercase leading-none mb-8">
+                        {event.title}
+                      </h4>
+                    )}
+
+                    <div className="mt-auto mono-font text-xs font-bold uppercase flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-current"></span>
+                      {event.location}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-          </div>
+          ))}
         </div>
       </section>
 

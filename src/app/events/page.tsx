@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowRight, Code, Cpu, Globe } from "@phosphor-icons/react";
 import Grainient from "@/components/Grainient";
@@ -176,27 +177,57 @@ const eventsData: EventData[] = [
   }
 ];
 
+function EventPopupHandler({ onEventFound }: { onEventFound: (id: string) => void }) {
+  const searchParams = useSearchParams();
+  
+  useEffect(() => {
+    const eventId = searchParams.get('eventId');
+    if (eventId) {
+      onEventFound(eventId);
+    }
+  }, [searchParams, onEventFound]);
+
+  return null;
+}
+
 export default function EventsPage() {
   const [selectedEvent, setSelectedEvent] = useState<EventData | null>(null);
   const [modalScale, setModalScale] = useState(1);
 
+  const handleEventFound = useCallback((id: string) => {
+    const event = eventsData.find(e => e.id === id);
+    if (event) setSelectedEvent(event);
+  }, []);
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (selectedEvent) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [selectedEvent]);
+
+  const handleResize = useCallback(() => {
+    // 850 is base ticket width, 650 is base ticket height. 32px is for padding.
+    const scaleX = (window.innerWidth - 32) / 850;
+    const scaleY = (window.innerHeight - 32) / 650;
+    setModalScale(Math.min(1, scaleX, scaleY));
+  }, []);
+
   useEffect(() => {
     if (!selectedEvent) return;
-    
-    function handleResize() {
-      // 850 is base ticket width, 650 is base ticket height. 32px is for padding.
-      const scaleX = (window.innerWidth - 32) / 850;
-      const scaleY = (window.innerHeight - 32) / 650;
-      setModalScale(Math.min(1, scaleX, scaleY));
-    }
-    
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, [selectedEvent]);
+  }, [selectedEvent, handleResize]);
 
   return (
     <div className="min-h-screen relative w-full overflow-x-clip text-black">
+      <Suspense fallback={null}>
+        <EventPopupHandler onEventFound={handleEventFound} />
+      </Suspense>
       <div className="scanline z-[99]"></div>
 
       {/* Global Background */}
