@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowRight, Code, Cpu, Globe } from "@phosphor-icons/react";
 import Grainient from "@/components/Grainient";
@@ -178,6 +178,22 @@ const eventsData: EventData[] = [
 
 export default function EventsPage() {
   const [selectedEvent, setSelectedEvent] = useState<EventData | null>(null);
+  const [modalScale, setModalScale] = useState(1);
+
+  useEffect(() => {
+    if (!selectedEvent) return;
+    
+    function handleResize() {
+      // 850 is base ticket width, 650 is base ticket height. 32px is for padding.
+      const scaleX = (window.innerWidth - 32) / 850;
+      const scaleY = (window.innerHeight - 32) / 650;
+      setModalScale(Math.min(1, scaleX, scaleY));
+    }
+    
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [selectedEvent]);
 
   return (
     <div className="min-h-screen relative w-full overflow-x-clip text-black">
@@ -252,7 +268,7 @@ export default function EventsPage() {
             className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs uppercase text-center px-1 sm:px-2 py-1 leading-tight"
           >
             <span className="opacity-70 sm:opacity-100 sm:mr-1">[03]</span>
-            <span className="truncate">Flagship</span>
+            <span className="truncate">Speaker</span>
           </Link>
           <Link
             href="/about"
@@ -282,7 +298,7 @@ export default function EventsPage() {
 
       {/* Events Content */}
       <section className="px-4 sm:px-8 md:px-16 pb-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border-4 grid-line">
+        <div className="grid grid-cols-2 gap-0 border-4 grid-line">
           {eventsData.map((event, index) => {
             const isHalf = event.width === "half";
             const isLast = index === eventsData.length - 1;
@@ -293,36 +309,36 @@ export default function EventsPage() {
                 className={`
                   relative overflow-hidden group cursor-pointer transition-all duration-300
                   ${!isLast ? 'border-b-4' : ''} 
-                  ${isHalf ? 'md:border-r-4' : 'md:col-span-2'} 
-                  grid-line p-10 flex flex-col hover:border-black
+                  ${isHalf ? 'border-r-4' : 'col-span-2'} 
+                  grid-line p-4 sm:p-6 md:p-10 flex flex-col hover:border-black
                 `}
               >
                 {/* Background Hover Animation */}
                 <div className="absolute inset-0 bg-accent translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] z-0"></div>
 
                 <div className="relative z-10 flex flex-col h-full pointer-events-none">
-                  <div className="flex justify-between items-start mb-12">
+                  <div className="flex justify-between items-start mb-6 sm:mb-12">
                     <div>
-                      <span className="mono-font text-xs mb-1 block font-bold transition-colors group-hover:text-black">{event.unit}</span>
-                      <h3 className="text-3xl md:text-5xl font-bold uppercase transition-colors group-hover:text-black">{event.title}</h3>
+                      <span className="mono-font text-[8px] sm:text-xs mb-1 block font-bold transition-colors group-hover:text-black">{event.unit}</span>
+                      <h3 className="text-lg sm:text-3xl md:text-5xl font-bold uppercase transition-colors group-hover:text-black leading-none">{event.title}</h3>
                       {event.desc && (
-                        <p className="mt-8 text-sm mono-font max-w-sm uppercase transition-colors group-hover:text-black">
+                        <p className="mt-4 sm:mt-8 text-[8px] sm:text-sm mono-font max-w-sm uppercase transition-colors group-hover:text-black">
                           {event.desc}
                         </p>
                       )}
                     </div>
                     {event.shortCode && (
-                      <div className="border-4 grid-line group-hover:border-black p-1 text-[10px] font-bold transition-colors group-hover:text-black bg-transparent">
+                      <div className="border-2 sm:border-4 grid-line group-hover:border-black p-0.5 sm:p-1 text-[8px] sm:text-[10px] font-bold transition-colors group-hover:text-black bg-transparent">
                         {event.shortCode}
                       </div>
                     )}
                   </div>
 
-                  <div className="flex-1 flex items-center justify-center py-12 md:py-0">
+                  <div className="flex-1 flex items-center justify-center py-6 sm:py-12 md:py-0 transform scale-[0.6] sm:scale-75 md:scale-100 origin-center">
                     {event.icon}
                   </div>
 
-                  <p className="mt-8 text-sm mono-font uppercase transition-colors group-hover:text-black font-bold">
+                  <p className="mt-6 sm:mt-8 text-[8px] sm:text-sm mono-font uppercase transition-colors group-hover:text-black font-bold">
                     FIELD: {event.field}
                   </p>
                 </div>
@@ -342,84 +358,89 @@ export default function EventsPage() {
             className="absolute inset-0 bg-black/40 backdrop-blur-sm cursor-pointer"
             onClick={() => setSelectedEvent(null)}
           ></div>
+          <div 
+            className="flex items-center justify-center w-full h-full pointer-events-none"
+            style={{
+              transform: `scale(${modalScale})`,
+              transformOrigin: 'center'
+            }}
+          >
+            <div className="relative w-[800px] shrink-0 bg-accent text-black border-4 border-black shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] flex flex-col z-10 animate-in zoom-in-95 duration-200 pointer-events-auto">
+              
+              {/* Header */}
+              <div className="border-b-4 border-black p-5 flex justify-between items-start bg-accent">
+                <h2 className="heading-font text-4xl uppercase leading-none max-w-[85%] break-words">
+                  {selectedEvent.unit}: {selectedEvent.title}
+                </h2>
+                <button
+                  onClick={() => setSelectedEvent(null)}
+                  className="bg-black text-accent w-10 h-10 flex-shrink-0 flex items-center justify-center text-lg font-bold hover:bg-white hover:text-black transition-colors border-4 border-black"
+                  aria-label="Close modal"
+                >
+                  [X]
+                </button>
+              </div>
 
-          <div className="relative w-full max-w-5xl bg-accent text-black border-4 border-black shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] flex flex-col z-10 animate-in zoom-in-95 duration-200">
+              {/* Body Grid */}
+              <div className="flex flex-row bg-accent">
+                
+                {/* Left Column (Details) */}
+                <div className="w-2/3 border-r-4 border-black p-6 flex flex-col justify-between">
+                  <div>
+                    <p className="mono-font text-sm font-bold uppercase mb-1">
+                      INSTRUCTOR/LEAD: {selectedEvent.coordinator}
+                    </p>
+                    <p className="mono-font text-sm font-bold uppercase mb-6">
+                      DURATION/TIMING: {selectedEvent.timing}
+                    </p>
 
-            {/* Header */}
-            <div className="border-b-4 border-black p-4 sm:p-6 flex justify-between items-start bg-accent">
-              <h2 className="heading-font text-4xl sm:text-5xl md:text-6xl uppercase leading-none max-w-[85%] break-words">
-                {selectedEvent.unit}: {selectedEvent.title}
-              </h2>
-              <button
-                onClick={() => setSelectedEvent(null)}
-                className="bg-black text-accent w-12 h-12 flex items-center justify-center text-xl font-bold hover:bg-white hover:text-black transition-colors border-4 border-black"
-                aria-label="Close modal"
-              >
-                [X]
+                    <div className="w-full h-1 bg-black mb-6"></div>
+
+                    <p className="text-xl uppercase leading-snug font-medium mb-8">
+                      {selectedEvent.fullDescription}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-wrap gap-3 mt-auto pt-4">
+                    {selectedEvent.tags.map(tag => (
+                      <span key={tag} className="border-4 border-black px-3 py-2 mono-font text-xs font-bold uppercase bg-transparent">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Right Column (Stats) */}
+                <div className="w-1/3 p-6 flex flex-col gap-5 bg-accent">
+                  <div className="border-4 border-black bg-transparent py-5 px-4 flex flex-col items-center text-center justify-center">
+                    <span className="heading-font text-7xl leading-none">{selectedEvent.stats.mainNum}</span>
+                    <span className="mono-font text-xs font-bold uppercase mt-3 tracking-wider">{selectedEvent.stats.mainLabel}</span>
+                  </div>
+
+                  <div className="border-4 border-black bg-black text-accent py-5 px-4 flex flex-col items-center text-center justify-center">
+                    <span className="heading-font text-7xl leading-none">{selectedEvent.stats.subNum}</span>
+                    <span className="mono-font text-xs font-bold uppercase mt-3 tracking-wider">{selectedEvent.stats.subLabel}</span>
+                  </div>
+
+                  {/* Barcode Graphic */}
+                  <div className="mt-auto pt-2 flex justify-between h-10 w-full">
+                    {[...Array(50)].map((_, i) => {
+                      // Create a pseudo-random looking barcode pattern
+                      const width = (i % 7 === 0) ? '6px' : (i % 3 === 0) ? '4px' : '2px';
+                      const opacity = (i % 11 === 0) ? 0 : 1;
+                      return (
+                        <div key={i} className="bg-black h-full" style={{ width, opacity }}></div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+
+              {/* Footer CTA Button */}
+              <button className="w-full bg-black text-accent py-5 px-4 heading-font text-4xl uppercase hover:bg-white hover:text-black transition-colors border-t-4 border-black shrink-0">
+                {selectedEvent.ctaText}
               </button>
             </div>
-
-            {/* Body Grid */}
-            <div className="flex flex-col md:flex-row bg-accent">
-
-              {/* Left Column (Details) */}
-              <div className="w-full md:w-2/3 border-b-4 md:border-b-0 md:border-r-4 border-black p-6 sm:p-8 flex flex-col justify-between">
-                <div>
-                  <p className="mono-font text-xs sm:text-sm font-bold uppercase mb-1">
-                    INSTRUCTOR/LEAD: {selectedEvent.coordinator}
-                  </p>
-                  <p className="mono-font text-xs sm:text-sm font-bold uppercase mb-8">
-                    DURATION/TIMING: {selectedEvent.timing}
-                  </p>
-
-                  <div className="w-full h-1 bg-black mb-8"></div>
-
-                  <p className="text-xl sm:text-2xl uppercase leading-snug font-medium mb-12">
-                    {selectedEvent.fullDescription}
-                  </p>
-                </div>
-
-                <div className="flex flex-wrap gap-2 sm:gap-4 mt-auto pt-4">
-                  {selectedEvent.tags.map(tag => (
-                    <span key={tag} className="border-2 sm:border-4 border-black px-2 py-1 sm:px-3 sm:py-2 mono-font text-[10px] sm:text-xs font-bold uppercase bg-transparent">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Right Column (Stats) */}
-              <div className="w-full md:w-1/3 p-6 sm:p-8 flex flex-col gap-6 sm:gap-8 bg-accent">
-                {/* Primary Stat Block */}
-                <div className="border-4 border-black bg-transparent py-8 px-4 flex flex-col items-center text-center justify-center">
-                  <span className="heading-font text-7xl sm:text-8xl leading-none">{selectedEvent.stats.mainNum}</span>
-                  <span className="mono-font text-xs font-bold uppercase mt-4 tracking-wider">{selectedEvent.stats.mainLabel}</span>
-                </div>
-
-                {/* Secondary Stat Block (Inverted) */}
-                <div className="border-4 border-black bg-black text-accent py-8 px-4 flex flex-col items-center text-center justify-center">
-                  <span className="heading-font text-7xl sm:text-8xl leading-none">{selectedEvent.stats.subNum}</span>
-                  <span className="mono-font text-xs font-bold uppercase mt-4 tracking-wider">{selectedEvent.stats.subLabel}</span>
-                </div>
-
-                {/* Barcode Graphic */}
-                <div className="mt-auto pt-4 flex justify-between h-12 w-full">
-                  {[...Array(50)].map((_, i) => {
-                    // Create a pseudo-random looking barcode pattern
-                    const width = (i % 7 === 0) ? '6px' : (i % 3 === 0) ? '4px' : '2px';
-                    const opacity = (i % 11 === 0) ? 0 : 1;
-                    return (
-                      <div key={i} className="bg-black h-full" style={{ width, opacity }}></div>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-
-            {/* Footer CTA Button */}
-            <button className="w-full bg-black text-accent py-6 px-4 heading-font text-3xl sm:text-5xl uppercase hover:bg-white hover:text-black transition-colors border-t-4 border-black">
-              {selectedEvent.ctaText}
-            </button>
           </div>
         </div>
       )}
