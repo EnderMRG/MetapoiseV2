@@ -102,7 +102,7 @@ export default function SchedulePage() {
             <span className="truncate">Schedule</span>
           </Link>
           <Link
-            href="/#flagship-events"
+            href="/#speakers"
             id="nav-speakers-link"
             className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs uppercase text-center px-1 sm:px-2 py-1 leading-tight"
           >

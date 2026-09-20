@@ -179,7 +179,7 @@ const eventsData: EventData[] = [
 
 function EventPopupHandler({ onEventFound }: { onEventFound: (id: string) => void }) {
   const searchParams = useSearchParams();
-  
+
   useEffect(() => {
     const eventId = searchParams.get('eventId');
     if (eventId) {
@@ -294,12 +294,12 @@ export default function EventsPage() {
             <span className="truncate">Schedule</span>
           </Link>
           <Link
-            href="/#flagship-events"
+            href="/#speakers"
             id="nav-speakers-link"
             className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs uppercase text-center px-1 sm:px-2 py-1 leading-tight"
           >
             <span className="opacity-70 sm:opacity-100 sm:mr-1">[03]</span>
-            <span className="truncate">Speaker</span>
+            <span className="truncate">Speakers</span>
           </Link>
           <Link
             href="/about"
@@ -389,7 +389,7 @@ export default function EventsPage() {
             className="absolute inset-0 bg-black/40 backdrop-blur-sm cursor-pointer"
             onClick={() => setSelectedEvent(null)}
           ></div>
-          <div 
+          <div
             className="flex items-center justify-center w-full h-full pointer-events-none"
             style={{
               transform: `scale(${modalScale})`,
@@ -397,7 +397,7 @@ export default function EventsPage() {
             }}
           >
             <div className="relative w-[800px] shrink-0 bg-accent text-black border-4 border-black shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] flex flex-col z-10 animate-in zoom-in-95 duration-200 pointer-events-auto">
-              
+
               {/* Header */}
               <div className="border-b-4 border-black p-5 flex justify-between items-start bg-accent">
                 <h2 className="heading-font text-4xl uppercase leading-none max-w-[85%] break-words">
@@ -414,7 +414,7 @@ export default function EventsPage() {
 
               {/* Body Grid */}
               <div className="flex flex-row bg-accent">
-                
+
                 {/* Left Column (Details) */}
                 <div className="w-2/3 border-r-4 border-black p-6 flex flex-col justify-between">
                   <div>

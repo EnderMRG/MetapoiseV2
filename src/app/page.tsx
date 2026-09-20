@@ -8,9 +8,11 @@ import Grainient from "@/components/Grainient";
 import Footer from "@/components/Footer";
 import { motion, useScroll, useTransform } from "framer-motion";
 import LoadingScreen from "@/components/LoadingScreen";
+import SecureAccessModal from "@/components/SecureAccessModal";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
 
@@ -23,6 +25,7 @@ export default function Home() {
   const navLogoBorder = useTransform(scrollY, [200, 400], ["0px", "4px"]);
   return (
     <div className="min-h-screen relative w-full overflow-x-clip">
+      <SecureAccessModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       <LoadingScreen onComplete={() => setIsLoading(false)} />
       <div className="scanline"></div>
 
@@ -125,7 +128,7 @@ export default function Home() {
               <span className="truncate">Schedule</span>
             </Link>
             <Link
-              href="/#flagship-events"
+              href="/#speakers"
               id="nav-speakers-link"
               className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs uppercase text-center px-1 sm:px-2 py-1 leading-tight"
             >
@@ -325,6 +328,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-6 justify-center px-4 md:px-0">
               <button
                 id="cta-primary-buy"
+                onClick={() => setIsModalOpen(true)}
                 className="bg-accent px-6 md:px-16 py-3 md:py-6 text-sm sm:text-base md:text-xl font-black uppercase hover:scale-105 transition-transform"
               >
                 Secure Access Token
