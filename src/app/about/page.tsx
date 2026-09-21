@@ -146,7 +146,8 @@ export default function AboutUs() {
                 alt="Metapoise Logo"
                 width={48}
                 height={48}
-                className="w-8 h-8 sm:w-12 sm:h-12 object-contain"
+                className="w-8 h-auto sm:w-12 sm:h-auto object-contain"
+                priority
               />
             </div>
           </Link>
@@ -207,7 +208,8 @@ export default function AboutUs() {
                 alt="Metapoise Logo"
                 width={160}
                 height={160}
-                className="w-full h-full object-contain"
+                className="w-full h-auto object-contain"
+                priority
               />
             </div>
             <div className="mono-font text-xs sm:text-sm text-left md:text-right space-y-1">
@@ -428,8 +430,8 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* Host Department Overview */}
-      <section className="py-16 md:py-24 px-4 sm:px-8 md:px-16 border-b-4 grid-line">
+      {/* Host Department Overview (Speakers / Faculty) */}
+      <section id="speakers" className="py-16 md:py-24 px-4 sm:px-8 md:px-16 border-b-4 grid-line">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
           <div className="md:col-span-4">
             <span className="mono-font text-xs text-black/60 block mb-2">[02 // HOST_ENTITY]</span>
@@ -517,7 +519,7 @@ export default function AboutUs() {
               Return to Mainframe
             </Link>
             <Link
-              href="/#schedule"
+              href="/schedule"
               id="about-cta-schedule"
               className="bg-white/40 hover:bg-white/80 px-8 md:px-14 py-4 md:py-5 text-sm sm:text-base font-bold uppercase transition-colors flex items-center justify-center gap-3 border-2 border-black"
             >

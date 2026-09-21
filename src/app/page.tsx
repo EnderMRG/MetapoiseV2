@@ -9,7 +9,6 @@ import Footer from "@/components/Footer";
 import { motion, useScroll, useTransform } from "framer-motion";
 import LoadingScreen from "@/components/LoadingScreen";
 import SecureAccessModal from "@/components/SecureAccessModal";
-
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -79,6 +78,7 @@ export default function Home() {
                 width={300}
                 height={300}
                 className="w-full h-auto object-contain"
+                priority
               />
             </motion.div>
             <h1 className="heading-font text-[10vw] md:text-[12vw] leading-[0.85] uppercase text-center md:text-right">
@@ -107,7 +107,8 @@ export default function Home() {
                   alt="Metapoise Logo"
                   width={48}
                   height={48}
-                  className="w-8 h-8 sm:w-12 sm:h-12 object-contain"
+                  className="w-8 h-auto sm:w-12 sm:h-auto object-contain"
+                  priority
                 />
               </button>
             </motion.div>

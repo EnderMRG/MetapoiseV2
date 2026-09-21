@@ -1,0 +1,22 @@
+# METAPOISE V2.0 Context
+
+METAPOISE V2.0 is the flagship annual technical symposium hosted by the Department of Computer Science and Engineering at Dibrugarh University Institute of Engineering and Technology (DUIET).
+
+## Purpose
+The event serves as a crucible for student builders, innovators, researchers, and visionaries pushing the boundaries of algorithmic design, synthetic computation, and emerging architectures. It focuses on the convergence of neural architecture, synthetic biology, and decentralized protocols.
+
+## Key Events
+1. **Crescendo (The Hackathon):** A multi-hour sprint challenging developers to engineer novel prototypes addressing autonomous systems, web architectures, and AI primitives.
+2. **Tech Expo & Workshops:** A physical exhibition spotlighting hardware prototypes, IoT installations, and embedded systems. Includes hands-on practical sessions.
+3. **Aporia (The Ideathon):** A central ideation track for high-conviction founders to pitch transformative technical solutions to expert evaluators.
+4. **Alumni Meet:** A secure networking channel connecting current undergraduates with graduates operating in the global tech industry.
+5. **Symposia & Culture:** Keynotes, networking forums, open-mic sessions, and workshops curated to strengthen community bonds.
+
+## Dates
+October 30, 2026 – November 01, 2026.
+
+## Location
+Department of Computer Science and Engineering, DUIET Campus, Dibrugarh, Assam, India.
+
+## Contact & Registration
+Refer to the official website at https://metapoise.vercel.app for secure access tokens and event registration.

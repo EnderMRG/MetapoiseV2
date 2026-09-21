@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
+import { Metadata } from "next";
 import Grainient from "@/components/Grainient";
 import Footer from "@/components/Footer";
 
@@ -75,13 +77,13 @@ export default function SchedulePage() {
             aria-label="Return to Home"
           >
             <div className="flex items-center justify-center h-full w-full min-w-0 px-2 sm:px-0">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src="/logo.svg"
                 alt="Metapoise Logo"
                 width={48}
                 height={48}
-                className="w-8 h-8 sm:w-12 sm:h-12 object-contain"
+                className="w-8 h-auto sm:w-12 sm:h-auto object-contain"
+                priority
               />
             </div>
           </Link>
