@@ -3,6 +3,7 @@ import { Space_Grotesk, Inter, JetBrains_Mono, Geist } from "next/font/google";
 import localFont from 'next/font/local';
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import Grainient from "@/components/Grainient";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
@@ -50,8 +51,36 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={cn(spaceGrotesk.variable, inter.variable, jetbrainsMono.variable, higuenFallback.variable, "font-sans", geist.variable)}
     >
-      <body className="w-full overflow-x-clip">
-        {children}
+      <body className="w-full overflow-x-clip bg-transparent">
+        <div className="fixed inset-0 -z-10 w-full h-full pointer-events-none">
+          <Grainient
+            color1="#1a4084"
+            color2="#2779ff"
+            color3="#3b6d8e"
+            timeSpeed={0.8}
+            colorBalance={-0.35}
+            warpStrength={1.9}
+            warpFrequency={9.8}
+            warpSpeed={1.7}
+            warpAmplitude={35}
+            blendAngle={22}
+            blendSoftness={0.05}
+            rotationAmount={500}
+            noiseScale={2}
+            grainAmount={0.1}
+            grainScale={2}
+            grainAnimated={false}
+            contrast={1.5}
+            gamma={1}
+            saturation={1}
+            centerX={0}
+            centerY={0}
+            zoom={0.9}
+          />
+        </div>
+        <div className="relative z-0">
+          {children}
+        </div>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

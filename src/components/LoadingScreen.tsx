@@ -99,17 +99,17 @@ export default function LoadingScreen({
             opacity: 0,
             transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] },
           }}
-          className="fixed inset-0 z-[9999] text-black select-none pointer-events-auto"
+          className="fixed inset-0 z-[9999] text-white select-none pointer-events-auto"
         >
           {/* Subtle Outer Frame Grid Border */}
-          <div className="absolute inset-2 sm:inset-3 md:inset-4 border border-black/80 pointer-events-none z-20" />
+          <div className="absolute inset-2 sm:inset-3 md:inset-4 border border-white/30/80 pointer-events-none z-20" />
 
 
 
           {/* Top Section */}
           <div className="absolute top-0 inset-x-0 z-30 flex items-start justify-between p-6 sm:p-8 md:p-10">
             {/* Top-Left Telemetry Block (exact reference match) */}
-            <div className="mono-font text-[10px] sm:text-xs leading-tight tracking-wider text-black font-semibold space-y-1">
+            <div className="mono-font text-[10px] sm:text-xs lg:text-sm xl:text-base leading-tight tracking-wider text-white font-semibold space-y-1">
               <div>SECURE_BOOT: ENABLED</div>
               <div>HANDSHAKE_PROTOCOL: HEX_09</div>
               <div>ENCRYPT_AES_256: VALID</div>
@@ -117,11 +117,11 @@ export default function LoadingScreen({
             </div>
 
             {/* Top-Right Telemetry / Bypass */}
-            <div className="mono-font text-[10px] sm:text-xs tracking-wider text-black flex items-center gap-4">
+            <div className="mono-font text-[10px] sm:text-xs lg:text-sm xl:text-base tracking-wider text-white flex items-center gap-4">
               <span className="hidden sm:inline font-semibold">PORT: 8080</span>
               <button
                 onClick={handleSkip}
-                className="hover:bg-black hover:text-white border border-black px-2 py-1 transition-colors uppercase cursor-pointer font-bold"
+                className="hover:bg-black hover:text-white border border-white/30 px-2 py-1 transition-colors uppercase cursor-pointer font-bold"
                 title="Press ESC or click to skip"
               >
                 Skip [ESC]
@@ -140,7 +140,7 @@ export default function LoadingScreen({
               className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mb-4 flex items-center justify-center flex-shrink-0"
             >
               <Image
-                src="/logo.svg"
+                src="/logowhite.svg"
                 alt="Metapoise Logo"
                 width={160}
                 height={160}
@@ -151,7 +151,7 @@ export default function LoadingScreen({
 
             {/* Name / Title */}
             <div className="text-center mb-6">
-              <h1 className="heading-font text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black uppercase tracking-tight text-black leading-[0.85]">
+              <h1 className="heading-font text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black uppercase tracking-tight text-white leading-[0.85]">
                 <span className="higuen-font normal-case block sm:inline">
                   METAPOISE
                 </span>
@@ -163,14 +163,14 @@ export default function LoadingScreen({
 
             {/* Dynamic Status Text (exact position like reference image) */}
             <div className="mb-4 text-center">
-              <span className="mono-font text-xs sm:text-sm md:text-base font-bold tracking-widest text-black uppercase">
+              <span className="mono-font text-xs sm:text-sm md:text-base font-bold tracking-widest text-white uppercase">
                 {currentStatus}
               </span>
             </div>
 
             {/* Progress Bar (exact brutalist rectangular style like reference image) */}
             <div className="w-full max-w-[320px] sm:max-w-[460px] md:max-w-[560px]">
-              <div className="w-full h-6 sm:h-7 md:h-8 border-2 border-black bg-transparent p-0.5 relative">
+              <div className="w-full h-6 sm:h-7 md:h-8 border-2 border-white/30 bg-transparent p-0.5 relative">
                 {/* Black Progress Fill */}
                 <div
                   className="h-full bg-black transition-all duration-75"
@@ -179,7 +179,7 @@ export default function LoadingScreen({
               </div>
 
               {/* Progress Percentage Display */}
-              <div className="mt-2 flex justify-between items-center mono-font text-[10px] sm:text-xs font-semibold text-black">
+              <div className="mt-2 flex justify-between items-center mono-font text-[10px] sm:text-xs lg:text-sm xl:text-base font-semibold text-white">
                 <span>[STAGE: 0{Math.min(Math.floor(progress / 20) + 1, 5)}/05]</span>
                 <span className="tabular-nums font-bold">{progress}%</span>
               </div>
@@ -189,7 +189,7 @@ export default function LoadingScreen({
 
 
           {/* Bottom Telemetry Bar (exact reference match with 4 items & top border) */}
-          <div className="absolute bottom-0 inset-x-0 z-30 border-t border-black px-4 sm:px-8 py-3 sm:py-4 mono-font text-[9px] sm:text-[11px] md:text-xs tracking-wider text-black font-semibold bg-transparent backdrop-blur-sm">
+          <div className="absolute bottom-0 inset-x-0 z-30 border-t border-white/30 px-4 sm:px-8 py-3 sm:py-4 mono-font text-[9px] sm:text-[11px] md:text-xs tracking-wider text-white font-semibold bg-transparent backdrop-blur-sm">
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center sm:text-left">
               <div className="truncate">
                 UPLINK_STRENGTH: <span className="font-bold">98.4%</span>

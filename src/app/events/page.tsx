@@ -35,9 +35,9 @@ const eventsData: EventData[] = [
     field: "COMPETITION // HACKATHON",
     width: "half",
     icon: (
-      <div className="w-32 h-32 border-4 border-black relative transition-transform duration-500 group-hover:scale-105 flex items-center justify-center bg-white/20">
-        <div className="absolute inset-0 border-4 border-black transform -translate-x-4 translate-y-4 pointer-events-none"></div>
-        <svg className="w-12 h-12 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <div className="w-32 h-32 border-4 border-white/30 group-hover:border-black relative transition-all duration-500 group-hover:scale-105 flex items-center justify-center bg-white/20">
+        <div className="absolute inset-0 border-4 border-white/30 group-hover:border-black transition-colors transform -translate-x-4 translate-y-4 pointer-events-none"></div>
+        <svg className="w-12 h-12 text-white group-hover:text-black transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="square" strokeLinejoin="miter" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
         </svg>
       </div>
@@ -58,7 +58,7 @@ const eventsData: EventData[] = [
     width: "half",
     icon: (
       <div className="w-32 h-32 flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
-        <svg className="w-full h-full text-black" viewBox="0 0 100 100">
+        <svg className="w-full h-full text-white group-hover:text-black transition-colors" viewBox="0 0 100 100">
           <rect x="25" y="25" width="50" height="50" fill="currentColor"></rect>
           <rect x="10" y="10" width="10" height="10" fill="currentColor"></rect>
           <rect x="80" y="80" width="10" height="10" fill="currentColor"></rect>
@@ -80,8 +80,8 @@ const eventsData: EventData[] = [
     field: "EMBEDDED SILICON // APPLIED RESEARCH",
     width: "full",
     icon: (
-      <div className="w-48 h-48 rounded-full border-4 border-black border-dashed animate-spin-slow flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
-        <div className="w-16 h-16 bg-black rounded-full border-4 border-black"></div>
+      <div className="w-48 h-48 rounded-full border-4 border-white/30 group-hover:border-black transition-colors border-dashed animate-spin-slow flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
+        <div className="w-16 h-16 bg-black group-hover:bg-white rounded-full border-4 border-white/30 group-hover:border-black transition-colors"></div>
       </div>
     ),
     coordinator: "HARDWARE DEPT",
@@ -99,10 +99,10 @@ const eventsData: EventData[] = [
     field: "NETWORKING // MENTORSHIP",
     width: "half",
     icon: (
-      <div className="w-32 h-32 border-4 border-black relative transition-transform duration-500 group-hover:scale-105 rounded-full overflow-hidden flex items-center justify-center">
-        <div className="absolute -left-4 -top-4 w-20 h-20 border-4 border-black rounded-full"></div>
-        <div className="absolute -right-4 -bottom-4 w-20 h-20 border-4 border-black rounded-full"></div>
-        <div className="w-8 h-8 bg-black rounded-full relative z-10"></div>
+      <div className="w-32 h-32 border-4 border-white/30 group-hover:border-black relative transition-all duration-500 group-hover:scale-105 rounded-full overflow-hidden flex items-center justify-center">
+        <div className="absolute -left-4 -top-4 w-20 h-20 border-4 border-white/30 group-hover:border-black transition-colors rounded-full"></div>
+        <div className="absolute -right-4 -bottom-4 w-20 h-20 border-4 border-white/30 group-hover:border-black transition-colors rounded-full"></div>
+        <div className="w-8 h-8 bg-black group-hover:bg-white transition-colors rounded-full relative z-10"></div>
       </div>
     ),
     coordinator: "ALUMNI ASSOCIATION",
@@ -121,7 +121,7 @@ const eventsData: EventData[] = [
     width: "half",
     icon: (
       <div className="w-32 h-32 flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
-        <svg className="w-full h-full text-black" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth={4}>
+        <svg className="w-full h-full text-white group-hover:text-black transition-colors" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth={4}>
           <path d="M10 50 Q 25 30, 50 50 T 90 50" />
           <path d="M10 70 Q 25 50, 50 70 T 90 70" />
           <circle cx="50" cy="20" r="8" fill="currentColor" />
@@ -143,9 +143,9 @@ const eventsData: EventData[] = [
     field: "MEDIA // VISUAL ARTS",
     width: "full",
     icon: (
-      <div className="w-48 h-48 border-4 border-black flex items-center justify-center transition-transform duration-500 group-hover:scale-105 bg-white/20">
-        <div className="w-32 h-32 border-4 border-black rounded-full flex items-center justify-center bg-transparent">
-          <div className="w-12 h-12 bg-black rounded-full"></div>
+      <div className="w-48 h-48 border-4 border-white/30 group-hover:border-black transition-colors flex items-center justify-center transition-transform duration-500 group-hover:scale-105 bg-white/20">
+        <div className="w-32 h-32 border-4 border-white/30 group-hover:border-black transition-colors rounded-full flex items-center justify-center bg-transparent">
+          <div className="w-12 h-12 bg-black group-hover:bg-white transition-colors rounded-full"></div>
         </div>
       </div>
     ),
@@ -165,7 +165,7 @@ const eventsData: EventData[] = [
     width: "full",
     icon: (
       <div className="w-48 h-48 relative transition-transform duration-500 group-hover:scale-105 flex items-center justify-center">
-        <svg className="w-32 h-32 text-black animate-spin-slow" viewBox="0 0 100 100" fill="currentColor">
+        <svg className="w-32 h-32 text-white group-hover:text-black transition-colors animate-spin-slow" viewBox="0 0 100 100" fill="currentColor">
           <polygon points="50,10 60,35 85,35 65,55 75,80 50,65 25,80 35,55 15,35 40,35" />
         </svg>
       </div>
@@ -226,39 +226,13 @@ export default function EventsPage() {
   }, [selectedEvent, handleResize]);
 
   return (
-    <div className="min-h-screen relative w-full overflow-x-clip text-black">
+    <div className="min-h-screen relative w-full overflow-x-clip text-white">
       <Suspense fallback={null}>
         <EventPopupHandler onEventFound={handleEventFound} />
       </Suspense>
       <div className="scanline z-[99]"></div>
 
-      {/* Global Background */}
-      <div className="fixed -inset-[150px] pointer-events-none z-[-1] overflow-hidden">
-        <Grainient
-          color1="#a8afe0"
-          color2="#8b83ab"
-          color3="#aa8ec4"
-          timeSpeed={0.9}
-          colorBalance={-0.06}
-          warpStrength={0.8}
-          warpFrequency={2}
-          warpSpeed={2}
-          warpAmplitude={50}
-          blendAngle={0}
-          blendSoftness={0.05}
-          rotationAmount={500}
-          noiseScale={2}
-          grainAmount={0.1}
-          grainScale={2}
-          grainAnimated={false}
-          contrast={1.5}
-          gamma={1}
-          saturation={1}
-          centerX={0}
-          centerY={0}
-          zoom={0.9}
-        />
-      </div>
+
 
       {/* Navigation Bar */}
       <nav className="sticky top-0 w-full border-y-2 sm:border-y-4 grid-line backdrop-blur-md bg-white/30 z-50 overflow-x-auto no-scrollbar">
@@ -270,7 +244,7 @@ export default function EventsPage() {
           >
             <div className="flex items-center justify-center h-full w-full min-w-0 px-2 sm:px-0">
               <Image
-                src="/logo.svg"
+                src="/logowhite.svg"
                 alt="Metapoise Logo"
                 width={48}
                 height={48}
@@ -282,7 +256,7 @@ export default function EventsPage() {
           <Link
             href="/events"
             id="nav-events-link"
-            className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center bg-accent text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs uppercase text-center px-1 sm:px-2 py-1 leading-tight font-bold"
+            className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center bg-accent text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs lg:text-sm xl:text-base uppercase text-center px-1 sm:px-2 py-1 leading-tight font-bold"
           >
             <span className="mr-1">[01]</span>
             <span className="truncate">Events</span>
@@ -290,7 +264,7 @@ export default function EventsPage() {
           <Link
             href="/schedule"
             id="nav-schedule-link"
-            className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs uppercase text-center px-1 sm:px-2 py-1 leading-tight"
+            className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs lg:text-sm xl:text-base uppercase text-center px-1 sm:px-2 py-1 leading-tight"
           >
             <span className="opacity-70 sm:opacity-100 sm:mr-1">[02]</span>
             <span className="truncate">Schedule</span>
@@ -298,7 +272,7 @@ export default function EventsPage() {
           <Link
             href="/#speakers"
             id="nav-speakers-link"
-            className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs uppercase text-center px-1 sm:px-2 py-1 leading-tight"
+            className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs lg:text-sm xl:text-base uppercase text-center px-1 sm:px-2 py-1 leading-tight"
           >
             <span className="opacity-70 sm:opacity-100 sm:mr-1">[03]</span>
             <span className="truncate">Speakers</span>
@@ -306,7 +280,7 @@ export default function EventsPage() {
           <Link
             href="/about"
             id="nav-about-link"
-            className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all mono-font text-[10px] sm:text-xs uppercase text-center px-1 sm:px-2 py-1 leading-tight"
+            className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all mono-font text-[10px] sm:text-xs lg:text-sm xl:text-base uppercase text-center px-1 sm:px-2 py-1 leading-tight"
           >
             <span className="opacity-70 sm:opacity-100 sm:mr-1">[04]</span>
             <span className="truncate">About Us</span>
@@ -318,7 +292,7 @@ export default function EventsPage() {
       <section className="pt-8 md:pt-16 pb-8 px-4 sm:px-8 md:px-16">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-8 border-b-4 grid-line pb-8">
           <div>
-            <div className="mono-font text-xs uppercase tracking-widest text-black/70 mb-2 flex items-center gap-2">
+            <div className="mono-font text-xs uppercase tracking-widest text-white/70 mb-2 flex items-center gap-2">
               <span className="w-2 h-2 bg-black inline-block" />
               <span>INDEX: MP_v_2.0 // SUPPLEMENTARY ACTIVITIES</span>
             </div>
@@ -398,16 +372,16 @@ export default function EventsPage() {
               transformOrigin: 'center'
             }}
           >
-            <div className="relative w-[800px] shrink-0 bg-accent text-black border-4 border-black shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] flex flex-col z-10 animate-in zoom-in-95 duration-200 pointer-events-auto">
+            <div className="relative w-[800px] shrink-0 bg-accent text-black border-4 border-black/30 shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] flex flex-col z-10 animate-in zoom-in-95 duration-200 pointer-events-auto">
 
               {/* Header */}
-              <div className="border-b-4 border-black p-5 flex justify-between items-start bg-accent">
+              <div className="border-b-4 border-black/30 p-5 flex justify-between items-start bg-accent">
                 <h2 className="heading-font text-4xl uppercase leading-none max-w-[85%] break-words">
                   {selectedEvent.unit}: {selectedEvent.title}
                 </h2>
                 <button
                   onClick={() => setSelectedEvent(null)}
-                  className="bg-black text-accent w-10 h-10 flex-shrink-0 flex items-center justify-center text-lg font-bold hover:bg-white hover:text-black transition-colors border-4 border-black"
+                  className="bg-black text-accent w-10 h-10 flex-shrink-0 flex items-center justify-center text-lg font-bold hover:bg-white hover:text-black transition-colors border-4 border-black/30"
                   aria-label="Close modal"
                 >
                   [X]
@@ -418,7 +392,7 @@ export default function EventsPage() {
               <div className="flex flex-row bg-accent">
 
                 {/* Left Column (Details) */}
-                <div className="w-2/3 border-r-4 border-black p-6 flex flex-col justify-between">
+                <div className="w-2/3 border-r-4 border-black/30 p-6 flex flex-col justify-between">
                   <div>
                     <p className="mono-font text-sm font-bold uppercase mb-1">
                       INSTRUCTOR/LEAD: {selectedEvent.coordinator}
@@ -436,7 +410,7 @@ export default function EventsPage() {
 
                   <div className="flex flex-wrap gap-3 mt-auto pt-4">
                     {selectedEvent.tags.map(tag => (
-                      <span key={tag} className="border-4 border-black px-3 py-2 mono-font text-xs font-bold uppercase bg-transparent">
+                      <span key={tag} className="border-4 border-black/30 px-3 py-2 mono-font text-xs font-bold uppercase bg-transparent">
                         {tag}
                       </span>
                     ))}
@@ -445,12 +419,12 @@ export default function EventsPage() {
 
                 {/* Right Column (Stats) */}
                 <div className="w-1/3 p-6 flex flex-col gap-5 bg-accent">
-                  <div className="border-4 border-black bg-transparent py-5 px-4 flex flex-col items-center text-center justify-center">
+                  <div className="border-4 border-black/30 bg-transparent py-5 px-4 flex flex-col items-center text-center justify-center">
                     <span className="heading-font text-7xl leading-none">{selectedEvent.stats.mainNum}</span>
                     <span className="mono-font text-xs font-bold uppercase mt-3 tracking-wider">{selectedEvent.stats.mainLabel}</span>
                   </div>
 
-                  <div className="border-4 border-black bg-black text-accent py-5 px-4 flex flex-col items-center text-center justify-center">
+                  <div className="border-4 border-black/30 bg-black text-accent py-5 px-4 flex flex-col items-center text-center justify-center">
                     <span className="heading-font text-7xl leading-none">{selectedEvent.stats.subNum}</span>
                     <span className="mono-font text-xs font-bold uppercase mt-3 tracking-wider">{selectedEvent.stats.subLabel}</span>
                   </div>
@@ -470,7 +444,7 @@ export default function EventsPage() {
               </div>
 
               {/* Footer CTA Button */}
-              <button className="w-full bg-black text-accent py-5 px-4 heading-font text-4xl uppercase hover:bg-white hover:text-black transition-colors border-t-4 border-black shrink-0">
+              <button className="w-full bg-black text-accent py-5 px-4 heading-font text-4xl uppercase hover:bg-white hover:text-black transition-colors border-t-4 border-black/30 shrink-0">
                 {selectedEvent.ctaText}
               </button>
             </div>

@@ -28,33 +28,7 @@ export default function Home() {
       <LoadingScreen onComplete={() => setIsLoading(false)} />
       <div className="scanline"></div>
 
-      {/* Global Background */}
-      <div className="fixed -inset-[150px] pointer-events-none z-[-1] overflow-hidden">
-        <Grainient
-          color1="#a8afe0"
-          color2="#8b83ab"
-          color3="#aa8ec4"
-          timeSpeed={0.9}
-          colorBalance={-0.06}
-          warpStrength={0.8}
-          warpFrequency={2}
-          warpSpeed={2}
-          warpAmplitude={50}
-          blendAngle={0}
-          blendSoftness={0.05}
-          rotationAmount={500}
-          noiseScale={2}
-          grainAmount={0.1}
-          grainScale={2}
-          grainAnimated={false}
-          contrast={1.5}
-          gamma={1}
-          saturation={1}
-          centerX={0}
-          centerY={0}
-          zoom={0.9}
-        />
-      </div>
+
 
       <div className={`transition-opacity duration-700 ${isLoading ? "opacity-0 pointer-events-none" : "opacity-100 pointer-events-auto"}`}>
         {/* Hero Section */}
@@ -73,7 +47,7 @@ export default function Home() {
               initial={false}
             >
               <Image
-                src="/logo.svg"
+                src="/logowhite.svg"
                 alt="Metapoise Logo"
                 width={300}
                 height={300}
@@ -103,7 +77,7 @@ export default function Home() {
                 aria-label="Scroll to top"
               >
                 <Image
-                  src="/logo.svg"
+                  src="/logowhite.svg"
                   alt="Metapoise Logo"
                   width={48}
                   height={48}
@@ -115,7 +89,7 @@ export default function Home() {
             <Link
               href="/events"
               id="nav-events-link"
-              className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs uppercase text-center px-1 sm:px-2 py-1 leading-tight"
+              className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs lg:text-sm xl:text-base uppercase text-center px-1 sm:px-2 py-1 leading-tight"
             >
               <span className="opacity-70 sm:opacity-100 sm:mr-1">[01]</span>
               <span className="truncate">Events</span>
@@ -123,7 +97,7 @@ export default function Home() {
             <Link
               href="/schedule"
               id="nav-schedule-link"
-              className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs uppercase text-center px-1 sm:px-2 py-1 leading-tight"
+              className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs lg:text-sm xl:text-base uppercase text-center px-1 sm:px-2 py-1 leading-tight"
             >
               <span className="opacity-70 sm:opacity-100 sm:mr-1">[02]</span>
               <span className="truncate">Schedule</span>
@@ -131,7 +105,7 @@ export default function Home() {
             <Link
               href="/#speakers"
               id="nav-speakers-link"
-              className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs uppercase text-center px-1 sm:px-2 py-1 leading-tight"
+              className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs lg:text-sm xl:text-base uppercase text-center px-1 sm:px-2 py-1 leading-tight"
             >
               <span className="opacity-70 sm:opacity-100 sm:mr-1">[03]</span>
               <span className="truncate">Speakers</span>
@@ -139,7 +113,7 @@ export default function Home() {
             <Link
               href="/about"
               id="nav-about-link"
-              className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all mono-font text-[10px] sm:text-xs uppercase text-center px-1 sm:px-2 py-1 leading-tight"
+              className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all mono-font text-[10px] sm:text-xs lg:text-sm xl:text-base uppercase text-center px-1 sm:px-2 py-1 leading-tight"
             >
               <span className="opacity-70 sm:opacity-100 sm:mr-1">[04]</span>
               <span className="truncate">About Us</span>
@@ -206,104 +180,104 @@ export default function Home() {
         <section className="py-16 md:py-24 px-4 sm:px-8 md:px-16 border-b-4 grid-line">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-12">
             <div>
-              <span className="mono-font text-xs text-black/60 block mb-2">[01 // CORE_PILLARS]</span>
+              <span className="mono-font text-xs text-white/60 block mb-2">[01 // CORE_PILLARS]</span>
               <h2 className="heading-font text-5xl sm:text-7xl uppercase">Flagship Events</h2>
             </div>
-            <span className="mono-font text-xs sm:text-sm text-black/60 mt-2 sm:mt-0">
+            <span className="mono-font text-xs sm:text-sm text-white/60 mt-2 sm:mt-0">
               TOTAL UNITS: 04 // PROTOCOLS INITIALIZED
             </span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border-4 grid-line">
             {/* Card 1 */}
-            <Link href="/events" className="relative overflow-hidden border-b-4 md:border-r-4 md:border-b-4 grid-line p-8 sm:p-10 flex flex-col group cursor-pointer hover:border-black">
+            <Link href="/events" className="relative overflow-hidden border-b-4 md:border-r-4 md:border-b-4 grid-line p-8 sm:p-10 flex flex-col group cursor-pointer hover:border-white">
               <div className="absolute inset-0 bg-accent transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 z-0 ease-[cubic-bezier(0.77,0,0.175,1)]"></div>
               <div className="relative z-10 flex flex-col h-full justify-between pointer-events-none group-hover:text-black transition-colors duration-500">
                 <div>
                   <div className="flex justify-between items-start mb-6">
-                    <span className="mono-font text-xs font-bold text-black/60 group-hover:text-black transition-colors">[UNIT_01]</span>
+                    <span className="mono-font text-xs font-bold text-white/60 group-hover:text-black transition-colors">[UNIT_01]</span>
                     <Code weight="bold" className="text-3xl group-hover:scale-110 transition-transform" />
                   </div>
                   <h3 className="heading-font text-3xl sm:text-4xl uppercase mb-4">
                     The Hackathon
                   </h3>
-                  <p className="text-sm sm:text-base leading-relaxed text-black/80 font-light group-hover:text-black transition-colors">
+                  <p className="text-sm sm:text-base leading-relaxed text-white/80 font-light group-hover:text-black transition-colors">
                     An intense, multi-hour sprint challenging developers, algorithmic thinkers,
                     and designers to engineer novel prototypes tackling autonomous systems,
                     web architectures, and AI primitives.
                   </p>
                 </div>
-                <div className="mt-8 pt-4 border-t-2 border-black/10 group-hover:border-black/30 mono-font text-xs text-black/60 group-hover:text-black transition-colors">
+                <div className="mt-8 pt-4 border-t-2 border-white/10 group-hover:border-white/30 mono-font text-xs text-white/60 group-hover:text-black transition-colors">
                   FOCUS: AUTONOMOUS LOGIC // ACCELERATED BUILDS
                 </div>
               </div>
             </Link>
 
             {/* Card 2 */}
-            <Link href="/events" className="relative overflow-hidden border-b-4 grid-line p-8 sm:p-10 flex flex-col group cursor-pointer hover:border-black">
+            <Link href="/events" className="relative overflow-hidden border-b-4 grid-line p-8 sm:p-10 flex flex-col group cursor-pointer hover:border-white">
               <div className="absolute inset-0 bg-accent transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 z-0 ease-[cubic-bezier(0.77,0,0.175,1)]"></div>
               <div className="relative z-10 flex flex-col h-full justify-between pointer-events-none group-hover:text-black transition-colors duration-500">
                 <div>
                   <div className="flex justify-between items-start mb-6">
-                    <span className="mono-font text-xs font-bold text-black/60 group-hover:text-black transition-colors">[UNIT_02]</span>
+                    <span className="mono-font text-xs font-bold text-white/60 group-hover:text-black transition-colors">[UNIT_02]</span>
                     <Cpu weight="bold" className="text-3xl group-hover:scale-110 transition-transform" />
                   </div>
                   <h3 className="heading-font text-3xl sm:text-4xl uppercase mb-4">
                     Tech-Expo & Workshops
                   </h3>
-                  <p className="text-sm sm:text-base leading-relaxed text-black/80 font-light group-hover:text-black transition-colors">
+                  <p className="text-sm sm:text-base leading-relaxed text-white/80 font-light group-hover:text-black transition-colors">
                     A physical showfloor spotlighting hardware prototypes, IoT installations,
                     embedded systems, and synthetic intelligence demonstrations developed by
                     student researchers.
                   </p>
                 </div>
-                <div className="mt-8 pt-4 border-t-2 border-black/10 group-hover:border-black/30 mono-font text-xs text-black/60 group-hover:text-black transition-colors">
+                <div className="mt-8 pt-4 border-t-2 border-white/10 group-hover:border-white/30 mono-font text-xs text-white/60 group-hover:text-black transition-colors">
                   FOCUS: EMBEDDED SILICON // APPLIED RESEARCH
                 </div>
               </div>
             </Link>
 
             {/* Card 3 */}
-            <Link href="/events" className="relative overflow-hidden border-b-4 md:border-b-0 md:border-r-4 grid-line p-8 sm:p-10 flex flex-col group cursor-pointer hover:border-black">
+            <Link href="/events" className="relative overflow-hidden border-b-4 md:border-b-0 md:border-r-4 grid-line p-8 sm:p-10 flex flex-col group cursor-pointer hover:border-white">
               <div className="absolute inset-0 bg-accent transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 z-0 ease-[cubic-bezier(0.77,0,0.175,1)]"></div>
               <div className="relative z-10 flex flex-col h-full justify-between pointer-events-none group-hover:text-black transition-colors duration-500">
                 <div>
                   <div className="flex justify-between items-start mb-6">
-                    <span className="mono-font text-xs font-bold text-black/60 group-hover:text-black transition-colors">[UNIT_03]</span>
+                    <span className="mono-font text-xs font-bold text-white/60 group-hover:text-black transition-colors">[UNIT_03]</span>
                     <Terminal weight="bold" className="text-3xl group-hover:scale-110 transition-transform" />
                   </div>
                   <h3 className="heading-font text-3xl sm:text-4xl uppercase mb-4">
                     Ideathon
                   </h3>
-                  <p className="text-sm sm:text-base leading-relaxed text-black/80 font-light group-hover:text-black transition-colors">
+                  <p className="text-sm sm:text-base leading-relaxed text-white/80 font-light group-hover:text-black transition-colors">
                     A forum for high-conviction founders and conceptual visionaries to articulate
                     transformative technical solutions before panels of faculty, alumni, and tech founders.
                   </p>
                 </div>
-                <div className="mt-8 pt-4 border-t-2 border-black/10 group-hover:border-black/30 mono-font text-xs text-black/60 group-hover:text-black transition-colors">
+                <div className="mt-8 pt-4 border-t-2 border-white/10 group-hover:border-white/30 mono-font text-xs text-white/60 group-hover:text-black transition-colors">
                   FOCUS: ARCHITECTURAL DESIGN // VENTURE VECTORS
                 </div>
               </div>
             </Link>
 
             {/* Card 4 */}
-            <Link href="/events" className="relative overflow-hidden p-8 sm:p-10 flex flex-col group cursor-pointer hover:border-black">
+            <Link href="/events" className="relative overflow-hidden p-8 sm:p-10 flex flex-col group cursor-pointer hover:border-white">
               <div className="absolute inset-0 bg-accent transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 z-0 ease-[cubic-bezier(0.77,0,0.175,1)]"></div>
               <div className="relative z-10 flex flex-col h-full justify-between pointer-events-none group-hover:text-black transition-colors duration-500">
                 <div>
                   <div className="flex justify-between items-start mb-6">
-                    <span className="mono-font text-xs font-bold text-black/60 group-hover:text-black transition-colors">[UNIT_04]</span>
+                    <span className="mono-font text-xs font-bold text-white/60 group-hover:text-black transition-colors">[UNIT_04]</span>
                     <Globe weight="bold" className="text-3xl group-hover:scale-110 transition-transform" />
                   </div>
                   <h3 className="heading-font text-3xl sm:text-4xl uppercase mb-4">
                     Symposia & Culture
                   </h3>
-                  <p className="text-sm sm:text-base leading-relaxed text-black/80 font-light group-hover:text-black transition-colors">
+                  <p className="text-sm sm:text-base leading-relaxed text-white/80 font-light group-hover:text-black transition-colors">
                     Keynotes, alumni networking forums, open-mic sessions, and workshops curated
                     to strengthen community bonds and accelerate knowledge sharing across cohorts.
                   </p>
                 </div>
-                <div className="mt-8 pt-4 border-t-2 border-black/10 group-hover:border-black/30 mono-font text-xs text-black/60 group-hover:text-black transition-colors">
+                <div className="mt-8 pt-4 border-t-2 border-white/10 group-hover:border-white/30 mono-font text-xs text-white/60 group-hover:text-black transition-colors">
                   FOCUS: COMMUNITY SYNERGY // KNOWLEDGE MESH
                 </div>
               </div>
@@ -330,7 +304,7 @@ export default function Home() {
               <button
                 id="cta-primary-buy"
                 onClick={() => setIsModalOpen(true)}
-                className="bg-accent px-6 md:px-16 py-3 md:py-6 text-sm sm:text-base md:text-xl font-black uppercase hover:scale-105 transition-transform"
+                className="bg-accent text-black px-6 md:px-16 py-3 md:py-6 text-sm sm:text-base md:text-xl font-black uppercase hover:scale-105 transition-transform"
               >
                 Secure Access Token
               </button>

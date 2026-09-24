@@ -37,36 +37,10 @@ export default function SchedulePage() {
   ];
 
   return (
-    <div className="min-h-screen relative w-full overflow-x-clip text-black">
+    <div className="min-h-screen relative w-full overflow-x-clip text-white">
       <div className="scanline"></div>
 
-      {/* Global Background */}
-      <div className="fixed -inset-[150px] pointer-events-none z-[-1] overflow-hidden">
-        <Grainient
-          color1="#a8afe0"
-          color2="#8b83ab"
-          color3="#aa8ec4"
-          timeSpeed={0.9}
-          colorBalance={-0.06}
-          warpStrength={0.8}
-          warpFrequency={2}
-          warpSpeed={2}
-          warpAmplitude={50}
-          blendAngle={0}
-          blendSoftness={0.05}
-          rotationAmount={500}
-          noiseScale={2}
-          grainAmount={0.1}
-          grainScale={2}
-          grainAnimated={false}
-          contrast={1.5}
-          gamma={1}
-          saturation={1}
-          centerX={0}
-          centerY={0}
-          zoom={0.9}
-        />
-      </div>
+
 
       {/* Sticky Navigation — same as Home */}
       <nav className="sticky top-0 w-full border-y-2 sm:border-y-4 grid-line backdrop-blur-md bg-white/30 z-50 overflow-x-auto no-scrollbar">
@@ -78,7 +52,7 @@ export default function SchedulePage() {
           >
             <div className="flex items-center justify-center h-full w-full min-w-0 px-2 sm:px-0">
               <Image
-                src="/logo.svg"
+                src="/logowhite.svg"
                 alt="Metapoise Logo"
                 width={48}
                 height={48}
@@ -90,7 +64,7 @@ export default function SchedulePage() {
           <Link
             href="/events"
             id="nav-events-link"
-            className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs uppercase text-center px-1 sm:px-2 py-1 leading-tight"
+            className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs lg:text-sm xl:text-base uppercase text-center px-1 sm:px-2 py-1 leading-tight"
           >
             <span className="opacity-70 sm:opacity-100 sm:mr-1">[01]</span>
             <span className="truncate">Events</span>
@@ -98,7 +72,7 @@ export default function SchedulePage() {
           <Link
             href="/schedule"
             id="nav-schedule-link"
-            className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center bg-accent text-black border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs uppercase text-center px-1 sm:px-2 py-1 leading-tight font-bold"
+            className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center bg-accent text-black border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs lg:text-sm xl:text-base uppercase text-center px-1 sm:px-2 py-1 leading-tight font-bold"
           >
             <span className="mr-1">[02]</span>
             <span className="truncate">Schedule</span>
@@ -106,7 +80,7 @@ export default function SchedulePage() {
           <Link
             href="/#speakers"
             id="nav-speakers-link"
-            className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs uppercase text-center px-1 sm:px-2 py-1 leading-tight"
+            className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs lg:text-sm xl:text-base uppercase text-center px-1 sm:px-2 py-1 leading-tight"
           >
             <span className="opacity-70 sm:opacity-100 sm:mr-1">[03]</span>
             <span className="truncate">Speakers</span>
@@ -114,7 +88,7 @@ export default function SchedulePage() {
           <Link
             href="/about"
             id="nav-about-link"
-            className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all mono-font text-[10px] sm:text-xs uppercase text-center px-1 sm:px-2 py-1 leading-tight"
+            className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all mono-font text-[10px] sm:text-xs lg:text-sm xl:text-base uppercase text-center px-1 sm:px-2 py-1 leading-tight"
           >
             <span className="opacity-70 sm:opacity-100 sm:mr-1">[04]</span>
             <span className="truncate">About Us</span>
@@ -126,7 +100,7 @@ export default function SchedulePage() {
       <section className="pt-8 md:pt-16 pb-8 px-4 sm:px-8 md:px-16">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-8 border-b-4 grid-line pb-8">
           <div>
-            <div className="mono-font text-xs uppercase tracking-widest text-black/70 mb-2 flex items-center gap-2">
+            <div className="mono-font text-xs uppercase tracking-widest text-white/70 mb-2 flex items-center gap-2">
               <span className="w-2 h-2 bg-black inline-block" />
               <span>INDEX: MP_v_2.0 // EVENT DISTRIBUTION</span>
             </div>
@@ -139,12 +113,12 @@ export default function SchedulePage() {
 
       {/* Schedule Content */}
       <section className="px-4 sm:px-8 md:px-16 pb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 border-4 border-black bg-white/20 backdrop-blur-sm">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 border-4 border-white/30 bg-white/20 backdrop-blur-sm">
           {scheduleData.map((day, dayIndex) => (
-            <div key={day.dayStr} className={`flex flex-col border-black p-4 sm:p-6 md:p-8 ${dayIndex !== scheduleData.length - 1 ? 'border-b-4 lg:border-b-0 lg:border-r-4' : ''}`}>
+            <div key={day.dayStr} className={`flex flex-col border-white/30 p-4 sm:p-6 md:p-8 ${dayIndex !== scheduleData.length - 1 ? 'border-b-4 lg:border-b-0 lg:border-r-4' : ''}`}>
 
               {/* Day Header */}
-              <div className="flex justify-between items-end border-b-4 border-black pb-4 mb-6">
+              <div className="flex justify-between items-end border-b-4 border-white/30 pb-4 mb-6">
                 <h3 className="heading-font text-4xl sm:text-5xl uppercase leading-none">{day.dayStr}</h3>
                 <span className="mono-font text-sm font-bold tracking-widest">{day.dateStr}</span>
               </div>
@@ -154,12 +128,12 @@ export default function SchedulePage() {
                 {day.events.map((event, eventIdx) => (
                   <div
                     key={eventIdx}
-                    className="relative border-4 border-black p-6 flex flex-col transition-all duration-200 group bg-transparent text-black hover:bg-white hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]"
+                    className="relative border-4 border-white/30 p-6 flex flex-col transition-all duration-200 group bg-transparent text-white hover:bg-white hover:text-black hover:border-black hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]"
                   >
 
                     <div className="flex justify-between items-center mb-8">
                       <span className="mono-font text-xs font-bold tracking-widest">[{event.time}]</span>
-                      <span className="mono-font text-[10px] font-bold px-2 py-1 uppercase border-2 transition-colors border-black">
+                      <span className="mono-font text-[10px] font-bold px-2 py-1 uppercase border-2 transition-colors border-white/30 group-hover:border-black">
                         {event.type}
                       </span>
                     </div>

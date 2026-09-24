@@ -8,7 +8,7 @@ export default function Footer({ className }: { className?: string }) {
         <a href="mailto:metapoiseofficial@gmail.com" className="mono-font text-xs font-bold uppercase hover:text-accent transition-colors underline decoration-2 underline-offset-4 mb-2">
           metapoiseofficial@gmail.com
         </a>
-        <span className="mono-font text-[10px] uppercase text-black/50 font-bold">
+        <span className="mono-font text-[10px] uppercase text-white/50 font-bold">
           VER: 2.0_BETA // INDEX_MP_v_2.0 // END
         </span>
       </div>
@@ -38,7 +38,7 @@ export default function Footer({ className }: { className?: string }) {
       </div>
 
       <div className="text-center md:text-right flex items-center justify-center md:justify-end gap-4">
-        <span className="mono-font text-xs uppercase text-black/50 font-bold">
+        <span className="mono-font text-xs uppercase text-white/50 font-bold">
           Secure Connection: True
         </span>
       </div>

@@ -32,7 +32,7 @@ const StackedCarousel = ({ images, eventName }: { images: string[], eventName: s
   if (!images || images.length === 0) return null;
   if (images.length === 1) {
     return (
-      <div className="relative w-full aspect-[4/3] sm:aspect-video rounded-lg overflow-hidden border-4 border-black/10">
+      <div className="relative w-full aspect-[4/3] sm:aspect-video rounded-lg overflow-hidden border-4 border-white/30/10">
         <Image src={`/v1-archive/${images[0]}`} alt={eventName} fill className="object-cover transition-all duration-700" />
       </div>
     );
@@ -70,7 +70,7 @@ const StackedCarousel = ({ images, eventName }: { images: string[], eventName: s
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
               style={{ zIndex }}
             >
-              <div className="w-full h-full rounded-2xl overflow-hidden border-2 border-black/20 shadow-xl bg-white relative">
+              <div className="w-full h-full rounded-2xl overflow-hidden border-2 border-white/30/20 shadow-xl bg-white relative">
                 <Image
                   src={`/v1-archive/${img}`}
                   alt={`${eventName} Photo ${i + 1}`}
@@ -86,10 +86,10 @@ const StackedCarousel = ({ images, eventName }: { images: string[], eventName: s
       </div>
 
       <div className="absolute -bottom-16 flex gap-6 z-40">
-        <button onClick={prev} className="p-3 sm:p-4 bg-white border-2 border-black rounded-full hover:bg-black hover:text-white transition-colors shadow-[4px_4px_0_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1">
+        <button onClick={prev} className="p-3 sm:p-4 bg-white text-black border-2 border-white/30 rounded-full hover:bg-black hover:text-white transition-colors shadow-[4px_4px_0_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1">
           <ArrowLeft weight="bold" />
         </button>
-        <button onClick={next} className="p-3 sm:p-4 bg-white border-2 border-black rounded-full hover:bg-black hover:text-white transition-colors shadow-[4px_4px_0_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1">
+        <button onClick={next} className="p-3 sm:p-4 bg-white text-black border-2 border-white/30 rounded-full hover:bg-black hover:text-white transition-colors shadow-[4px_4px_0_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1">
           <ArrowRight weight="bold" />
         </button>
       </div>
@@ -101,36 +101,10 @@ export default function AboutUs() {
   const [activeArchiveIndex, setActiveArchiveIndex] = useState(0);
 
   return (
-    <div className="min-h-screen relative w-full overflow-x-clip text-black">
+    <div className="min-h-screen relative w-full overflow-x-clip text-white">
       <div className="scanline"></div>
 
-      {/* Global Background - Identical to Landing Page */}
-      <div className="fixed -inset-[150px] pointer-events-none z-[-1] overflow-hidden">
-        <Grainient
-          color1="#a8afe0"
-          color2="#8b83ab"
-          color3="#aa8ec4"
-          timeSpeed={0.9}
-          colorBalance={-0.06}
-          warpStrength={0.8}
-          warpFrequency={2}
-          warpSpeed={2}
-          warpAmplitude={50}
-          blendAngle={0}
-          blendSoftness={0.05}
-          rotationAmount={500}
-          noiseScale={2}
-          grainAmount={0.1}
-          grainScale={2}
-          grainAnimated={false}
-          contrast={1.5}
-          gamma={1}
-          saturation={1}
-          centerX={0}
-          centerY={0}
-          zoom={0.9}
-        />
-      </div>
+
 
       {/* Navigation Bar (Identical style to Landing Page) */}
       <nav className="sticky top-0 w-full border-y-2 sm:border-y-4 grid-line backdrop-blur-md bg-white/30 z-50 overflow-x-auto no-scrollbar">
@@ -142,7 +116,7 @@ export default function AboutUs() {
           >
             <div className="flex items-center justify-center h-full w-full cursor-pointer outline-none min-w-0 px-2 sm:px-0">
               <Image
-                src="/logo.svg"
+                src="/logowhite.svg"
                 alt="Metapoise Logo"
                 width={48}
                 height={48}
@@ -154,7 +128,7 @@ export default function AboutUs() {
           <Link
             href="/events"
             id="nav-events-link"
-            className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs uppercase text-center px-1 sm:px-2 py-1 leading-tight"
+            className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs lg:text-sm xl:text-base uppercase text-center px-1 sm:px-2 py-1 leading-tight"
           >
             <span className="opacity-70 sm:opacity-100 sm:mr-1">[01]</span>
             <span className="truncate">Events</span>
@@ -162,7 +136,7 @@ export default function AboutUs() {
           <Link
             href="/schedule"
             id="nav-schedule-link"
-            className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs uppercase text-center px-1 sm:px-2 py-1 leading-tight"
+            className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs lg:text-sm xl:text-base uppercase text-center px-1 sm:px-2 py-1 leading-tight"
           >
             <span className="opacity-70 sm:opacity-100 sm:mr-1">[02]</span>
             <span className="truncate">Schedule</span>
@@ -170,7 +144,7 @@ export default function AboutUs() {
           <Link
             href="/#speakers"
             id="nav-speakers-link"
-            className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs uppercase text-center px-1 sm:px-2 py-1 leading-tight"
+            className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs lg:text-sm xl:text-base uppercase text-center px-1 sm:px-2 py-1 leading-tight"
           >
             <span className="opacity-70 sm:opacity-100 sm:mr-1">[03]</span>
             <span className="truncate">Speakers</span>
@@ -178,7 +152,7 @@ export default function AboutUs() {
           <Link
             href="/about"
             id="nav-about-link"
-            className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center bg-accent text-black transition-all mono-font text-[10px] sm:text-xs uppercase text-center px-1 sm:px-2 py-1 leading-tight font-bold"
+            className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center bg-accent text-black transition-all mono-font text-[10px] sm:text-xs lg:text-sm xl:text-base uppercase text-center px-1 sm:px-2 py-1 leading-tight font-bold"
           >
             <span className="mr-1">[04]</span>
             <span className="truncate">About Us</span>
@@ -190,7 +164,7 @@ export default function AboutUs() {
       <section className="pt-8 md:pt-16 pb-8 px-4 sm:px-8 md:px-16">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-8 border-b-4 grid-line pb-8">
           <div>
-            <div className="mono-font text-xs uppercase tracking-widest text-black/70 mb-2 flex items-center gap-2">
+            <div className="mono-font text-xs uppercase tracking-widest text-white/70 mb-2 flex items-center gap-2">
               <span className="w-2 h-2 bg-black inline-block" />
               <span>INDEX: MP_v_2.0 // MISSION STATEMENT</span>
             </div>
@@ -204,7 +178,7 @@ export default function AboutUs() {
           <div className="flex flex-col items-start md:items-end gap-3">
             <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-40 lg:h-40 relative flex-shrink-0">
               <Image
-                src="/logo.svg"
+                src="/logowhite.svg"
                 alt="Metapoise Logo"
                 width={160}
                 height={160}
@@ -215,7 +189,7 @@ export default function AboutUs() {
             <div className="mono-font text-xs sm:text-sm text-left md:text-right space-y-1">
               <p className="font-bold">DEPARTMENT OF CSE, DUIET</p>
               <p>ANNUAL TECHNICAL SYMPOSIUM</p>
-              <p className="text-black/60">OCTOBER 30 — NOVEMBER 01</p>
+              <p className="text-white/60">OCTOBER 30 — NOVEMBER 01</p>
             </div>
           </div>
         </div>
@@ -228,7 +202,7 @@ export default function AboutUs() {
               cutting-edge technology to showcase futuristic solutions that
               shape tomorrow and drive change.
             </p>
-            <p className="mt-6 text-sm sm:text-base leading-relaxed text-black/80 font-normal">
+            <p className="mt-6 text-sm sm:text-base leading-relaxed text-white/80 font-normal">
               METAPOISE V2.0 is the flagship technical convergence hosted by the
               Department of Computer Science and Engineering at Dibrugarh
               University Institute of Engineering and Technology. It serves as a
@@ -240,30 +214,30 @@ export default function AboutUs() {
 
           <div className="flex flex-col justify-between space-y-6">
             <div className="border-4 grid-line p-6 bg-white/10 backdrop-blur-xs">
-              <span className="mono-font text-xs font-bold block mb-3 text-black/60 uppercase">
+              <span className="mono-font text-xs font-bold block mb-3 text-white/60 uppercase">
                 [SYSTEM_SPECIFICATIONS]
               </span>
               <div className="space-y-2 mono-font text-xs sm:text-sm">
-                <div className="flex justify-between border-b border-black/20 pb-1">
-                  <span className="text-black/60">CONVERGENCE_ID:</span>
+                <div className="flex justify-between border-b border-white/30/20 pb-1">
+                  <span className="text-white/60">CONVERGENCE_ID:</span>
                   <span className="font-bold">MP_V2.0_2026</span>
                 </div>
-                <div className="flex justify-between border-b border-black/20 pb-1">
-                  <span className="text-black/60">VENUE:</span>
+                <div className="flex justify-between border-b border-white/30/20 pb-1">
+                  <span className="text-white/60">VENUE:</span>
                   <span className="font-bold">DUIET CAMPUS, DIBRUGARH</span>
                 </div>
-                <div className="flex justify-between border-b border-black/20 pb-1">
-                  <span className="text-black/60">ORGANIZER:</span>
+                <div className="flex justify-between border-b border-white/30/20 pb-1">
+                  <span className="text-white/60">ORGANIZER:</span>
                   <span className="font-bold">DEPT. OF COMPUTER SCIENCE & ENG.</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-black/60">SECURITY_STATUS:</span>
+                  <span className="text-white/60">SECURITY_STATUS:</span>
                   <span className="font-bold text-emerald-700">ENCRYPTED // VERIFIED</span>
                 </div>
               </div>
             </div>
 
-            <div className="mono-font text-xs sm:text-sm text-black/80">
+            <div className="mono-font text-xs sm:text-sm text-white/80">
               <p>
                 From 36-hour hackathons to real-world industrial exhibitions,
                 METAPOISE fosters an ecosystem where academic rigour transitions
@@ -295,13 +269,13 @@ export default function AboutUs() {
       {/* V1.0 Archive Section */}
       <section className="py-16 md:py-24 px-4 sm:px-8 md:px-16 border-b-4 grid-line">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 border-b-2 border-black/20 pb-8">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 border-b-2 border-white/30/20 pb-8">
           <div className="max-w-2xl">
-            <span className="mono-font text-xs text-black/90 font-bold block mb-4 tracking-widest">[WHERE IT ALL STARTED]</span>
+            <span className="mono-font text-xs text-white/90 font-bold block mb-4 tracking-widest">[WHERE IT ALL STARTED]</span>
             <h2 className="heading-font text-6xl sm:text-8xl uppercase leading-none mb-6">
               Version 1.0
             </h2>
-            <p className="text-xl sm:text-2xl font-medium leading-relaxed text-black/90">
+            <p className="text-xl sm:text-2xl font-medium leading-relaxed text-white/90">
               A celebration of innovation, where cutting-edge technology meets creativity, showcasing futuristic ideas, gadgets, and solutions that shape tomorrow.
             </p>
           </div>
@@ -309,27 +283,27 @@ export default function AboutUs() {
 
         {/* Telemetry Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-20">
-          <div className="border-t-2 border-black/30 pt-4">
-            <div className="mono-font text-[10px] text-black/70 font-bold tracking-widest mb-1">EVENTS HOSTED</div>
+          <div className="border-t-2 border-white/30 pt-4">
+            <div className="mono-font text-[10px] text-white/70 font-bold tracking-widest mb-1">EVENTS HOSTED</div>
             <div className="heading-font text-4xl sm:text-5xl">12</div>
           </div>
-          <div className="border-t-2 border-black/30 pt-4">
-            <div className="mono-font text-[10px] text-black/70 font-bold tracking-widest mb-1">ALUMNI BATCHES</div>
+          <div className="border-t-2 border-white/30 pt-4">
+            <div className="mono-font text-[10px] text-white/70 font-bold tracking-widest mb-1">ALUMNI BATCHES</div>
             <div className="heading-font text-4xl sm:text-5xl">2014-24</div>
           </div>
-          <div className="border-t-2 border-black/30 pt-4">
-            <div className="mono-font text-[10px] text-black/70 font-bold tracking-widest mb-1">CAMPUS COLLABORATORS</div>
+          <div className="border-t-2 border-white/30 pt-4">
+            <div className="mono-font text-[10px] text-white/70 font-bold tracking-widest mb-1">CAMPUS COLLABORATORS</div>
             <div className="heading-font text-4xl sm:text-5xl">03</div>
           </div>
-          <div className="border-t-2 border-black/30 pt-4">
-            <div className="mono-font text-[10px] text-black/70 font-bold tracking-widest mb-1">SPONSORS</div>
+          <div className="border-t-2 border-white/30 pt-4">
+            <div className="mono-font text-[10px] text-white/70 font-bold tracking-widest mb-1">SPONSORS</div>
             <div className="heading-font text-4xl sm:text-5xl">09</div>
           </div>
         </div>
 
         {/* After Movie */}
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 mb-24 border-4 border-black/20 p-6 sm:p-8 md:p-10 bg-white/10 backdrop-blur-sm">
-          <div className="md:col-span-7 relative aspect-video bg-black/5 flex items-center justify-center overflow-hidden border-2 border-black/10 shadow-lg">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 mb-24 border-4 border-white/30/20 p-6 sm:p-8 md:p-10 bg-white/10 backdrop-blur-sm">
+          <div className="md:col-span-7 relative aspect-video bg-black/5 flex items-center justify-center overflow-hidden border-2 border-white/30/10 shadow-lg">
             <iframe
               width="100%"
               height="100%"
@@ -343,41 +317,41 @@ export default function AboutUs() {
           </div>
           <div className="md:col-span-5 flex flex-col justify-between py-2 md:py-0">
             <div>
-              <div className="mono-font text-xs text-black/90 font-bold mb-4 tracking-widest">[YOUTUBE]</div>
+              <div className="mono-font text-xs text-white/90 font-bold mb-4 tracking-widest">[YOUTUBE]</div>
               <h3 className="heading-font text-5xl sm:text-6xl uppercase mb-6 leading-tight">The After Movie</h3>
-              <p className="text-sm sm:text-base leading-relaxed text-black/90 font-medium mb-6">
+              <p className="text-sm sm:text-base leading-relaxed text-white/90 font-medium mb-6">
                 Two days. One campus. All in. Talks, a hackathon, e-sports, a quiz, a startup pitch arena, an alumni homecoming and a cultural night that ended with Abstract Waves live. Press play for the recap.
               </p>
             </div>
-            {/* <Link href="https://www.youtube.com/watch?v=WHQgqkNU3A4" target="_blank" className="mono-font text-xs tracking-widest hover:text-black/60 transition-colors flex items-center gap-2 border-b border-black/30 pb-2 w-fit font-bold mt-4 md:mt-0">
+            {/* <Link href="https://www.youtube.com/watch?v=WHQgqkNU3A4" target="_blank" className="mono-font text-xs tracking-widest hover:text-white/60 transition-colors flex items-center gap-2 border-b border-white/30 pb-2 w-fit font-bold mt-4 md:mt-0">
               OPEN ON YOUTUBE <ArrowRight />
             </Link> */}
           </div>
         </div>
 
         {/* The Archive Viewer */}
-        <div className="border-t-2 border-black/20 pt-16">
+        <div className="border-t-2 border-white/30/20 pt-16">
           <div className="flex justify-between items-end mb-12">
             <h3 className="heading-font text-4xl sm:text-6xl uppercase">The v1.0 Archive</h3>
-            <span className="mono-font text-xs text-black/80 font-bold hidden sm:block">12 EVENTS // 40 PHOTOS</span>
+            <span className="mono-font text-xs text-white/80 font-bold hidden sm:block">12 EVENTS // 40 PHOTOS</span>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
             {/* Sidebar List */}
-            <div className="lg:col-span-4 flex flex-col border-l-2 border-black/20">
+            <div className="lg:col-span-4 flex flex-col border-l-2 border-white/30/20">
               {v1Archive.map((event, index) => (
                 <button
                   key={event.id}
                   onClick={() => setActiveArchiveIndex(index)}
-                  className={`text-left px-4 sm:px-6 py-4 border-b border-black/10 transition-all flex items-center gap-4 group ${activeArchiveIndex === index
+                  className={`text-left px-4 sm:px-6 py-4 border-b border-white/30/10 transition-all flex items-center gap-4 group ${activeArchiveIndex === index
                     ? "bg-white/30 border-l-4 border-l-black"
                     : "hover:bg-white/10 border-l-4 border-l-transparent"
                     }`}
                 >
-                  <span className={`mono-font text-sm font-bold ${activeArchiveIndex === index ? "text-black" : "text-black/60 group-hover:text-black/90"}`}>
+                  <span className={`mono-font text-sm font-bold ${activeArchiveIndex === index ? "text-white" : "text-white/60 group-hover:text-white/90"}`}>
                     {event.id}
                   </span>
-                  <span className={`heading-font text-lg sm:text-xl uppercase tracking-wide truncate font-semibold ${activeArchiveIndex === index ? "text-black" : "text-black/80 group-hover:text-black"}`}>
+                  <span className={`heading-font text-lg sm:text-xl uppercase tracking-wide truncate font-semibold ${activeArchiveIndex === index ? "text-white" : "text-white/80 group-hover:text-black"}`}>
                     {event.name}
                   </span>
                 </button>
@@ -388,20 +362,20 @@ export default function AboutUs() {
             <div className="lg:col-span-8 grid grid-cols-1 xl:grid-cols-12 gap-8 lg:gap-12 items-stretch">
               <div className="xl:col-span-5 flex flex-col justify-between h-full py-4 xl:py-8">
                 <div>
-                  <div className="mono-font text-xs text-black/90 font-bold mb-4 tracking-widest border-b border-black/20 pb-4 inline-block">
+                  <div className="mono-font text-xs text-white/90 font-bold mb-4 tracking-widest border-b border-white/30/20 pb-4 inline-block">
                     {v1Archive[activeArchiveIndex].id} // COMPETITION
                   </div>
                   <h4 className="heading-font text-4xl sm:text-5xl md:text-6xl uppercase mb-6 leading-none">
                     {v1Archive[activeArchiveIndex].name}
                   </h4>
-                  <p className="text-sm sm:text-base md:text-lg leading-relaxed text-black/90 font-medium">
+                  <p className="text-sm sm:text-base md:text-lg leading-relaxed text-white/90 font-medium">
                     {v1Archive[activeArchiveIndex].desc}
                   </p>
                 </div>
                 <div className="mt-12 hidden xl:flex justify-start">
                   <button
                     onClick={() => setActiveArchiveIndex((prev) => (prev + 1) % v1Archive.length)}
-                    className="mono-font text-xs tracking-widest hover:text-black/60 transition-colors flex items-center gap-2 border-b border-black/30 pb-2 uppercase font-bold"
+                    className="mono-font text-xs tracking-widest hover:text-white/60 transition-colors flex items-center gap-2 border-b border-white/30 pb-2 uppercase font-bold"
                   >
                     NEXT EVENT <ArrowRight />
                   </button>
@@ -420,7 +394,7 @@ export default function AboutUs() {
               <div className="mt-8 flex xl:hidden justify-end w-full">
                 <button
                   onClick={() => setActiveArchiveIndex((prev) => (prev + 1) % v1Archive.length)}
-                  className="mono-font text-xs tracking-widest hover:text-black/60 transition-colors flex items-center gap-2 border-b border-black/30 pb-2 uppercase font-bold"
+                  className="mono-font text-xs tracking-widest hover:text-white/60 transition-colors flex items-center gap-2 border-b border-white/30 pb-2 uppercase font-bold"
                 >
                   NEXT EVENT <ArrowRight />
                 </button>
@@ -433,19 +407,19 @@ export default function AboutUs() {
       {/* Host Department Overview (Speakers / Faculty) */}
       <section id="speakers" className="py-16 md:py-24 px-4 sm:px-8 md:px-16 border-b-4 grid-line">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-          <div className="md:col-span-4">
-            <span className="mono-font text-xs text-black/60 block mb-2">[02 // HOST_ENTITY]</span>
-            <h2 className="heading-font text-4xl sm:text-6xl uppercase leading-tight">
+          <div className="md:col-span-5 lg:col-span-4 pr-4">
+            <span className="mono-font text-xs text-white/60 block mb-2">[02 // HOST_ENTITY]</span>
+            <h2 className="heading-font text-4xl md:text-5xl lg:text-6xl uppercase leading-tight break-words">
               Department of Computer Science and Engineering
             </h2>
-            <div className="mt-4 mono-font text-xs text-black/70">
+            <div className="mt-4 mono-font text-xs text-white/70">
               <p>DUIET, DIBRUGARH UNIVERSITY</p>
               <p>ESTABLISHED: 2009</p>
               <p>ASSAM, INDIA</p>
             </div>
           </div>
 
-          <div className="md:col-span-8 space-y-6">
+          <div className="md:col-span-7 lg:col-span-8 space-y-6">
             <p className="text-lg sm:text-xl font-light leading-relaxed">
               The Department of Computer Science &amp; Engineering at DUIET is dedicated
               to creating responsible and skilled thought leaders in computing. Through
@@ -455,39 +429,39 @@ export default function AboutUs() {
               conscious computing systems addressing real-world challenges.
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 border-t-2 border-black/20 pt-6 mono-font text-xs">
-              <div className="border border-black/30 p-4 bg-white/10 flex flex-col justify-between">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 border-t-2 border-white/30/20 pt-6 mono-font text-xs">
+              <div className="border border-white/30 p-4 bg-white/10 flex flex-col justify-between">
                 <div>
-                  <span className="block text-black/60 mb-1 font-bold">[VISION &amp; MISSION]</span>
-                  <p className="font-semibold text-black/90">
+                  <span className="block text-white/60 mb-1 font-bold">[VISION &amp; MISSION]</span>
+                  <p className="font-semibold text-white/90">
                     To create responsible and skilled thought leaders in CSE through a state-of-the-art research ecosystem, industry collaboration, and entrepreneurship.
                   </p>
                 </div>
-                <div className="mt-3 text-[10px] text-black/50 border-t border-black/10 pt-1">
+                <div className="mt-3 text-[10px] text-white/50 border-t border-white/30/10 pt-1">
                   PEO // CRITICAL THINKING &amp; ETHICS
                 </div>
               </div>
 
-              <div className="border border-black/30 p-4 bg-white/10 flex flex-col justify-between">
+              <div className="border border-white/30 p-4 bg-white/10 flex flex-col justify-between">
                 <div>
-                  <span className="block text-black/60 mb-1 font-bold">[06 SPECIALIZED LABS]</span>
-                  <p className="font-semibold text-black/90">
+                  <span className="block text-white/60 mb-1 font-bold">[06 SPECIALIZED LABS]</span>
+                  <p className="font-semibold text-white/90">
                     AI Lab, Network &amp; Security Lab, IoT Lab, Image Processing Lab, and dual Programming Laboratories.
                   </p>
                 </div>
-                <div className="mt-3 text-[10px] text-black/50 border-t border-black/10 pt-1">
+                <div className="mt-3 text-[10px] text-white/50 border-t border-white/30/10 pt-1">
                   INFRA // ROBOTICS, MATROX &amp; NS3
                 </div>
               </div>
 
-              <div className="border border-black/30 p-4 bg-white/10 flex flex-col justify-between">
+              <div className="border border-white/30 p-4 bg-white/10 flex flex-col justify-between">
                 <div>
-                  <span className="block text-black/60 mb-1 font-bold">[CURRICULUM &amp; MOU]</span>
-                  <p className="font-semibold text-black/90">
+                  <span className="block text-white/60 mb-1 font-bold">[CURRICULUM &amp; MOU]</span>
+                  <p className="font-semibold text-white/90">
                     Deep curriculum in Algorithms, Network Security, AI &amp; Compilers. MOU with Spoken Tutorial at IIT Bombay (MHRD).
                   </p>
                 </div>
-                <div className="mt-3 text-[10px] text-black/50 border-t border-black/10 pt-1">
+                <div className="mt-3 text-[10px] text-white/50 border-t border-white/30/10 pt-1">
                   PEDAGOGY // ICT-BASED METHODOLOGY
                 </div>
               </div>
@@ -499,13 +473,13 @@ export default function AboutUs() {
       {/* Return to Home CTA Section */}
       <section className="py-20 md:py-28 flex flex-col items-center justify-center text-center px-4 sm:px-8 border-b-4 grid-line">
         <div className="max-w-3xl w-full">
-          <span className="mono-font text-xs uppercase tracking-widest text-black/60 block mb-4">
+          <span className="mono-font text-xs uppercase tracking-widest text-white/60 block mb-4">
             [READY_TO_EXPLORE?]
           </span>
           <h2 className="heading-font text-4xl sm:text-6xl md:text-8xl uppercase mb-8">
             Enter the Convergence
           </h2>
-          <p className="mono-font text-xs sm:text-sm md:text-base mb-10 max-w-xl mx-auto text-black/80">
+          <p className="mono-font text-xs sm:text-sm md:text-base mb-10 max-w-xl mx-auto text-white/80">
             CONNECT WITH MENTORS, BUILDERS, AND VISIONARIES AT METAPOISE V2.0.
           </p>
 
@@ -513,7 +487,7 @@ export default function AboutUs() {
             <Link
               href="/"
               id="about-cta-home"
-              className="bg-accent px-8 md:px-14 py-4 md:py-5 text-sm sm:text-base font-black uppercase hover:scale-105 transition-transform flex items-center justify-center gap-3 border-2 border-black"
+              className="bg-accent text-black px-8 md:px-14 py-4 md:py-5 text-sm sm:text-base font-black uppercase hover:scale-105 transition-transform flex items-center justify-center gap-3 border-2 border-white/30"
             >
               <ArrowLeft weight="bold" />
               Return to Mainframe
@@ -521,7 +495,7 @@ export default function AboutUs() {
             <Link
               href="/schedule"
               id="about-cta-schedule"
-              className="bg-white/40 hover:bg-white/80 px-8 md:px-14 py-4 md:py-5 text-sm sm:text-base font-bold uppercase transition-colors flex items-center justify-center gap-3 border-2 border-black"
+              className="bg-white/40 hover:bg-white/80 hover:text-black px-8 md:px-14 py-4 md:py-5 text-sm sm:text-base font-bold uppercase transition-colors flex items-center justify-center gap-3 border-2 border-white/30"
             >
               View Full Schedule
               <ArrowRight weight="bold" />

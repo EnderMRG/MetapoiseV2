@@ -72,7 +72,7 @@ export default function SecureAccessModal({ isOpen, onClose }: SecureAccessModal
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-lg bg-white border-4 border-black p-6 sm:p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]"
+            className="relative w-full max-w-lg bg-white text-black border-4 border-black/30 p-6 sm:p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]"
           >
             <button
               onClick={onClose}
@@ -113,7 +113,7 @@ export default function SecureAccessModal({ isOpen, onClose }: SecureAccessModal
                     required
                     placeholder="agent@metapoise.dev"
                     disabled={status === "loading"}
-                    className="border-2 border-black p-3 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-black transition-all disabled:opacity-50"
+                    className="border-2 border-black/30 p-3 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-black transition-all disabled:opacity-50"
                   />
                 </div>
 
@@ -126,7 +126,7 @@ export default function SecureAccessModal({ isOpen, onClose }: SecureAccessModal
                 <button
                   type="submit"
                   disabled={status === "loading" || !email}
-                  className="mt-4 flex items-center justify-center gap-2 bg-black text-white p-4 font-bold uppercase hover:bg-accent hover:text-black transition-colors disabled:opacity-50 disabled:cursor-not-allowed group border-2 border-black"
+                  className="mt-4 flex items-center justify-center gap-2 bg-black text-white p-4 font-bold uppercase hover:bg-accent hover:text-black transition-colors disabled:opacity-50 disabled:cursor-not-allowed group border-2 border-black/30"
                 >
                   {status === "loading" ? (
                     <>

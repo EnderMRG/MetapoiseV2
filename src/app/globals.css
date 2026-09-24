@@ -66,8 +66,7 @@ html, body {
 
 body {
   font-family: var(--font-space-grotesk), sans-serif;
-  background-color: var(--bg-dark);
-  color: #000000;
+  color: #ffffff;
   cursor: crosshair;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

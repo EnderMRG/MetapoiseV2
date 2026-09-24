@@ -42,7 +42,7 @@ export async function POST(request: Request) {
         <table width="100%" cellpadding="0" cellspacing="0">
           <tr>
             <td>
-              <img src="https://raw.githubusercontent.com/EnderMRG/MetapoiseV2/master/public/logo.svg" alt="Metapoise" width="32" height="32" style="display:inline-block;vertical-align:middle;margin-right:12px;" />
+              <img src="https://raw.githubusercontent.com/EnderMRG/MetapoiseV2/master/public/logowhite.svg" alt="Metapoise" width="32" height="32" style="display:inline-block;vertical-align:middle;margin-right:12px;" />
               <span style="font-size:22px;font-weight:900;text-transform:uppercase;letter-spacing:2px;">METAPOISE V2.0</span>
             </td>
             <td align="right">

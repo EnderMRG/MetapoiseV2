@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useRef } from 'react';
 import { Renderer, Program, Mesh, Triangle } from 'ogl';
 
@@ -180,7 +182,7 @@ const Grainient: React.FC<GrainientProps> = ({
       webgl: 2,
       alpha: true,
       antialias: false,
-      dpr: 1 // Hardcoded to 1 for significant performance improvement
+      dpr: Math.min(window.devicePixelRatio || 1, 2)
     });
 
     const gl = renderer.gl;
@@ -244,17 +246,11 @@ const Grainient: React.FC<GrainientProps> = ({
     let isVisible = true;
     let isPageVisible = !document.hidden;
     const t0 = performance.now();
-    const TARGET_FPS = 30;
-    const FRAME_MS = 1000 / TARGET_FPS;
-    let lastFrameTime = 0;
 
-    const loop = (t: number) =>
-    {
-      raf = requestAnimationFrame(loop);
-      if (t - lastFrameTime < FRAME_MS) return;
-      lastFrameTime = t;
+    const loop = (t: number) => {
       (program.uniforms.iTime as { value: number }).value = (t - t0) * 0.001;
       renderer.render({ scene: mesh });
+      raf = requestAnimationFrame(loop);
     };
 
     const tryStart = () => {
