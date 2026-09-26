@@ -9,29 +9,37 @@ import Footer from "@/components/Footer";
 export default function SchedulePage() {
   const scheduleData = [
     {
+      dayStr: "PRE-FEST",
+      dateStr: "15.10.26",
+      events: [
+        { time: "10:30 AM", type: "NETWORKING", title: "ALUMNI MEET", location: "VIRTUAL_NODE", eventId: "evt1" },
+      ]
+    },
+    {
       dayStr: "DAY_01",
       dateStr: "30.10.26",
       events: [
-        { time: "09:00 - 10:30", type: "KEYNOTE", title: "INAUGURATION & KEYNOTE SEMINAR", location: "VOID_MAIN" },
-        { time: "10:45 - 13:30", type: "WORKSHOP", title: "PRACTICAL TECHNICAL WORKSHOP", location: "LAB_02", eventId: "evt7" },
-        { time: "14:00 - 17:30", type: "EXHIBITION", title: "STARTUP & INNOVATION EXPO", location: "EXHIBITION_HALL", eventId: "evt3" }
+        { time: "10:00 AM", type: "KEYNOTE", title: "INAUGURAL CEREMONY", location: "MAIN_AUDITORIUM", eventId: "evt2" },
+        { time: "10:30 AM", type: "WORKSHOP", title: "TECHNICAL WORKSHOP", location: "LAB_02", eventId: "evt3" },
       ]
     },
     {
       dayStr: "DAY_02",
       dateStr: "31.10.26",
       events: [
-        { time: "09:30 - 17:00", type: "COMPETITION", title: "APORIA", location: "VOID_MAIN", eventId: "evt2" },
-        { time: "10:00 - 17:00", type: "EXHIBITION", title: "INTERACTIVE PROJECT STALLS", location: "EXHIBITION_HALL", eventId: "evt3" }
+        { time: "10:00 AM", type: "COMPETITION", title: "IDEATHON", location: "VOID_MAIN", eventId: "evt4" },
+        { time: "10:00 AM", type: "ESPORTS", title: "ONLINE GAMING COMPETITION", location: "VIRTUAL_NODE", eventId: "evt6" },
+        { time: "01:30 PM", type: "SEMINAR", title: "TECHNICAL SEMINAR", location: "SEMINAR_HALL", eventId: "evt5" },
       ]
     },
     {
       dayStr: "DAY_03",
       dateStr: "01.11.26",
       events: [
-        { time: "09:00 - 16:00", type: "HACKATHON", title: "CRESCENDO", location: "VOID_MAIN", eventId: "evt1" },
-        { time: "10:00 - 16:00", type: "EXHIBITION", title: "INTERACTIVE PROJECT STALLS", location: "EXHIBITION_HALL", eventId: "evt3" },
-        { time: "16:30 - 18:00", type: "CEREMONY", title: "VALEDICTORY & AWARD CEREMONY", location: "MAIN_AUDITORIUM" }
+        { time: "09:30 AM", type: "HACKATHON", title: "HACKATHON", location: "VOID_MAIN", eventId: "evt7" },
+        { time: "10:30 AM", type: "COMPETITION", title: "PHOTOGRAPHY COMPETITION", location: "CAMPUS_WIDE", eventId: "evt9" },
+        { time: "03:30 PM", type: "COMPETITION", title: "OPEN QUIZ", location: "MAIN_AUDITORIUM", eventId: "evt8" },
+        { time: "04:00 PM", type: "PERFORMANCE", title: "OPEN MIC COMPETITION", location: "STAGE_BETA", eventId: "evt10" },
       ]
     }
   ];
@@ -78,7 +86,7 @@ export default function SchedulePage() {
             <span className="truncate">Schedule</span>
           </Link>
           <Link
-            href="/#speakers"
+            href="/speakers"
             id="nav-speakers-link"
             className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs lg:text-sm xl:text-base uppercase text-center px-1 sm:px-2 py-1 leading-tight"
           >
@@ -113,14 +121,14 @@ export default function SchedulePage() {
 
       {/* Schedule Content */}
       <section className="px-4 sm:px-8 md:px-16 pb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 border-4 border-white/30 bg-white/20 backdrop-blur-sm">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-0 border-4 border-white/30 bg-white/20 backdrop-blur-sm">
           {scheduleData.map((day, dayIndex) => (
             <div key={day.dayStr} className={`flex flex-col border-white/30 p-4 sm:p-6 md:p-8 ${dayIndex !== scheduleData.length - 1 ? 'border-b-4 lg:border-b-0 lg:border-r-4' : ''}`}>
 
               {/* Day Header */}
-              <div className="flex justify-between items-end border-b-4 border-white/30 pb-4 mb-6">
-                <h3 className="heading-font text-4xl sm:text-5xl uppercase leading-none">{day.dayStr}</h3>
-                <span className="mono-font text-sm font-bold tracking-widest">{day.dateStr}</span>
+              <div className="flex flex-col 2xl:flex-row 2xl:justify-between items-start 2xl:items-end border-b-4 border-white/30 pb-4 mb-6 gap-2">
+                <h3 className="heading-font text-4xl lg:text-3xl xl:text-4xl uppercase leading-none break-words w-full">{day.dayStr}</h3>
+                <span className="mono-font text-sm font-bold tracking-widest shrink-0">{day.dateStr}</span>
               </div>
 
               {/* Event Stack */}
@@ -139,13 +147,13 @@ export default function SchedulePage() {
                     </div>
 
                     {event.eventId ? (
-                      <Link href={`/events?eventId=${event.eventId}`} prefetch={true} className="hover:underline decoration-4 underline-offset-4">
-                        <h4 className="heading-font text-3xl sm:text-4xl uppercase leading-none mb-8">
+                      <Link href={`/events?eventId=${event.eventId}`} prefetch={true} className="hover:underline decoration-4 underline-offset-4 w-full">
+                        <h4 className="heading-font text-3xl lg:text-2xl xl:text-3xl uppercase leading-none mb-8 break-words">
                           {event.title}
                         </h4>
                       </Link>
                     ) : (
-                      <h4 className="heading-font text-3xl sm:text-4xl uppercase leading-none mb-8">
+                      <h4 className="heading-font text-3xl lg:text-2xl xl:text-3xl uppercase leading-none mb-8 break-words">
                         {event.title}
                       </h4>
                     )}

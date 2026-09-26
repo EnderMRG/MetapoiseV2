@@ -8,6 +8,7 @@ import { Metadata } from "next";
 import { ArrowRight, Code, Cpu, Globe } from "@phosphor-icons/react";
 import Grainient from "@/components/Grainient";
 import Footer from "@/components/Footer";
+import AlumniRegistrationModal from "@/components/AlumniRegistrationModal";
 
 type EventData = {
   id: string;
@@ -30,29 +31,77 @@ const eventsData: EventData[] = [
   {
     id: "evt1",
     unit: "UNIT_001",
-    title: "Crescendo",
-    shortCode: "C h",
-    field: "COMPETITION // HACKATHON",
-    width: "half",
+    title: "Alumni Meet",
+    shortCode: "A m",
+    field: "NETWORKING // MENTORSHIP",
+    width: "full",
     icon: (
-      <div className="w-32 h-32 border-4 border-white/30 group-hover:border-black relative transition-all duration-500 group-hover:scale-105 flex items-center justify-center bg-white/20">
-        <div className="absolute inset-0 border-4 border-white/30 group-hover:border-black transition-colors transform -translate-x-4 translate-y-4 pointer-events-none"></div>
-        <svg className="w-12 h-12 text-white group-hover:text-black transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-          <path strokeLinecap="square" strokeLinejoin="miter" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-        </svg>
+      <div className="w-32 h-32 border-4 border-white/30 group-hover:border-black relative transition-all duration-500 group-hover:scale-105 rounded-full overflow-hidden flex items-center justify-center">
+        <div className="absolute -left-4 -top-4 w-20 h-20 border-4 border-white/30 group-hover:border-black transition-colors rounded-full"></div>
+        <div className="absolute -right-4 -bottom-4 w-20 h-20 border-4 border-white/30 group-hover:border-black transition-colors rounded-full"></div>
+        <div className="w-8 h-8 bg-black group-hover:bg-white transition-colors rounded-full relative z-10"></div>
       </div>
     ),
-    coordinator: "METAPOISE & UDVAB",
-    timing: "NOV 01: 09:00 AM - 03:00 PM",
-    fullDescription: "The flagship prototype competition operating on a Two-Phase Hybrid Model (Online Build & Shortlisting → On-Site Jury Pitch). Teams must strictly select and build a prototype addressing one of the 4 official problem statements.",
-    tags: ["TEAM_SIZE: 03", "HYBRID_MODEL", "LIVE_DEMO", "NO_FEE"],
-    stats: { mainNum: "20", mainLabel: "SHORTLISTED TEAMS", subNum: "04", subLabel: "PROBLEM STATEMENTS" },
-    ctaText: "DOWNLOAD_DIGITAL_DOSSIER"
+    coordinator: "DR. KAUSHIK DAS",
+    timing: "15 OCT: 10:30 AM",
+    fullDescription: "A secure networking channel establishing direct peer-to-peer connections between current undergraduates and deployed graduates operating in the global tech industry.",
+    tags: ["P2P_HANDSHAKE", "MENTOR_NODE", "CAREER_PATH"],
+    stats: { mainNum: "120+", mainLabel: "ALUMNI ACTIVE", subNum: "MAX", subLabel: "CONNECTIONS" },
+    ctaText: "ESTABLISH_CONNECTION"
   },
   {
     id: "evt2",
     unit: "UNIT_002",
-    title: "APORIA ",
+    title: "Inaugural Ceremony",
+    shortCode: "I c",
+    field: "OPENING // KEYNOTE",
+    width: "half",
+    icon: (
+      <div className="w-32 h-32 flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
+        <svg className="w-full h-full text-white group-hover:text-black transition-colors" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth={4}>
+          <circle cx="50" cy="50" r="40" />
+          <circle cx="50" cy="50" r="20" />
+          <path d="M50 10 L50 30 M50 70 L50 90 M10 50 L30 50 M70 50 L90 50" />
+        </svg>
+      </div>
+    ),
+    coordinator: "DR. KAUSHIK DAS",
+    timing: "30 OCT: 10:00 AM",
+    fullDescription: "The official initialization sequence of METAPOISE v2.0. Featuring keynote directives from visionary leaders and the activation of the festival grid.",
+    tags: ["INITIALIZATION", "SYSTEM_BOOT", "KEYNOTE"],
+    stats: { mainNum: "500+", mainLabel: "ATTENDEES", subNum: "01", subLabel: "VISION" },
+    ctaText: "ACCESS_FEED"
+  },
+  {
+    id: "evt3",
+    unit: "UNIT_003",
+    title: "Technical Workshop",
+    shortCode: "T w",
+    field: "HANDS-ON // SKILL BUILDING",
+    width: "half",
+    icon: (
+      <div className="w-32 h-32 relative transition-transform duration-500 group-hover:scale-105 flex items-center justify-center">
+        <svg className="w-24 h-24 text-white group-hover:text-black transition-colors" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth={4}>
+          <rect x="30" y="30" width="40" height="40" strokeDasharray="10 5" className="animate-spin-slow" style={{ transformOrigin: 'center' }} />
+          <path d="M 15 35 L 15 15 L 35 15" />
+          <path d="M 85 35 L 85 15 L 65 15" />
+          <path d="M 15 65 L 15 85 L 35 85" />
+          <path d="M 85 65 L 85 85 L 65 85" />
+          <circle cx="50" cy="50" r="8" fill="currentColor" />
+        </svg>
+      </div>
+    ),
+    coordinator: "TECHNICAL HEADS",
+    timing: "30 OCT: 10:30 AM",
+    fullDescription: "An immersive laboratory session exploring the intersection of modern technologies. Participants will interface with new protocols to build reactive structures.",
+    tags: ["SKILL_NODE", "PRACTICAL_IMPL", "SYNTH_CODE"],
+    stats: { mainNum: "50", mainLabel: "WORKSTATIONS", subNum: "03", subLabel: "HOURS" },
+    ctaText: "ENROLL_SECURE_ACCESS"
+  },
+  {
+    id: "evt4",
+    unit: "UNIT_004",
+    title: "Ideathon",
     shortCode: "I d",
     field: "INNOVATION // PITCH",
     width: "half",
@@ -65,117 +114,131 @@ const eventsData: EventData[] = [
         </svg>
       </div>
     ),
-    coordinator: "IEEE DUSB",
-    timing: "DAY 2: 09:30 AM",
+    coordinator: "INNOVATION CELL",
+    timing: "31 OCT: 10:00 AM",
     fullDescription: "A central ideation track challenging participants to formulate cutting-edge solutions for real-world systemic anomalies. Present your conceptual frameworks to a panel of expert evaluators.",
     tags: ["LOGIC_GATE", "SYSTEM_DESIGN", "PITCH_DECK"],
-    stats: { mainNum: "24", mainLabel: "TEAMS REGISTERED", subNum: "08", subLabel: "SLOTS OPEN" },
-    ctaText: "SUBMIT_PROPOSAL_HASH"
-  },
-  {
-    id: "evt3",
-    unit: "UNIT_003",
-    title: "Tech Expo",
-    desc: "A physical showfloor spotlighting hardware prototypes and embedded systems.",
-    field: "EMBEDDED SILICON // APPLIED RESEARCH",
-    width: "full",
-    icon: (
-      <div className="w-48 h-48 rounded-full border-4 border-white/30 group-hover:border-black transition-colors border-dashed animate-spin-slow flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
-        <div className="w-16 h-16 bg-black group-hover:bg-white rounded-full border-4 border-white/30 group-hover:border-black transition-colors"></div>
-      </div>
-    ),
-    coordinator: "HARDWARE DEPT",
-    timing: "DAY 1: 02:00 PM",
-    fullDescription: "Explore the bleeding edge of physical computing. This exhibition features autonomous robotics, IoT sensor networks, and custom PCB designs forged by student engineers and makers.",
-    tags: ["HARDWARE_ACCEL", "SILICON_FAB", "IOT_MESH"],
-    stats: { mainNum: "50+", mainLabel: "EXHIBITS", subNum: "03", subLabel: "AWARDS" },
-    ctaText: "ACCESS_EXHIBITION_FLOOR"
-  },
-  {
-    id: "evt4",
-    unit: "UNIT_004",
-    title: "Alumni Meet",
-    shortCode: "A m",
-    field: "NETWORKING // MENTORSHIP",
-    width: "half",
-    icon: (
-      <div className="w-32 h-32 border-4 border-white/30 group-hover:border-black relative transition-all duration-500 group-hover:scale-105 rounded-full overflow-hidden flex items-center justify-center">
-        <div className="absolute -left-4 -top-4 w-20 h-20 border-4 border-white/30 group-hover:border-black transition-colors rounded-full"></div>
-        <div className="absolute -right-4 -bottom-4 w-20 h-20 border-4 border-white/30 group-hover:border-black transition-colors rounded-full"></div>
-        <div className="w-8 h-8 bg-black group-hover:bg-white transition-colors rounded-full relative z-10"></div>
-      </div>
-    ),
-    coordinator: "ALUMNI ASSOCIATION",
-    timing: "PRE-FEST PHASE",
-    fullDescription: "A secure networking channel establishing direct peer-to-peer connections between current undergraduates and deployed graduates operating in the global tech industry.",
-    tags: ["P2P_HANDSHAKE", "MENTOR_NODE", "CAREER_PATH"],
-    stats: { mainNum: "120", mainLabel: "ALUMNI ACTIVE", subNum: "MAX", subLabel: "CONNECTIONS" },
-    ctaText: "ESTABLISH_CONNECTION"
+    stats: { mainNum: "24", mainLabel: "TEAMS ALLOWED", subNum: "08", subLabel: "SLOTS OPEN" },
+    ctaText: "SUBMIT_PROPOSAL"
   },
   {
     id: "evt5",
     unit: "UNIT_005",
-    title: "Flood Relief",
-    shortCode: "F r",
-    field: "SOCIAL INITIATIVE",
+    title: "Technical Seminar",
+    shortCode: "T s",
+    field: "EXPERT // TALK",
     width: "half",
     icon: (
-      <div className="w-32 h-32 flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
-        <svg className="w-full h-full text-white group-hover:text-black transition-colors" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth={4}>
-          <path d="M10 50 Q 25 30, 50 50 T 90 50" />
-          <path d="M10 70 Q 25 50, 50 70 T 90 70" />
-          <circle cx="50" cy="20" r="8" fill="currentColor" />
-        </svg>
+      <div className="w-32 h-32 border-4 border-white/30 group-hover:border-black relative transition-all duration-500 group-hover:scale-105 flex items-center justify-center bg-white/20">
+        <div className="w-12 h-12 bg-white group-hover:bg-black rounded-full" />
       </div>
     ),
-    coordinator: "NSS WING",
-    timing: "ONGOING",
-    fullDescription: "A coordinated community response operation deploying resources and awareness for local flood-affected zones. Technology in service of humanity and ecological balance.",
-    tags: ["HUMAN_OPS", "CRISIS_RESPONSE", "RESOURCE_ALLOC"],
-    stats: { mainNum: "01", mainLabel: "MISSION", subNum: "MAX", subLabel: "IMPACT" },
-    ctaText: "JOIN_RESPONSE_TEAM"
+    coordinator: "DR. KAUSHIK DAS",
+    timing: "31 OCT: 01:30 PM",
+    fullDescription: "High-bandwidth data transfer sessions from industry veterans. Deep dive into architectural paradigms, quantum computing trends, and AI acceleration.",
+    tags: ["DATA_STREAM", "KNOWLEDGE_TRANSFER", "Q_A_NODE"],
+    stats: { mainNum: "02", mainLabel: "EXPERTS", subNum: "100%", subLabel: "SIGNAL" },
+    ctaText: "RESERVE_BANDWIDTH"
   },
   {
     id: "evt6",
     unit: "UNIT_006",
-    title: "Photography",
-    desc: "Capture the essence of Metapoise and campus life. A visual storytelling event.",
-    field: "MEDIA // VISUAL ARTS",
+    title: "Online Gaming",
+    shortCode: "O g",
+    field: "ESPORTS // TOURNAMENT",
     width: "full",
     icon: (
       <div className="w-48 h-48 border-4 border-white/30 group-hover:border-black transition-colors flex items-center justify-center transition-transform duration-500 group-hover:scale-105 bg-white/20">
-        <div className="w-32 h-32 border-4 border-white/30 group-hover:border-black transition-colors rounded-full flex items-center justify-center bg-transparent">
-          <div className="w-12 h-12 bg-black group-hover:bg-white transition-colors rounded-full"></div>
+        <div className="w-24 h-12 border-4 border-white/30 group-hover:border-black rounded-full" />
+      </div>
+    ),
+    coordinator: "ESPORTS CLUB",
+    timing: "31 OCT: 10:00 AM",
+    fullDescription: "Engage in competitive simulation environments. Tactical execution, team coordination, and raw reflexes are required to dominate the digital battlefield.",
+    tags: ["FPS_MAX", "LATENCY_LOW", "TACTICAL_OPS"],
+    stats: { mainNum: "32", mainLabel: "TEAMS", subNum: "01", subLabel: "CHAMPION" },
+    ctaText: "JOIN_LOBBY"
+  },
+  {
+    id: "evt7",
+    unit: "UNIT_007",
+    title: "Hackathon",
+    shortCode: "H k",
+    field: "COMPETITION // PROTOTYPE",
+    width: "half",
+    icon: (
+      <div className="w-32 h-32 border-4 border-white/30 group-hover:border-black relative transition-all duration-500 group-hover:scale-105 flex items-center justify-center bg-white/20">
+        <div className="absolute inset-0 border-4 border-white/30 group-hover:border-black transition-colors transform -translate-x-4 translate-y-4 pointer-events-none"></div>
+        <svg className="w-12 h-12 text-white group-hover:text-black transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="square" strokeLinejoin="miter" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+        </svg>
+      </div>
+    ),
+    coordinator: "DEV WING",
+    timing: "01 NOV: 09:30 AM",
+    fullDescription: "The flagship prototype competition. Teams must strictly select and build a prototype addressing one of the official problem statements under severe time constraints.",
+    tags: ["TEAM_SIZE: 04", "LIVE_DEMO", "NO_SLEEP"],
+    stats: { mainNum: "24", mainLabel: "HOURS", subNum: "MAX", subLabel: "CAFFEINE" },
+    ctaText: "ACCESS_COMPILER"
+  },
+  {
+    id: "evt8",
+    unit: "UNIT_008",
+    title: "Open Quiz",
+    shortCode: "O q",
+    field: "TRIVIA // COMPETITION",
+    width: "half",
+    icon: (
+      <div className="w-32 h-32 border-4 border-white/30 group-hover:border-black transition-colors flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
+        <span className="heading-font text-6xl text-white group-hover:text-black">?</span>
+      </div>
+    ),
+    coordinator: "QUIZ CLUB",
+    timing: "01 NOV: 03:30 PM",
+    fullDescription: "Test your memory banks and processing speed. A high-stakes trivia confrontation spanning technology, pop culture, and logical deduction.",
+    tags: ["MEMORY_ACCESS", "FAST_IO", "LOGIC"],
+    stats: { mainNum: "50+", mainLabel: "QUESTIONS", subNum: "03", subLabel: "ROUNDS" },
+    ctaText: "ENTER_ARENA"
+  },
+  {
+    id: "evt9",
+    unit: "UNIT_009",
+    title: "Photography",
+    shortCode: "P c",
+    field: "VISUAL ARTS // MEDIA",
+    width: "half",
+    icon: (
+      <div className="w-32 h-32 border-4 border-white/30 group-hover:border-black transition-colors flex items-center justify-center transition-transform duration-500 group-hover:scale-105 bg-white/20">
+        <div className="w-16 h-16 border-4 border-white/30 group-hover:border-black transition-colors rounded-full flex items-center justify-center bg-transparent">
+          <div className="w-6 h-6 bg-black group-hover:bg-white transition-colors rounded-full"></div>
         </div>
       </div>
     ),
     coordinator: "MEDIA CELL",
-    timing: "DAY 1 - DAY 3",
-    fullDescription: "Document the technical symposium through your optical sensors. A multi-day visual storytelling competition judged on composition, lighting, and thematic relevance.",
+    timing: "01 NOV: 10:30 AM",
+    fullDescription: "Document the technical symposium through your optical sensors. Judged on composition, lighting, and thematic relevance.",
     tags: ["OPTICAL_SENSOR", "RGB_MATRIX", "STORY_ARC"],
     stats: { mainNum: "36", mainLabel: "SUBMISSIONS", subNum: "04", subLabel: "CATEGORIES" },
     ctaText: "UPLOAD_VISUAL_DATA"
   },
   {
-    id: "evt7",
-    unit: "UNIT_007",
-    title: "Workshops",
-    desc: "Hands-on practical sessions in IoT, embedded systems, and emerging technologies.",
-    field: "HANDS-ON // SKILL BUILDING",
-    width: "full",
+    id: "evt10",
+    unit: "UNIT_010",
+    title: "Open Mic",
+    shortCode: "O m",
+    field: "PERFORMANCE // ARTS",
+    width: "half",
     icon: (
-      <div className="w-48 h-48 relative transition-transform duration-500 group-hover:scale-105 flex items-center justify-center">
-        <svg className="w-32 h-32 text-white group-hover:text-black transition-colors animate-spin-slow" viewBox="0 0 100 100" fill="currentColor">
-          <polygon points="50,10 60,35 85,35 65,55 75,80 50,65 25,80 35,55 15,35 40,35" />
-        </svg>
+      <div className="w-32 h-32 flex items-center justify-center transition-transform duration-500 group-hover:scale-105 border-4 border-white/30 group-hover:border-black">
+        <div className="w-8 h-16 bg-white group-hover:bg-black rounded-t-full" />
       </div>
     ),
-    coordinator: "TECHNICAL HEADS",
-    timing: "DAY 1: 10:45 AM",
-    fullDescription: "An immersive laboratory session exploring the intersection of cellular computing and frontend interface design. Participants will interface with neural protocols to render live biometric data into reactive DOM structures.",
-    tags: ["BASE_LEVEL: 02", "CRITICAL_LOGIC", "SYNTH_JS", "VOID_ENABLED"],
-    stats: { mainNum: "12", mainLabel: "SEATS REMAINING", subNum: "08", subLabel: "WAITLIST" },
-    ctaText: "ENROLL_SECURE_ACCESS_NODE"
+    coordinator: "CULTURAL WING",
+    timing: "01 NOV: 04:00 PM",
+    fullDescription: "A platform for creative expression. Decompress from the technical grid and share your vocal or instrumental algorithms with the collective.",
+    tags: ["AUDIO_WAVE", "UNPLUGGED", "EXPRESSION"],
+    stats: { mainNum: "15", mainLabel: "SLOTS", subNum: "100%", subLabel: "VIBES" },
+    ctaText: "REQUEST_MIC_ACCESS"
   }
 ];
 
@@ -194,6 +257,7 @@ function EventPopupHandler({ onEventFound }: { onEventFound: (id: string) => voi
 
 export default function EventsPage() {
   const [selectedEvent, setSelectedEvent] = useState<EventData | null>(null);
+  const [isAlumniFormOpen, setIsAlumniFormOpen] = useState(false);
   const [modalScale, setModalScale] = useState(1);
 
   const handleEventFound = useCallback((id: string) => {
@@ -270,7 +334,7 @@ export default function EventsPage() {
             <span className="truncate">Schedule</span>
           </Link>
           <Link
-            href="/#speakers"
+            href="/speakers"
             id="nav-speakers-link"
             className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs lg:text-sm xl:text-base uppercase text-center px-1 sm:px-2 py-1 leading-tight"
           >
@@ -444,13 +508,25 @@ export default function EventsPage() {
               </div>
 
               {/* Footer CTA Button */}
-              <button className="w-full bg-black text-accent py-5 px-4 heading-font text-4xl uppercase hover:bg-white hover:text-black transition-colors border-t-4 border-black/30 shrink-0">
+              <button 
+                className="w-full bg-black text-accent py-5 px-4 heading-font text-4xl uppercase hover:bg-white hover:text-black transition-colors border-t-4 border-black/30 shrink-0"
+                onClick={() => {
+                  if (selectedEvent.id === "evt1") {
+                    setIsAlumniFormOpen(true);
+                  }
+                }}
+              >
                 {selectedEvent.ctaText}
               </button>
             </div>
           </div>
         </div>
       )}
+
+      <AlumniRegistrationModal 
+        isOpen={isAlumniFormOpen} 
+        onClose={() => setIsAlumniFormOpen(false)} 
+      />
     </div>
   );
 }

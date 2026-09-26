@@ -12,6 +12,13 @@ export async function POST(request: Request) {
       );
     }
 
+    // Save to CSV
+    const fs = require('fs/promises');
+    const path = require('path');
+    const csvPath = path.join(process.cwd(), 'invite_data.csv');
+    const csvLine = `"${email}"\n`;
+    await fs.appendFile(csvPath, csvLine, 'utf8');
+
     // Configure the transporter with Gmail
     const transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -33,7 +40,7 @@ export async function POST(request: Request) {
 <!DOCTYPE html>
 <html lang="en">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
-<body style="margin:0;padding:40px 20px;background:#8b83ab;font-family:'Courier New',Courier,monospace;">
+<body style="margin:0;padding:40px 20px;background-color:#1a4084;background:linear-gradient(to bottom right, #1a4084, #3b6d8e);font-family:'Courier New',Courier,monospace;">
   <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;margin:0 auto;border:4px solid #000;background:#fff;box-shadow:8px 8px 0 #000;">
 
     <!-- HEADER -->

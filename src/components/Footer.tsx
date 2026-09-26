@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { InstagramLogo, YoutubeLogo, FacebookLogo } from "@phosphor-icons/react";
 
 export default function Footer({ className }: { className?: string }) {
   return (
@@ -13,27 +16,30 @@ export default function Footer({ className }: { className?: string }) {
         </span>
       </div>
 
-      <div className="flex flex-wrap gap-6 sm:gap-12 justify-center">
+      <div className="flex flex-wrap gap-6 sm:gap-12 justify-center items-center">
         <Link
           href="https://www.instagram.com/metapoise_official?stkn=MXV6ZmJ0NmtibnZpdQ=="
           target="_blank"
-          className="hover:text-accent transition-colors uppercase mono-font text-sm font-bold tracking-widest border-b-2 border-transparent hover:border-accent"
+          className="group flex items-center gap-2 hover:text-accent transition-colors uppercase mono-font text-sm font-bold tracking-widest border-b-2 border-transparent hover:border-accent pb-1"
         >
-          Instagram
+          <InstagramLogo size={24} weight="duotone" className="group-hover:scale-110 transition-transform" />
+          <span>Instagram</span>
         </Link>
         <Link
           href="https://youtube.com/@metapoiseoffical?si=3Vu56nNAayM4uaxw"
           target="_blank"
-          className="hover:text-accent transition-colors uppercase mono-font text-sm font-bold tracking-widest border-b-2 border-transparent hover:border-accent"
+          className="group flex items-center gap-2 hover:text-accent transition-colors uppercase mono-font text-sm font-bold tracking-widest border-b-2 border-transparent hover:border-accent pb-1"
         >
-          YouTube
+          <YoutubeLogo size={24} weight="duotone" className="group-hover:scale-110 transition-transform" />
+          <span>YouTube</span>
         </Link>
         <Link
           href="https://www.facebook.com/share/1HgtKoAj4w/"
           target="_blank"
-          className="hover:text-accent transition-colors uppercase mono-font text-sm font-bold tracking-widest border-b-2 border-transparent hover:border-accent"
+          className="group flex items-center gap-2 hover:text-accent transition-colors uppercase mono-font text-sm font-bold tracking-widest border-b-2 border-transparent hover:border-accent pb-1"
         >
-          Facebook
+          <FacebookLogo size={24} weight="duotone" className="group-hover:scale-110 transition-transform" />
+          <span>Facebook</span>
         </Link>
       </div>
 

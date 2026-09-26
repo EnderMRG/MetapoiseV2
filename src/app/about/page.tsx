@@ -23,6 +23,29 @@ const v1Archive = [
   { id: "12", name: "Cultural Night", desc: "The grand finale of METAPOISE v1.0, featuring a vibrant cultural night that concluded with an electrifying live performance by Abstract Waves.", images: ["12 Cultural Night/12 Cultural Night - 01.webp", "12 Cultural Night/12 Cultural Night - 02.webp"] }
 ];
 
+const profiles = {
+  kd: {
+    id: "kd",
+    name: "Dr. Kaushik Das",
+    role: "Faculty Advisor // Assistant Professor",
+    email: "kaushik.das@dibru.ac.in",
+    image: "/kd.webp",
+    bio: "Bridging the gap between complex algorithmic research and real-world execution, Dr. Das transforms academic rigor into high-impact products, continually inspiring builders to construct the next era of digital infrastructure.",
+    abstractTitle: "RESEARCH & PATENTS",
+    abstract: "9+ Publications, 2 Patents, 6 Book Chapters, 3 Projects. Key Patents include System and Method for Real-Time Pothole Detection and Automatic Speaker Identification. Co-Founder of Kaushal Digital."
+  },
+  arjun: {
+    id: "arjun",
+    name: "Arjun Bora",
+    role: "Student Convenor",
+    email: "berrykappa135@gmail.com",
+    image: "/arjun.webp",
+    bio: "Having competed in my fair share of hackathons, I wanted to curate the kind of event I always loved participating in. Bringing this hackathon under the METAPOISE banner was all about creating the ultimate sandbox for builders to collaborate, break things, and ship cool projects.",
+    abstractTitle: "MISSION OBJECTIVE",
+    abstract: "I’m here to make sure you have the best hackathon experience possible - come say hi and let’s build something incredible!"
+  }
+};
+
 const StackedCarousel = ({ images, eventName }: { images: string[], eventName: string }) => {
   const [index, setIndex] = useState(0);
 
@@ -142,7 +165,7 @@ export default function AboutUs() {
             <span className="truncate">Schedule</span>
           </Link>
           <Link
-            href="/#speakers"
+            href="/speakers"
             id="nav-speakers-link"
             className="flex-1 min-w-0 flex flex-col sm:flex-row justify-center items-center hover:bg-accent hover:text-black transition-all border-r-2 sm:border-r-4 grid-line mono-font text-[10px] sm:text-xs lg:text-sm xl:text-base uppercase text-center px-1 sm:px-2 py-1 leading-tight"
           >
@@ -265,6 +288,99 @@ export default function AboutUs() {
           <span className="mx-8">METAPOISE V2.0</span> <span className="">•</span>
         </div>
       </div>
+
+      {/* Team / Convenors Profile */}
+      <section className="py-16 md:py-24 px-4 sm:px-8 md:px-16 border-b-4 grid-line">
+        <div className="mb-12 border-b-2 border-white/30/20 pb-8 text-center sm:text-left">
+          <span className="mono-font text-xs text-white/90 font-bold block mb-4 tracking-widest">[LEADERSHIP]</span>
+          <h2 className="heading-font text-5xl sm:text-7xl uppercase leading-none mb-6">
+            The Convenors
+          </h2>
+          <p className="text-xl sm:text-2xl font-medium leading-relaxed text-white/90">
+            The visionaries behind METAPOISE V2.0
+          </p>
+        </div>
+
+        <div className="max-w-6xl mx-auto flex flex-col gap-12">
+          {/* Faculty Advisor Block */}
+          <div className="w-full bg-white/5 border-4 border-white/30/20 flex flex-col md:flex-row overflow-hidden">
+            {/* Left: Image */}
+            <div className="w-full md:w-1/3 min-h-[300px] md:min-h-[400px] relative border-b-4 md:border-b-0 md:border-r-4 border-white/30/20 p-8 flex items-center justify-center bg-white/5">
+              <div className="relative w-full max-w-[240px] md:max-w-sm aspect-[4/5] mx-auto border-4 border-white/30/20 bg-white/10 overflow-hidden">
+                <Image 
+                  src={profiles.kd.image}
+                  alt={profiles.kd.name}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </div>
+            {/* Right: Content */}
+            <div className="w-full md:w-2/3 flex flex-col">
+              <div className="p-6 sm:p-8 md:p-10 border-b-4 border-white/30/20 flex-1 flex flex-col justify-center">
+                <div className="mb-6 flex flex-col gap-2">
+                  <h3 className="heading-font text-4xl sm:text-5xl uppercase leading-none text-white">
+                    {profiles.kd.name}
+                  </h3>
+                  <span className="mono-font text-[10px] sm:text-xs uppercase tracking-widest text-accent font-bold">
+                    [EMAIL: {profiles.kd.email}]
+                  </span>
+                </div>
+                <p className="text-base sm:text-lg md:text-xl font-bold uppercase leading-snug">
+                  "{profiles.kd.bio}"
+                </p>
+              </div>
+              <div className="p-6 sm:p-8 md:p-10 flex-1 flex flex-col justify-center">
+                <span className="mono-font text-[10px] sm:text-xs font-bold block mb-4 uppercase tracking-widest text-white/60">
+                  {profiles.kd.abstractTitle} // {profiles.kd.role}
+                </span>
+                <p className="text-xs sm:text-sm font-medium uppercase leading-relaxed text-white/90">
+                  {profiles.kd.abstract}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Student Convenor Block */}
+          <div className="w-full bg-white/5 border-4 border-white/30/20 flex flex-col md:flex-row overflow-hidden">
+            {/* Left: Image */}
+            <div className="w-full md:w-1/3 min-h-[300px] md:min-h-[400px] relative border-b-4 md:border-b-0 md:border-r-4 border-white/30/20 p-8 flex items-center justify-center bg-white/5">
+              <div className="relative w-full max-w-[240px] md:max-w-sm aspect-[4/5] mx-auto border-4 border-white/30/20 bg-white/10 overflow-hidden">
+                <Image 
+                  src={profiles.arjun.image}
+                  alt={profiles.arjun.name}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </div>
+            {/* Right: Content */}
+            <div className="w-full md:w-2/3 flex flex-col">
+              <div className="p-6 sm:p-8 md:p-10 border-b-4 border-white/30/20 flex-1 flex flex-col justify-center">
+                <div className="mb-6 flex flex-col gap-2">
+                  <h3 className="heading-font text-4xl sm:text-5xl uppercase leading-none text-white">
+                    {profiles.arjun.name}
+                  </h3>
+                  <span className="mono-font text-[10px] sm:text-xs uppercase tracking-widest text-accent font-bold">
+                    [EMAIL: {profiles.arjun.email}]
+                  </span>
+                </div>
+                <p className="text-base sm:text-lg md:text-xl font-bold uppercase leading-snug">
+                  "{profiles.arjun.bio}"
+                </p>
+              </div>
+              <div className="p-6 sm:p-8 md:p-10 flex-1 flex flex-col justify-center">
+                <span className="mono-font text-[10px] sm:text-xs font-bold block mb-4 uppercase tracking-widest text-white/60">
+                  {profiles.arjun.abstractTitle} // {profiles.arjun.role}
+                </span>
+                <p className="text-xs sm:text-sm font-medium uppercase leading-relaxed text-white/90">
+                  {profiles.arjun.abstract}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* V1.0 Archive Section */}
       <section className="py-16 md:py-24 px-4 sm:px-8 md:px-16 border-b-4 grid-line">
