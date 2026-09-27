@@ -56,7 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={cn(spaceGrotesk.variable, inter.variable, jetbrainsMono.variable, higuenFallback.variable, "font-sans", geist.variable)}
     >
       <body className="w-full overflow-x-clip bg-transparent text-white">
-        <div className="fixed inset-0 w-full h-[100dvh] pointer-events-none">
+        <div className="fixed -top-[50vh] -bottom-[50vh] left-0 right-0 pointer-events-none">
           <Grainient
             color1="#1a4084"
             color2="#2779ff"
