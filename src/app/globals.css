@@ -54,10 +54,7 @@
 html, body {
   max-width: 100%;
   overflow-x: clip;
-}
-
-html {
-  background-color: #070913;
+  overscroll-behavior: none;
 }
 
 .no-scrollbar::-webkit-scrollbar {
