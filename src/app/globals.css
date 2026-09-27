@@ -54,7 +54,11 @@
 html, body {
   max-width: 100%;
   overflow-x: clip;
-  overscroll-behavior: none;
+}
+
+html {
+  background: linear-gradient(to bottom, #1a4084 0%, #2779ff 50%, #3b6d8e 100%);
+  min-height: 100vh;
 }
 
 .no-scrollbar::-webkit-scrollbar {

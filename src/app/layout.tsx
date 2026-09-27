@@ -55,7 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={cn(spaceGrotesk.variable, inter.variable, jetbrainsMono.variable, higuenFallback.variable, "font-sans", geist.variable)}
     >
-      <body className="w-full overflow-x-clip bg-[#070913] text-white">
+      <body className="w-full overflow-x-clip bg-transparent text-white">
         <div className="fixed inset-0 w-full h-[100dvh] pointer-events-none">
           <Grainient
             color1="#1a4084"
