@@ -1,23 +1,54 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import { google } from 'googleapis';
 
 export async function POST(request: Request) {
   try {
-    const { email } = await request.json();
+    const { name, email } = await request.json();
 
-    if (!email) {
+    if (!email || !name) {
       return NextResponse.json(
-        { message: 'Email address is required.' },
+        { message: 'Name and email address are required.' },
         { status: 400 }
       );
     }
 
-    // Save to CSV
-    const fs = require('fs/promises');
-    const path = require('path');
-    const csvPath = path.join(process.cwd(), 'invite_data.csv');
-    const csvLine = `"${email}"\n`;
-    await fs.appendFile(csvPath, csvLine, 'utf8');
+    // Google Sheets Integration
+    try {
+      const auth = new google.auth.GoogleAuth({
+        credentials: {
+          client_email: process.env.GOOGLE_CLIENT_EMAIL,
+          private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n'), // Handle newlines in the private key
+        },
+        scopes: [
+          'https://www.googleapis.com/auth/drive',
+          'https://www.googleapis.com/auth/drive.file',
+          'https://www.googleapis.com/auth/spreadsheets',
+        ],
+      });
+
+      const sheets = google.sheets({ auth, version: 'v4' });
+      
+      const spreadsheetId = process.env.GOOGLE_SHEET_ID;
+
+      if (spreadsheetId && process.env.GOOGLE_CLIENT_EMAIL && process.env.GOOGLE_PRIVATE_KEY) {
+        await sheets.spreadsheets.values.append({
+          spreadsheetId,
+          range: 'Sheet1!A:C', // Adjust if your sheet name is different
+          valueInputOption: 'USER_ENTERED',
+          requestBody: {
+            values: [
+              [name, email, new Date().toISOString()] // Saving name, email and timestamp
+            ],
+          },
+        });
+      } else {
+        console.warn("Google Sheets environment variables are missing. Skipping save to sheets.");
+      }
+    } catch (sheetError) {
+      console.error("Failed to save to Google Sheets:", sheetError);
+      // We don't fail the whole request if sheet saving fails, we still want to send the email.
+    }
 
     // Configure the transporter with Gmail
     const transporter = nodemailer.createTransport({
@@ -76,7 +107,7 @@ export async function POST(request: Request) {
             <!-- LEFT COLUMN -->
             <td width="62%" style="padding:24px;border-right:3px solid #000;">
               <p style="margin:0 0 4px 0;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#555;">RECIPIENT</p>
-              <p style="margin:0 0 16px 0;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">${email}</p>
+              <p style="margin:0 0 16px 0;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">${name}</p>
               <hr style="border:none;border-top:2px solid #000;margin:0 0 16px 0;" />
               <p style="margin:0 0 4px 0;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#555;">HOST / ORGANIZER</p>
               <p style="margin:0 0 4px 0;font-size:12px;font-weight:700;text-transform:uppercase;">METAPOISE & DUIET</p>

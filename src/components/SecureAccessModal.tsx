@@ -10,6 +10,7 @@ interface SecureAccessModalProps {
 }
 
 export default function SecureAccessModal({ isOpen, onClose }: SecureAccessModalProps) {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -27,7 +28,7 @@ export default function SecureAccessModal({ isOpen, onClose }: SecureAccessModal
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ name, email }),
       });
 
       const data = await response.json();
@@ -40,6 +41,7 @@ export default function SecureAccessModal({ isOpen, onClose }: SecureAccessModal
           // Reset after a delay
           setTimeout(() => {
             setStatus("idle");
+            setName("");
             setEmail("");
             setMessage("");
           }, 300);
@@ -101,6 +103,22 @@ export default function SecureAccessModal({ isOpen, onClose }: SecureAccessModal
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                <div className="flex flex-col">
+                  <label htmlFor="name" className="mono-font text-xs font-bold uppercase mb-2">
+                    Alias / Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                    placeholder="Agent Smith"
+                    disabled={status === "loading"}
+                    className="border-2 border-black/30 p-3 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-black transition-all disabled:opacity-50 mb-2"
+                  />
+                </div>
+
                 <div className="flex flex-col">
                   <label htmlFor="email" className="mono-font text-xs font-bold uppercase mb-2">
                     Email Address

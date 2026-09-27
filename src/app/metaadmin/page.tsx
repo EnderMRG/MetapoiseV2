@@ -7,6 +7,7 @@ export default function MetaAdminPage() {
   const [password, setPassword] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [data, setData] = useState<{name: string, email: string, phone: string, year: string}[]>([]);
+  const [sheetId, setSheetId] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [showAddForm, setShowAddForm] = useState(false);
@@ -30,6 +31,7 @@ export default function MetaAdminPage() {
 
       const json = await res.json();
       setData(json.data);
+      if (json.spreadsheetId) setSheetId(json.spreadsheetId);
       setIsAuthenticated(true);
     } catch (err) {
       setError("ACCESS DENIED. INVALID CREDENTIALS.");
@@ -39,19 +41,11 @@ export default function MetaAdminPage() {
   };
 
   const downloadCSV = () => {
-    let csvContent = "Name,Email,Phone,Year\r\n";
-    data.forEach(row => {
-      csvContent += `"${row.name}","${row.email}","${row.phone || ''}","${row.year}"\r\n`;
-    });
-    
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.setAttribute("href", url);
-    link.setAttribute("download", "alumni_data.csv");
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    if (sheetId) {
+      window.open(`https://docs.google.com/spreadsheets/d/${sheetId}/edit`, '_blank');
+    } else {
+      alert("Spreadsheet ID not available.");
+    }
   };
 
   const handleAdd = async (e: React.FormEvent) => {
@@ -153,7 +147,7 @@ export default function MetaAdminPage() {
               className="border-2 border-white/30 px-6 py-3 mono-font text-xs uppercase font-bold hover:bg-white hover:text-black transition-colors flex items-center gap-2"
             >
               <Download size={16} />
-              Export CSV
+              Export CSV (View in Sheets)
             </button>
           </div>
         </div>

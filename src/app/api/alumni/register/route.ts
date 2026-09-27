@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';
 import nodemailer from 'nodemailer';
+import { google } from 'googleapis';
 
 export async function POST(request: Request) {
   try {
@@ -15,10 +16,38 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Year of graduation must be less than 2026' }, { status: 400 });
     }
 
-    // 1. Save to CSV
-    const csvPath = path.join(process.cwd(), 'alumni_data.csv');
-    const csvLine = `"${name}","${email}","${phone}","${year}"\n`;
-    await fs.appendFile(csvPath, csvLine, 'utf8');
+    // 1. Save to Google Sheets
+    try {
+      const auth = new google.auth.GoogleAuth({
+        credentials: {
+          client_email: process.env.GOOGLE_CLIENT_EMAIL,
+          private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+        },
+        scopes: [
+          'https://www.googleapis.com/auth/drive',
+          'https://www.googleapis.com/auth/drive.file',
+          'https://www.googleapis.com/auth/spreadsheets',
+        ],
+      });
+
+      const sheets = google.sheets({ auth, version: 'v4' });
+      const spreadsheetId = process.env.GOOGLE_SHEET_ID;
+
+      if (spreadsheetId && process.env.GOOGLE_CLIENT_EMAIL && process.env.GOOGLE_PRIVATE_KEY) {
+        await sheets.spreadsheets.values.append({
+          spreadsheetId,
+          range: 'Alumni!A:E', // IMPORTANT: Create a tab named "Alumni" in your Google Sheet!
+          valueInputOption: 'USER_ENTERED',
+          requestBody: {
+            values: [
+              [name, email, phone, year, new Date().toISOString()]
+            ],
+          },
+        });
+      }
+    } catch (sheetError) {
+      console.error("Failed to save to Google Sheets:", sheetError);
+    }
 
     // 2. Send Email
     const user = process.env.GMAIL_USER;

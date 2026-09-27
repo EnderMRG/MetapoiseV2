@@ -1,9 +1,7 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs/promises';
-import path from 'path';
+import { google } from 'googleapis';
 
 const ADMIN_PASSWORD = 'metapoiseadmin';
-const CSV_PATH = path.join(process.cwd(), 'alumni_data.csv');
 
 export async function POST(request: Request) {
   try {
@@ -14,38 +12,64 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Unauthorized Access' }, { status: 401 });
     }
 
+    const auth = new google.auth.GoogleAuth({
+      credentials: {
+        client_email: process.env.GOOGLE_CLIENT_EMAIL,
+        private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+      },
+      scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+    });
+
+    const sheets = google.sheets({ auth, version: 'v4' });
+    const spreadsheetId = process.env.GOOGLE_SHEET_ID;
+
+    if (!spreadsheetId) {
+       return NextResponse.json({ error: 'Spreadsheet ID not found' }, { status: 500 });
+    }
+
     if (action === 'ADD') {
       const { name, email, phone, year } = data;
-      const csvLine = `"${name}","${email}","${phone}","${year}"\n`;
-      await fs.appendFile(CSV_PATH, csvLine, 'utf8');
+      await sheets.spreadsheets.values.append({
+        spreadsheetId,
+        range: 'Alumni!A:E',
+        valueInputOption: 'USER_ENTERED',
+        requestBody: {
+          values: [
+            [name, email, phone, year, new Date().toISOString()]
+          ],
+        },
+      });
       return NextResponse.json({ success: true });
     } 
     
     if (action === 'DELETE') {
       const { index } = data;
       
-      try {
-        const fileData = await fs.readFile(CSV_PATH, 'utf8');
-        const rows = fileData.trim().split('\n');
-        
-        // Remove the specific row by index
-        if (typeof index === 'number' && index >= 0 && index < rows.length) {
-          rows.splice(index, 1);
-        }
+      // Get the sheetId for the "Alumni" tab to use with batchUpdate
+      const spreadsheet = await sheets.spreadsheets.get({ spreadsheetId });
+      const sheet = spreadsheet.data.sheets?.find(s => s.properties?.title === 'Alumni');
+      const sheetId = sheet?.properties?.sheetId;
 
-        // Filter out empty rows just in case
-        const updatedRows = rows.filter(row => row.trim());
-
-        // Write back
-        const newContent = updatedRows.length > 0 ? updatedRows.join('\n') + '\n' : '';
-        await fs.writeFile(CSV_PATH, newContent, 'utf8');
-        return NextResponse.json({ success: true });
-      } catch (err: any) {
-        if (err.code === 'ENOENT') {
-          return NextResponse.json({ success: true }); // File doesn't exist, nothing to delete
-        }
-        throw err;
+      if (sheetId !== undefined && typeof index === 'number') {
+        await sheets.spreadsheets.batchUpdate({
+          spreadsheetId,
+          requestBody: {
+            requests: [
+              {
+                deleteDimension: {
+                  range: {
+                    sheetId: sheetId,
+                    dimension: 'ROWS',
+                    startIndex: index, // Since it's 0-indexed in API, row 1 in data is index 0
+                    endIndex: index + 1
+                  }
+                }
+              }
+            ]
+          }
+        });
       }
+      return NextResponse.json({ success: true });
     }
 
     return NextResponse.json({ error: 'Invalid action' }, { status: 400 });
