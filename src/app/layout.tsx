@@ -55,8 +55,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={cn(spaceGrotesk.variable, inter.variable, jetbrainsMono.variable, higuenFallback.variable, "font-sans", geist.variable)}
     >
-      <body className="w-full overflow-x-clip bg-transparent">
-        <div className="fixed inset-0 -z-10 w-full h-full pointer-events-none">
+      <body className="w-full overflow-x-clip bg-[#070913] text-white">
+        <div className="fixed inset-0 w-full h-[100dvh] pointer-events-none">
           <Grainient
             color1="#1a4084"
             color2="#2779ff"
@@ -82,7 +82,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             zoom={0.9}
           />
         </div>
-        <div className="relative z-0">
+        <div className="relative z-10">
           {children}
         </div>
         <script
