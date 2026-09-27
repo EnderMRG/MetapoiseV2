@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, Inter, JetBrains_Mono, Geist } from "next/font/google";
 import localFont from 'next/font/local';
 import "./globals.css";
@@ -43,6 +43,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#070913",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
