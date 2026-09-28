@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, ArrowRight, Cpu, Terminal, ShieldCheck, Sparkle, Globe, Code, Play } from "@phosphor-icons/react";
+import { ArrowLeft, ArrowRight, Cpu, Terminal, ShieldCheck, Sparkle, Globe, Code, Play, X } from "@phosphor-icons/react";
 import { motion } from "framer-motion";
 import Grainient from "@/components/Grainient";
 import Footer from "@/components/Footer";
@@ -45,6 +45,66 @@ const profiles = {
     abstract: "I’m here to make sure you have the best hackathon experience possible - come say hi and let’s build something incredible!"
   }
 };
+
+const coreTeam = [
+  {
+    name: "Gaurav Deori",
+    role: "HUMAN RESOURCE / MARKETING",
+    desc: "I love building ideas, bringing people together, and creating things that actually make an impact. METAPOISE is my way of creating a space where builders can experiment, collaborate, and turn ideas into reality. Come build, learn, and create something awesome with us!",
+    image: "/Core/Gaurav.webp",
+    initials: "GD"
+  },
+  {
+    name: "Debashish Gogoi",
+    role: "HUMAN RESOURCE / MARKETING",
+    desc: "I thrive on connecting with people and creating a strong brand presence. Building a community around technology and innovation has always been my goal. At METAPOISE, I'm focusing on marketing strategies and ensuring our message reaches every ambitious builder and creator out there. Let's build a lasting network together!",
+    image: null,
+    initials: "DG"
+  },
+  {
+    name: "Bichitra Bikram Hazarika",
+    role: "HUMAN RESOURCE / MARKETING",
+    desc: "After competing in 5 hackathons and winning all 5, along with state-level ideathons and debates, I’ve always been driven by the thrill of building, pitching, and competing. As the Marketing Lead at GDG Dibrugarh University, I also found my passion for creating communities and experiences. With a keen interest in embedded systems, innovation, and ideas that blend technology with business, METAPOISE is my opportunity to bring that passion to campus and create something meaningful.",
+    image: "/Core/Bichitra.webp",
+    initials: "BBH"
+  },
+  {
+    name: "Moharnab Gogoi",
+    role: "TECHNICAL HEAD",
+    desc: "From shipping my first side-projects to architecting large-scale technical initiatives, my obsession has always been turning abstract ideas into tangible, high-performance experiences. As the Technical Head of METAPOISE, I bridge the gap between complex infrastructure, bold design, and flawless execution. Case in point: I'm the developer behind the digital mainframe you're exploring right now, engineering its entire architecture from the ground up. I thrive on solving impossible problems, breaking limits with bleeding-edge technology, and pushing radical ideas straight into reality.",
+    image: "/Core/Moharnab.webp",
+    initials: "MG",
+    portfolio: "https://moharnabgogoi.vercel.app"
+  },
+  {
+    name: "Manav Agarwalla",
+    role: "ACCOUNTS MANAGER",
+    desc: "Behind every great event is a solid financial strategy. I've always had a knack for numbers, resource management, and strategic planning. At METAPOISE, my role is to ensure we have the resources to pull off an incredible experience without compromising on quality. I love turning complex budgets into actionable, high-impact events.",
+    image: null,
+    initials: "MA"
+  },
+  {
+    name: "Nilim Kr. Chutia",
+    role: "DESIGN HEAD",
+    desc: "Design isn't just about making things look good; it's about how things work and communicate. I specialize in translating complex ideas into intuitive, brutalist, and modern visual experiences. As Design Head for METAPOISE, my goal is to craft an identity that is bold, memorable, and perfectly captures the spirit of our tech-driven generation.",
+    image: null,
+    initials: "NKC"
+  },
+  {
+    name: "Hritwik Barman",
+    role: "MANAGEMENT",
+    desc: "I’m passionate about bringing people, ideas, and opportunities together to create meaningful experiences. I enjoy taking ideas from planning to execution, coordinating with teams, solving challenges, and making sure everything comes together smoothly. Being part of METAPOISE gives me the opportunity to contribute, collaborate, and help turn ambitious ideas into impactful experiences. Let’s connect, collaborate, and create something incredible together!",
+    image: "/Core/Hritwik.webp",
+    initials: "HB"
+  },
+  {
+    name: "Nishanka Borthakur",
+    role: "MANAGEMENT",
+    desc: "I’ve always enjoyed being behind the scenes and making events happen. From volunteering at METAPOISE V1.0 to working as an Event Coordinator at GDG Dibrugarh University, I’ve gained hands-on experience in planning, coordinating, and bringing people together. METAPOISE V2.0 gives me the opportunity to put that experience to work and help create an even bigger and better experience for everyone.",
+    image: "/Core/Nishanka.webp",
+    initials: "NB"
+  }
+];
 
 const StackedCarousel = ({ images, eventName }: { images: string[], eventName: string }) => {
   const [index, setIndex] = useState(0);
@@ -122,6 +182,7 @@ const StackedCarousel = ({ images, eventName }: { images: string[], eventName: s
 
 export default function AboutUs() {
   const [activeArchiveIndex, setActiveArchiveIndex] = useState(0);
+  const [selectedMember, setSelectedMember] = useState<typeof coreTeam[0] | null>(null);
 
   return (
     <div className="min-h-screen relative w-full overflow-x-clip text-white">
@@ -382,6 +443,47 @@ export default function AboutUs() {
         </div>
       </section>
 
+      {/* Core Team Profile */}
+      <section className="py-16 md:py-24 px-4 sm:px-8 md:px-16 border-b-4 grid-line">
+        <div className="mb-12 border-b-2 border-white/30/20 pb-8 text-center sm:text-left">
+          <span className="mono-font text-xs text-white/90 font-bold block mb-4 tracking-widest">[TEAM]</span>
+          <h2 className="heading-font text-5xl sm:text-7xl uppercase leading-none mb-6 text-white">
+            Core Team
+          </h2>
+          <p className="text-xl sm:text-2xl font-medium leading-relaxed text-white/90">
+            The driving force behind Metapoise
+          </p>
+        </div>
+
+        <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
+          {coreTeam.map((member, i) => (
+            <div 
+              key={i}
+              onClick={() => setSelectedMember(member)}
+              className="group cursor-pointer bg-white/5 border-2 sm:border-4 border-white/30/20 hover:border-white/50 hover:bg-white/10 transition-all duration-200 flex flex-col overflow-hidden"
+            >
+              <div className="p-2 sm:p-4 border-b-2 sm:border-b-4 border-white/30/20 bg-black/40 aspect-[4/5] flex items-center justify-center relative">
+                {member.image ? (
+                  <Image src={member.image} alt={member.name} fill className="object-cover" />
+                ) : (
+                  <span className="text-4xl sm:text-6xl font-bold text-white/20 heading-font">{member.initials}</span>
+                )}
+              </div>
+              <div className="p-3 sm:p-4 flex-1 flex flex-col bg-transparent text-white">
+                <h3 className="heading-font text-lg sm:text-2xl uppercase font-bold leading-none mb-2 sm:mb-3">
+                  {member.name}
+                </h3>
+                <div className="mb-0 sm:mb-4">
+                  <span className="bg-accent text-black mono-font text-[8px] sm:text-[10px] font-bold px-1.5 py-1 sm:px-2 uppercase tracking-wider inline-block w-fit">
+                    {member.role.replace(" / ", "_")}
+                  </span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* V1.0 Archive Section */}
       <section className="py-16 md:py-24 px-4 sm:px-8 md:px-16 border-b-4 grid-line">
         {/* Header */}
@@ -622,6 +724,53 @@ export default function AboutUs() {
 
       {/* Footer (Identical to Landing Page) */}
       <Footer className="grid-line-accent" />
+
+      {/* Core Team Modal */}
+      {selectedMember && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+          <div className="bg-white border-4 border-black shadow-[16px_16px_0_0_#000] max-w-3xl w-full max-h-[90vh] overflow-y-auto relative flex flex-col md:flex-row animate-in fade-in zoom-in duration-200">
+            <button 
+              onClick={() => setSelectedMember(null)}
+              className="absolute top-4 right-4 z-10 bg-black text-white p-2 hover:bg-gray-800 transition-colors"
+            >
+              <X weight="bold" size={24} />
+            </button>
+            
+            <div className="w-full md:w-2/5 min-h-[300px] bg-gray-200 border-b-4 md:border-b-0 md:border-r-4 border-black relative flex items-center justify-center">
+              {selectedMember.image ? (
+                <Image src={selectedMember.image} alt={selectedMember.name} fill className="object-cover" />
+              ) : (
+                <span className="text-8xl font-bold text-gray-400 heading-font">{selectedMember.initials}</span>
+              )}
+            </div>
+            
+            <div className="w-full md:w-3/5 p-6 md:p-8 flex flex-col justify-center bg-white text-black">
+              <h3 className="heading-font text-4xl sm:text-5xl uppercase font-bold leading-none mb-4 pr-12">
+                {selectedMember.name}
+              </h3>
+              <div className="mb-6 flex flex-wrap items-center gap-4">
+                <span className="bg-accent text-black mono-font text-xs font-bold px-3 py-2 uppercase tracking-wider inline-block">
+                  {selectedMember.role}
+                </span>
+                {(selectedMember as any).portfolio && (
+                  <a 
+                    href={(selectedMember as any).portfolio}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-black text-white hover:bg-yellow-400 hover:text-black mono-font text-xs font-bold uppercase tracking-wider px-3 py-2 transition-colors group w-fit"
+                  >
+                    My Portfolio
+                    <ArrowRight weight="bold" className="group-hover:translate-x-1 transition-transform" />
+                  </a>
+                )}
+              </div>
+              <p className="text-sm sm:text-base font-medium leading-relaxed border-t-2 border-black/10 pt-4 text-black/90">
+                {selectedMember.desc}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
