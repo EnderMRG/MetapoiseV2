@@ -106,6 +106,65 @@ const coreTeam = [
   }
 ];
 
+const facultyList = [
+  {
+    name: "Dr. Nomi Baruah",
+    role: "Associate Professor",
+    desc: "Software Engineering, Machine Learning, Natural Language Processing, Image Processing",
+    image: "/faculty/Nomi.webp",
+    initials: "NB",
+    link: "https://www.dibru.ac.in/user-profile/nomi-baruah"
+  },
+  {
+    name: "Dr. Moirangthem Tiken Singh",
+    role: "Associate Professor",
+    desc: "Edge-Device & Medical AI, Graph Learning & Financial Security, Industrial Automation & Diagnostics, Algorithmic Game Theory & Systems",
+    image: "/faculty/tiken.webp",
+    initials: "MTS",
+    link: "https://www.dibru.ac.in/user-profile/m-tiken-singh"
+  },
+  {
+    name: "Dr. Sudipta Majumder",
+    role: "Associate Professor",
+    desc: "Internet of Things, Machine Learing, Optimization Techniques, Network Security",
+    image: "/faculty/sudipta.webp",
+    initials: "SM",
+    link: "https://www.dibru.ac.in/user-profile/sudipta-majumder"
+  },
+  {
+    name: "Dr. Abhijit Boruah",
+    role: "Assistant Professor",
+    desc: "Machine Learning, Ontology Design, Computer Vision and Robotics",
+    image: "/faculty/abhijitboruah.webp",
+    initials: "AB",
+    link: "https://www.dibru.ac.in/user-profile/abhijit-boruah"
+  },
+  {
+    name: "Dr. Kaushik Das",
+    role: "Assistant Professor",
+    desc: "Machine Learning, Computer Vision, Image Processing, Data Mining",
+    image: "/faculty/kaushik.webp",
+    initials: "KD",
+    link: "https://www.dibru.ac.in/user-profile/kaushik-das"
+  },
+  {
+    name: "Dr. Rabinder Kumar Prasad",
+    role: "Assistant Professor",
+    desc: "Data Mining, Data Analysis, Machine learning",
+    image: "/faculty/Rabindra.webp",
+    initials: "RKP",
+    link: "https://www.dibru.ac.in/user-profile/rabinder-kumar-prasad"
+  },
+  {
+    name: "Mr. Abhijit Gogoi",
+    role: "Assistant Professor",
+    desc: "Fuzzy time series",
+    image: "/faculty/abhijitgogoi.webp",
+    initials: "AG",
+    link: "https://www.dibru.ac.in/user-profile/abhijit-gogoi"
+  }
+];
+
 const StackedCarousel = ({ images, eventName }: { images: string[], eventName: string }) => {
   const [index, setIndex] = useState(0);
 
@@ -349,6 +408,114 @@ export default function AboutUs() {
           <span className="mx-8">METAPOISE V2.0</span> <span className="">•</span>
         </div>
       </div>
+
+      {/* Host Department Overview (Speakers / Faculty) */}
+      <section id="speakers" className="py-16 md:py-24 px-4 sm:px-8 md:px-16 border-b-4 grid-line">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+          <div className="md:col-span-5 lg:col-span-4 pr-4">
+            <span className="mono-font text-xs text-white/60 block mb-2">[02 // HOST_ENTITY]</span>
+            <h2 className="heading-font text-4xl md:text-5xl lg:text-6xl uppercase leading-tight break-words">
+              Department of Computer Science and Engineering
+            </h2>
+            <div className="mt-4 mono-font text-xs text-white/70">
+              <p>DUIET, DIBRUGARH UNIVERSITY</p>
+              <p>ESTABLISHED: 2009</p>
+              <p>ASSAM, INDIA</p>
+            </div>
+          </div>
+
+          <div className="md:col-span-7 lg:col-span-8 space-y-6">
+            <p className="text-lg sm:text-xl font-light leading-relaxed">
+              The Department of Computer Science &amp; Engineering at DUIET is dedicated
+              to creating responsible and skilled thought leaders in computing. Through
+              a state-of-the-art education and research ecosystem, a sustainable
+              industry-academic interface, and lifelong learning, the department empowers
+              graduates to design technically sound, economically feasible, and socially
+              conscious computing systems addressing real-world challenges.
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 border-t-2 border-white/30/20 pt-6 mono-font text-xs">
+              <div className="border border-white/30 p-4 bg-white/10 flex flex-col justify-between">
+                <div>
+                  <span className="block text-white/60 mb-1 font-bold">[VISION &amp; MISSION]</span>
+                  <p className="font-semibold text-white/90">
+                    To create responsible and skilled thought leaders in CSE through a state-of-the-art research ecosystem, industry collaboration, and entrepreneurship.
+                  </p>
+                </div>
+                <div className="mt-3 text-[10px] text-white/50 border-t border-white/30/10 pt-1">
+                  PEO // CRITICAL THINKING &amp; ETHICS
+                </div>
+              </div>
+
+              <div className="border border-white/30 p-4 bg-white/10 flex flex-col justify-between">
+                <div>
+                  <span className="block text-white/60 mb-1 font-bold">[06 SPECIALIZED LABS]</span>
+                  <p className="font-semibold text-white/90">
+                    AI Lab, Network &amp; Security Lab, IoT Lab, Image Processing Lab, and dual Programming Laboratories.
+                  </p>
+                </div>
+                <div className="mt-3 text-[10px] text-white/50 border-t border-white/30/10 pt-1">
+                  INFRA // ROBOTICS, MATROX &amp; NS3
+                </div>
+              </div>
+
+              <div className="border border-white/30 p-4 bg-white/10 flex flex-col justify-between">
+                <div>
+                  <span className="block text-white/60 mb-1 font-bold">[CURRICULUM &amp; MOU]</span>
+                  <p className="font-semibold text-white/90">
+                    Deep curriculum in Algorithms, Network Security, AI &amp; Compilers. MOU with Spoken Tutorial at IIT Bombay (MHRD).
+                  </p>
+                </div>
+                <div className="mt-3 text-[10px] text-white/50 border-t border-white/30/10 pt-1">
+                  PEDAGOGY // ICT-BASED METHODOLOGY
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Faculty List (Full width inside Department Section) */}
+        <div className="mt-16 pt-12 border-t-2 border-white/30/20">
+          <span className="mono-font text-xs text-white/90 font-bold block mb-4 tracking-widest">[ACADEMIC LEADERSHIP]</span>
+          <h3 className="heading-font text-3xl sm:text-4xl lg:text-5xl uppercase leading-none mb-8 text-white">
+            Faculty Profiles
+          </h3>
+          
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 lg:gap-6">
+            {facultyList.map((member, i) => (
+              <a 
+                key={i}
+                href={member.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-white/5 border-2 sm:border-4 border-white/30/20 hover:border-white/50 hover:bg-white/10 transition-all duration-200 flex flex-col overflow-hidden"
+              >
+                <div className="p-2 sm:p-3 border-b-2 sm:border-b-4 border-white/30/20 bg-black/40 aspect-square flex items-center justify-center relative">
+                  {member.image ? (
+                    <Image src={member.image} alt={member.name} fill className="object-cover object-top" />
+                  ) : (
+                    <span className="text-3xl font-bold text-white/20 heading-font">{member.initials}</span>
+                  )}
+                </div>
+                <div className="p-3 sm:p-5 flex-1 flex flex-col bg-transparent text-white">
+                  <h4 className="heading-font text-lg sm:text-xl md:text-2xl uppercase font-bold leading-tight mb-2">
+                    {member.name}
+                  </h4>
+                  <div className="mb-3 sm:mb-4">
+                    <span className="bg-white/90 text-black mono-font text-[10px] sm:text-xs font-bold px-2 py-1 uppercase tracking-wider inline-block w-fit leading-none">
+                      {member.role}
+                    </span>
+                  </div>
+                  <p className="text-xs sm:text-sm text-white/80 font-medium leading-relaxed mt-auto border-t border-white/10 pt-3 line-clamp-5">
+                    <span className="font-bold text-accent mono-font mb-1.5 block tracking-widest text-[9px] sm:text-[10px]">RESEARCH:</span>
+                    {member.desc}
+                  </p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Team / Convenors Profile */}
       <section className="py-16 md:py-24 px-4 sm:px-8 md:px-16 border-b-4 grid-line">
@@ -616,72 +783,6 @@ export default function AboutUs() {
                 >
                   NEXT EVENT <ArrowRight />
                 </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Host Department Overview (Speakers / Faculty) */}
-      <section id="speakers" className="py-16 md:py-24 px-4 sm:px-8 md:px-16 border-b-4 grid-line">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-          <div className="md:col-span-5 lg:col-span-4 pr-4">
-            <span className="mono-font text-xs text-white/60 block mb-2">[02 // HOST_ENTITY]</span>
-            <h2 className="heading-font text-4xl md:text-5xl lg:text-6xl uppercase leading-tight break-words">
-              Department of Computer Science and Engineering
-            </h2>
-            <div className="mt-4 mono-font text-xs text-white/70">
-              <p>DUIET, DIBRUGARH UNIVERSITY</p>
-              <p>ESTABLISHED: 2009</p>
-              <p>ASSAM, INDIA</p>
-            </div>
-          </div>
-
-          <div className="md:col-span-7 lg:col-span-8 space-y-6">
-            <p className="text-lg sm:text-xl font-light leading-relaxed">
-              The Department of Computer Science &amp; Engineering at DUIET is dedicated
-              to creating responsible and skilled thought leaders in computing. Through
-              a state-of-the-art education and research ecosystem, a sustainable
-              industry-academic interface, and lifelong learning, the department empowers
-              graduates to design technically sound, economically feasible, and socially
-              conscious computing systems addressing real-world challenges.
-            </p>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 border-t-2 border-white/30/20 pt-6 mono-font text-xs">
-              <div className="border border-white/30 p-4 bg-white/10 flex flex-col justify-between">
-                <div>
-                  <span className="block text-white/60 mb-1 font-bold">[VISION &amp; MISSION]</span>
-                  <p className="font-semibold text-white/90">
-                    To create responsible and skilled thought leaders in CSE through a state-of-the-art research ecosystem, industry collaboration, and entrepreneurship.
-                  </p>
-                </div>
-                <div className="mt-3 text-[10px] text-white/50 border-t border-white/30/10 pt-1">
-                  PEO // CRITICAL THINKING &amp; ETHICS
-                </div>
-              </div>
-
-              <div className="border border-white/30 p-4 bg-white/10 flex flex-col justify-between">
-                <div>
-                  <span className="block text-white/60 mb-1 font-bold">[06 SPECIALIZED LABS]</span>
-                  <p className="font-semibold text-white/90">
-                    AI Lab, Network &amp; Security Lab, IoT Lab, Image Processing Lab, and dual Programming Laboratories.
-                  </p>
-                </div>
-                <div className="mt-3 text-[10px] text-white/50 border-t border-white/30/10 pt-1">
-                  INFRA // ROBOTICS, MATROX &amp; NS3
-                </div>
-              </div>
-
-              <div className="border border-white/30 p-4 bg-white/10 flex flex-col justify-between">
-                <div>
-                  <span className="block text-white/60 mb-1 font-bold">[CURRICULUM &amp; MOU]</span>
-                  <p className="font-semibold text-white/90">
-                    Deep curriculum in Algorithms, Network Security, AI &amp; Compilers. MOU with Spoken Tutorial at IIT Bombay (MHRD).
-                  </p>
-                </div>
-                <div className="mt-3 text-[10px] text-white/50 border-t border-white/30/10 pt-1">
-                  PEDAGOGY // ICT-BASED METHODOLOGY
-                </div>
               </div>
             </div>
           </div>
