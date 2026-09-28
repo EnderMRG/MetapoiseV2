@@ -71,7 +71,7 @@ const coreTeam = [
   {
     name: "Moharnab Gogoi",
     role: "TECHNICAL HEAD",
-    desc: "From shipping my first side-projects to architecting large-scale technical initiatives, my obsession has always been turning abstract ideas into tangible, high-performance experiences. As the Technical Head of METAPOISE, I bridge the gap between complex infrastructure, bold design, and flawless execution. Case in point: I'm the developer behind the digital mainframe you're exploring right now, engineering its entire architecture from the ground up. I thrive on solving impossible problems, breaking limits with bleeding-edge technology, and pushing radical ideas straight into reality.",
+    desc: "As the Technical Head of METAPOISE, I bridge the gap between complex infrastructure, bold design, and flawless execution. Case in point: I'm the developer behind the digital mainframe you're exploring right now, engineering its entire architecture from the ground up. I thrive on solving impossible problems, breaking limits with bleeding-edge technology, and pushing radical ideas straight into reality.",
     image: "/Core/Moharnab.webp",
     initials: "MG",
     portfolio: "https://moharnabgogoi.vercel.app"
@@ -110,6 +110,7 @@ const facultyList = [
   {
     name: "Dr. Nomi Baruah",
     role: "Associate Professor",
+    badge: "HOD",
     desc: "Software Engineering, Machine Learning, Natural Language Processing, Image Processing",
     image: "/faculty/Nomi.webp",
     initials: "NB",
@@ -175,7 +176,7 @@ const StackedCarousel = ({ images, eventName }: { images: string[], eventName: s
   if (images.length === 1) {
     return (
       <div className="relative w-full aspect-[4/3] sm:aspect-video rounded-lg overflow-hidden border-4 border-white/30/10">
-        <Image src={`/v1-archive/${images[0]}`} alt={eventName} fill className="object-cover transition-all duration-700" />
+        <Image src={`/v1-archive/${images[0]}`} alt={eventName} fill sizes="(max-width: 768px) 100vw, 800px" className="object-cover transition-all duration-700" />
       </div>
     );
   }
@@ -492,7 +493,7 @@ export default function AboutUs() {
               >
                 <div className="p-2 sm:p-3 border-b-2 sm:border-b-4 border-white/30/20 bg-black/40 aspect-square flex items-center justify-center relative">
                   {member.image ? (
-                    <Image src={member.image} alt={member.name} fill className="object-cover object-top" />
+                    <Image src={member.image} alt={member.name} fill sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw" className="object-cover object-top" />
                   ) : (
                     <span className="text-3xl font-bold text-white/20 heading-font">{member.initials}</span>
                   )}
@@ -501,7 +502,12 @@ export default function AboutUs() {
                   <h4 className="heading-font text-lg sm:text-xl md:text-2xl uppercase font-bold leading-tight mb-2">
                     {member.name}
                   </h4>
-                  <div className="mb-3 sm:mb-4">
+                  <div className="mb-3 sm:mb-4 flex flex-wrap gap-2">
+                    {member.badge && (
+                      <span className="bg-accent text-black mono-font text-[10px] sm:text-xs font-bold px-2 py-1 uppercase tracking-wider inline-block w-fit leading-none">
+                        {member.badge}
+                      </span>
+                    )}
                     <span className="bg-white/90 text-black mono-font text-[10px] sm:text-xs font-bold px-2 py-1 uppercase tracking-wider inline-block w-fit leading-none">
                       {member.role}
                     </span>
@@ -539,6 +545,7 @@ export default function AboutUs() {
                   src={profiles.kd.image}
                   alt={profiles.kd.name}
                   fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover"
                 />
               </div>
@@ -578,6 +585,7 @@ export default function AboutUs() {
                   src={profiles.arjun.image}
                   alt={profiles.arjun.name}
                   fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover"
                 />
               </div>
@@ -631,7 +639,7 @@ export default function AboutUs() {
             >
               <div className="p-2 sm:p-4 border-b-2 sm:border-b-4 border-white/30/20 bg-black/40 aspect-[4/5] flex items-center justify-center relative">
                 {member.image ? (
-                  <Image src={member.image} alt={member.name} fill className="object-cover" />
+                  <Image src={member.image} alt={member.name} fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover" />
                 ) : (
                   <span className="text-4xl sm:text-6xl font-bold text-white/20 heading-font">{member.initials}</span>
                 )}
@@ -654,7 +662,7 @@ export default function AboutUs() {
       {/* V1.0 Archive Section */}
       <section className="py-16 md:py-24 px-4 sm:px-8 md:px-16 border-b-4 grid-line">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 border-b-2 border-white/30/20 pb-8">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 border-b-2 border-white/30/20 pb-8 gap-8">
           <div className="max-w-2xl">
             <span className="mono-font text-xs text-white/90 font-bold block mb-4 tracking-widest">[WHERE IT ALL STARTED]</span>
             <h2 className="heading-font text-6xl sm:text-8xl uppercase leading-none mb-6">
@@ -663,6 +671,17 @@ export default function AboutUs() {
             <p className="text-xl sm:text-2xl font-medium leading-relaxed text-white/90">
               A celebration of innovation, where cutting-edge technology meets creativity, showcasing futuristic ideas, gadgets, and solutions that shape tomorrow.
             </p>
+          </div>
+          
+          <div className="flex-shrink-0 w-full md:w-auto">
+            <a 
+              href="https://meta-poise.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full md:w-auto bg-accent text-black px-6 sm:px-8 py-3 sm:py-4 font-bold uppercase mono-font text-xs sm:text-sm flex items-center justify-center gap-2 hover:scale-105 transition-transform border-2 border-white/30"
+            >
+              VISIT V1.0 WEBSITE <ArrowRight weight="bold" />
+            </a>
           </div>
         </div>
 
@@ -839,7 +858,7 @@ export default function AboutUs() {
             
             <div className="w-full md:w-2/5 min-h-[300px] bg-gray-200 border-b-4 md:border-b-0 md:border-r-4 border-black relative flex items-center justify-center">
               {selectedMember.image ? (
-                <Image src={selectedMember.image} alt={selectedMember.name} fill className="object-cover" />
+                <Image src={selectedMember.image} alt={selectedMember.name} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
               ) : (
                 <span className="text-8xl font-bold text-gray-400 heading-font">{selectedMember.initials}</span>
               )}
