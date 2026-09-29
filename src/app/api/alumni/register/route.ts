@@ -60,9 +60,10 @@ export async function POST(request: Request) {
       });
 
       const mailOptions = {
-        from: user,
+        from: `"Metapoise V2.0" <${user}>`,
         to: email,
         subject: 'Connection Established - Metapoise Alumni Network',
+        text: `Welcome ${name},\n\nYour registration as an Alumni Node has been successfully authenticated. We await your arrival at the symposium.\n\nGraduation Year: ${year}\nDate: Oct 15, 2026\nHost: Metapoise & DUIET\n\nPlease check your HTML email for your secure token and access details.\n\nMetapoise V2.0 // Dept. of CSE, DUIET`,
         html: `
 <!DOCTYPE html>
 <html lang="en">

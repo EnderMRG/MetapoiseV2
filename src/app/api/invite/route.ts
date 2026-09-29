@@ -67,6 +67,7 @@ export async function POST(request: Request) {
       from: `"Metapoise V2.0" <${process.env.GMAIL_USER}>`,
       to: email,
       subject: 'Welcome to METAPOISE V2.0 - Secure Token',
+      text: `Welcome ${name},\n\nAn experimental convergence of neural architecture, synthetic biology, and decentralized protocols. You have been granted entry.\n\nDate: Oct 30 — Nov 01\nHost: Metapoise & DUIET\n\nPlease check your HTML email for your secure token and access details.\n\nMetapoise V2.0 // Dept. of CSE, DUIET`,
       html: `
 <!DOCTYPE html>
 <html lang="en">
