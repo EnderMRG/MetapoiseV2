@@ -23,28 +23,40 @@ const v1Archive = [
   { id: "12", name: "Cultural Night", desc: "The grand finale of METAPOISE v1.0, featuring a vibrant cultural night that concluded with an electrifying live performance by Abstract Waves.", images: ["12 Cultural Night/12 Cultural Night - 01.webp", "12 Cultural Night/12 Cultural Night - 02.webp"] }
 ];
 
-const profiles = {
-  kd: {
-    id: "kd",
+const facultyAdvisors = [
+  {
     name: "Dr. Kaushik Das",
     role: "Faculty Advisor // Assistant Professor",
-    email: "kaushik.das@dibru.ac.in",
+    desc: "Bridging the gap between complex algorithmic research and real-world execution, Dr. Das transforms academic rigor into high-impact products, continually inspiring builders to construct the next era of digital infrastructure. 9+ Publications, 2 Patents, 6 Book Chapters, 3 Projects.",
     image: "/kd.webp",
-    bio: "Bridging the gap between complex algorithmic research and real-world execution, Dr. Das transforms academic rigor into high-impact products, continually inspiring builders to construct the next era of digital infrastructure.",
-    abstractTitle: "RESEARCH & PATENTS",
-    abstract: "9+ Publications, 2 Patents, 6 Book Chapters, 3 Projects. Key Patents include System and Method for Real-Time Pothole Detection and Automatic Speaker Identification. Co-Founder of Kaushal Digital."
+    initials: "KD"
   },
-  arjun: {
-    id: "arjun",
+  {
+    name: "Dr. Sudipta Majumder",
+    role: "Faculty Advisor // Associate Professor",
+    desc: "Dedicated to advancing research in IoT and Network Security, driving innovation through optimized machine learning techniques. Expertise in Internet of Things, Machine Learning, Optimization Techniques, Network Security.",
+    image: "/faculty/sudipta.webp",
+    initials: "SM"
+  }
+];
+
+const studentCoordinators = [
+  {
     name: "Arjun Bora",
     role: "Student Convenor",
-    email: "berrykappa135@gmail.com",
+    desc: "Having competed in my fair share of hackathons, I wanted to curate the kind of event I always loved participating in. Bringing this hackathon under the METAPOISE banner was all about creating the ultimate sandbox for builders to collaborate, break things, and ship cool projects.",
     image: "/arjun.webp",
-    bio: "Having competed in my fair share of hackathons, I wanted to curate the kind of event I always loved participating in. Bringing this hackathon under the METAPOISE banner was all about creating the ultimate sandbox for builders to collaborate, break things, and ship cool projects.",
-    abstractTitle: "MISSION OBJECTIVE",
-    abstract: "I’m here to make sure you have the best hackathon experience possible - come say hi and let’s build something incredible!"
+    initials: "AB"
+  },
+  {
+    name: "Moharnab Gogoi",
+    role: "Technical Head // Student Coordinator",
+    desc: "As the Technical Head of METAPOISE, I bridge the gap between complex infrastructure, bold design, and flawless execution. Case in point: I'm the developer behind the digital mainframe you're exploring right now, engineering its entire architecture from the ground up. I thrive on solving impossible problems, breaking limits with bleeding-edge technology, and pushing radical ideas straight into reality.",
+    image: "/Core/Moharnab.webp",
+    initials: "MG",
+    portfolio: "https://moharnabgogoi.vercel.app"
   }
-};
+];
 
 const coreTeam = [
   {
@@ -69,14 +81,6 @@ const coreTeam = [
     initials: "BBH"
   },
   {
-    name: "Moharnab Gogoi",
-    role: "TECHNICAL HEAD",
-    desc: "As the Technical Head of METAPOISE, I bridge the gap between complex infrastructure, bold design, and flawless execution. Case in point: I'm the developer behind the digital mainframe you're exploring right now, engineering its entire architecture from the ground up. I thrive on solving impossible problems, breaking limits with bleeding-edge technology, and pushing radical ideas straight into reality.",
-    image: "/Core/Moharnab.webp",
-    initials: "MG",
-    portfolio: "https://moharnabgogoi.vercel.app"
-  },
-  {
     name: "Manav Agarwalla",
     role: "ACCOUNTS MANAGER",
     desc: "Behind every great event is a solid financial strategy. I've always had a knack for numbers, resource management, and strategic planning. At METAPOISE, my role is to ensure we have the resources to pull off an incredible experience without compromising on quality. I love turning complex budgets into actionable, high-impact events.",
@@ -87,7 +91,7 @@ const coreTeam = [
     name: "Nilim Kr. Chutia",
     role: "DESIGN HEAD",
     desc: "Design isn't just about making things look good; it's about how things work and communicate. I specialize in translating complex ideas into intuitive, brutalist, and modern visual experiences. As Design Head for METAPOISE, my goal is to craft an identity that is bold, memorable, and perfectly captures the spirit of our tech-driven generation.",
-    image: null,
+    image: "/Core/Nilim.webp",
     initials: "NKC"
   },
   {
@@ -103,6 +107,13 @@ const coreTeam = [
     desc: "I’ve always enjoyed being behind the scenes and making events happen. From volunteering at METAPOISE V1.0 to working as an Event Coordinator at GDG Dibrugarh University, I’ve gained hands-on experience in planning, coordinating, and bringing people together. METAPOISE V2.0 gives me the opportunity to put that experience to work and help create an even bigger and better experience for everyone.",
     image: "/Core/Nishanka.webp",
     initials: "NB"
+  },
+  {
+    name: "Priyanchi",
+    role: "MANAGEMENT",
+    desc: "Being a part of METAPOISE is about more than simply being involved—it’s about being part of a community where ideas come alive and people come together to create something bigger. I’m excited to explore new perspectives, contribute to meaningful initiatives, and work alongside passionate individuals who inspire innovation and growth. From building connections to turning possibilities into real experiences, I look forward to learning, contributing, and creating an impact that truly matters. Here’s to new ideas, new connections, and countless possibilities!",
+    image: "/Core/priyanchi.webp",
+    initials: "P"
   }
 ];
 
@@ -523,98 +534,85 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* Team / Convenors Profile */}
+      {/* Faculty Advisor Profile */}
       <section className="py-16 md:py-24 px-4 sm:px-8 md:px-16 border-b-4 grid-line">
         <div className="mb-12 border-b-2 border-white/30/20 pb-8 text-center sm:text-left">
           <span className="mono-font text-xs text-white/90 font-bold block mb-4 tracking-widest">[LEADERSHIP]</span>
           <h2 className="heading-font text-5xl sm:text-7xl uppercase leading-none mb-6">
-            The Convenors
+            Faculty Advisor
           </h2>
           <p className="text-xl sm:text-2xl font-medium leading-relaxed text-white/90">
-            The visionaries behind METAPOISE V2.0
+            The guiding force behind METAPOISE V2.0
           </p>
         </div>
 
-        <div className="max-w-6xl mx-auto flex flex-col gap-12">
-          {/* Faculty Advisor Block */}
-          <div className="w-full bg-white/5 border-4 border-white/30/20 flex flex-col md:flex-row overflow-hidden">
-            {/* Left: Image */}
-            <div className="w-full md:w-1/3 min-h-[300px] md:min-h-[400px] relative border-b-4 md:border-b-0 md:border-r-4 border-white/30/20 p-8 flex items-center justify-center bg-white/5">
-              <div className="relative w-full max-w-[240px] md:max-w-sm aspect-[4/5] mx-auto border-4 border-white/30/20 bg-white/10 overflow-hidden">
-                <Image 
-                  src={profiles.kd.image}
-                  alt={profiles.kd.name}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover"
-                />
+        <div className="max-w-2xl mx-auto grid grid-cols-2 gap-3 sm:gap-6">
+          {facultyAdvisors.map((member, i) => (
+            <div 
+              key={i}
+              onClick={() => setSelectedMember(member)}
+              className="group cursor-pointer bg-white/5 border-2 sm:border-4 border-white/30/20 hover:border-white/50 hover:bg-white/10 transition-all duration-200 flex flex-col overflow-hidden"
+            >
+              <div className="p-2 sm:p-4 border-b-2 sm:border-b-4 border-white/30/20 bg-black/40 aspect-[4/5] flex items-center justify-center relative">
+                {member.image ? (
+                  <Image src={member.image} alt={member.name} fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover" />
+                ) : (
+                  <span className="text-4xl sm:text-6xl font-bold text-white/20 heading-font">{member.initials}</span>
+                )}
               </div>
-            </div>
-            {/* Right: Content */}
-            <div className="w-full md:w-2/3 flex flex-col">
-              <div className="p-6 sm:p-8 md:p-10 border-b-4 border-white/30/20 flex-1 flex flex-col justify-center">
-                <div className="mb-6 flex flex-col gap-2">
-                  <h3 className="heading-font text-4xl sm:text-5xl uppercase leading-none text-white">
-                    {profiles.kd.name}
-                  </h3>
-                  <span className="mono-font text-[10px] sm:text-xs uppercase tracking-widest text-accent font-bold">
-                    [EMAIL: {profiles.kd.email}]
+              <div className="p-3 sm:p-4 flex-1 flex flex-col bg-transparent text-white">
+                <h3 className="heading-font text-lg sm:text-2xl uppercase font-bold leading-none mb-2 sm:mb-3">
+                  {member.name}
+                </h3>
+                <div className="mb-0 sm:mb-4">
+                  <span className="bg-accent text-black mono-font text-[8px] sm:text-[10px] font-bold px-1.5 py-1 sm:px-2 uppercase tracking-wider inline-block w-fit">
+                    {member.role.replace(" / ", "_")}
                   </span>
                 </div>
-                <p className="text-base sm:text-lg md:text-xl font-bold uppercase leading-snug">
-                  "{profiles.kd.bio}"
-                </p>
-              </div>
-              <div className="p-6 sm:p-8 md:p-10 flex-1 flex flex-col justify-center">
-                <span className="mono-font text-[10px] sm:text-xs font-bold block mb-4 uppercase tracking-widest text-white/60">
-                  {profiles.kd.abstractTitle} // {profiles.kd.role}
-                </span>
-                <p className="text-xs sm:text-sm font-medium uppercase leading-relaxed text-white/90">
-                  {profiles.kd.abstract}
-                </p>
               </div>
             </div>
-          </div>
+          ))}
+        </div>
+      </section>
 
-          {/* Student Convenor Block */}
-          <div className="w-full bg-white/5 border-4 border-white/30/20 flex flex-col md:flex-row overflow-hidden">
-            {/* Left: Image */}
-            <div className="w-full md:w-1/3 min-h-[300px] md:min-h-[400px] relative border-b-4 md:border-b-0 md:border-r-4 border-white/30/20 p-8 flex items-center justify-center bg-white/5">
-              <div className="relative w-full max-w-[240px] md:max-w-sm aspect-[4/5] mx-auto border-4 border-white/30/20 bg-white/10 overflow-hidden">
-                <Image 
-                  src={profiles.arjun.image}
-                  alt={profiles.arjun.name}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover"
-                />
+      {/* Student Coordinators Profile */}
+      <section className="py-16 md:py-24 px-4 sm:px-8 md:px-16 border-b-4 grid-line">
+        <div className="mb-12 border-b-2 border-white/30/20 pb-8 text-center sm:text-left">
+          <span className="mono-font text-xs text-white/90 font-bold block mb-4 tracking-widest">[LEADERSHIP]</span>
+          <h2 className="heading-font text-5xl sm:text-7xl uppercase leading-none mb-6">
+            Student Coordinators
+          </h2>
+          <p className="text-xl sm:text-2xl font-medium leading-relaxed text-white/90">
+            The builders of METAPOISE V2.0
+          </p>
+        </div>
+
+        <div className="max-w-2xl mx-auto grid grid-cols-2 gap-3 sm:gap-6">
+          {studentCoordinators.map((member, i) => (
+            <div 
+              key={i}
+              onClick={() => setSelectedMember(member)}
+              className="group cursor-pointer bg-white/5 border-2 sm:border-4 border-white/30/20 hover:border-white/50 hover:bg-white/10 transition-all duration-200 flex flex-col overflow-hidden"
+            >
+              <div className="p-2 sm:p-4 border-b-2 sm:border-b-4 border-white/30/20 bg-black/40 aspect-[4/5] flex items-center justify-center relative">
+                {member.image ? (
+                  <Image src={member.image} alt={member.name} fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover" />
+                ) : (
+                  <span className="text-4xl sm:text-6xl font-bold text-white/20 heading-font">{member.initials}</span>
+                )}
               </div>
-            </div>
-            {/* Right: Content */}
-            <div className="w-full md:w-2/3 flex flex-col">
-              <div className="p-6 sm:p-8 md:p-10 border-b-4 border-white/30/20 flex-1 flex flex-col justify-center">
-                <div className="mb-6 flex flex-col gap-2">
-                  <h3 className="heading-font text-4xl sm:text-5xl uppercase leading-none text-white">
-                    {profiles.arjun.name}
-                  </h3>
-                  <span className="mono-font text-[10px] sm:text-xs uppercase tracking-widest text-accent font-bold">
-                    [EMAIL: {profiles.arjun.email}]
+              <div className="p-3 sm:p-4 flex-1 flex flex-col bg-transparent text-white">
+                <h3 className="heading-font text-lg sm:text-2xl uppercase font-bold leading-none mb-2 sm:mb-3">
+                  {member.name}
+                </h3>
+                <div className="mb-0 sm:mb-4">
+                  <span className="bg-accent text-black mono-font text-[8px] sm:text-[10px] font-bold px-1.5 py-1 sm:px-2 uppercase tracking-wider inline-block w-fit">
+                    {member.role.replace(" / ", "_")}
                   </span>
                 </div>
-                <p className="text-base sm:text-lg md:text-xl font-bold uppercase leading-snug">
-                  "{profiles.arjun.bio}"
-                </p>
-              </div>
-              <div className="p-6 sm:p-8 md:p-10 flex-1 flex flex-col justify-center">
-                <span className="mono-font text-[10px] sm:text-xs font-bold block mb-4 uppercase tracking-widest text-white/60">
-                  {profiles.arjun.abstractTitle} // {profiles.arjun.role}
-                </span>
-                <p className="text-xs sm:text-sm font-medium uppercase leading-relaxed text-white/90">
-                  {profiles.arjun.abstract}
-                </p>
               </div>
             </div>
-          </div>
+          ))}
         </div>
       </section>
 

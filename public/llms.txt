@@ -9,8 +9,7 @@ The event serves as a crucible for student builders, innovators, researchers, an
 1. **Crescendo (The Hackathon):** A multi-hour sprint challenging developers to engineer novel prototypes addressing autonomous systems, web architectures, and AI primitives.
 2. **Tech Expo & Workshops:** A physical exhibition spotlighting hardware prototypes, IoT installations, and embedded systems. Includes hands-on practical sessions.
 3. **Aporia (The Ideathon):** A central ideation track for high-conviction founders to pitch transformative technical solutions to expert evaluators.
-4. **Alumni Meet:** A secure networking channel connecting current undergraduates with graduates operating in the global tech industry.
-5. **Symposia & Culture:** Keynotes, networking forums, open-mic sessions, and workshops curated to strengthen community bonds.
+4. **Symposia & Culture:** Keynotes, networking forums, open-mic sessions, and workshops curated to strengthen community bonds.
 
 ## Dates
 October 30, 2026 – November 01, 2026.

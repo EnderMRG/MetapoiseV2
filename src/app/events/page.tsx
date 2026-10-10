@@ -8,7 +8,6 @@ import { Metadata } from "next";
 import { ArrowRight, Code, Cpu, Globe } from "@phosphor-icons/react";
 import Grainient from "@/components/Grainient";
 import Footer from "@/components/Footer";
-import AlumniRegistrationModal from "@/components/AlumniRegistrationModal";
 
 type EventData = {
   id: string;
@@ -31,23 +30,23 @@ const eventsData: EventData[] = [
   {
     id: "evt1",
     unit: "UNIT_001",
-    title: "Alumni Meet",
-    shortCode: "A m",
-    field: "NETWORKING // MENTORSHIP",
+    title: "Cinema Screening",
+    shortCode: "C s",
+    field: "ENTERTAINMENT",
     width: "full",
     icon: (
       <div className="w-32 h-32 border-4 border-white/30 group-hover:border-black relative transition-all duration-500 group-hover:scale-105 rounded-full overflow-hidden flex items-center justify-center">
-        <div className="absolute -left-4 -top-4 w-20 h-20 border-4 border-white/30 group-hover:border-black transition-colors rounded-full"></div>
-        <div className="absolute -right-4 -bottom-4 w-20 h-20 border-4 border-white/30 group-hover:border-black transition-colors rounded-full"></div>
-        <div className="w-8 h-8 bg-black group-hover:bg-white transition-colors rounded-full relative z-10"></div>
+        <div className="w-16 h-12 bg-white group-hover:bg-black transition-colors rounded-sm relative z-10 flex items-center justify-center">
+          <div className="w-0 h-0 border-l-[8px] border-l-black group-hover:border-l-white border-y-[6px] border-y-transparent"></div>
+        </div>
       </div>
     ),
-    coordinator: "DR. KAUSHIK DAS",
-    timing: "15 OCT: 10:30 AM",
-    fullDescription: "A secure networking channel establishing direct peer-to-peer connections between current undergraduates and deployed graduates operating in the global tech industry.",
-    tags: ["P2P_HANDSHAKE", "MENTOR_NODE", "CAREER_PATH"],
-    stats: { mainNum: "120+", mainLabel: "ALUMNI ACTIVE", subNum: "MAX", subLabel: "CONNECTIONS" },
-    ctaText: "ESTABLISH_CONNECTION"
+    coordinator: "BICHITRA BIKRAM HAZARIKA (8723044263)",
+    timing: "27 OCT: 04:00 PM",
+    fullDescription: "A curated cinematic experience showcasing masterpieces of storytelling and visual art. Join us for an evening of entertainment and inspiration.",
+    tags: ["CINEMA", "ENTERTAINMENT", "SCREENING"],
+    stats: { mainNum: "1", mainLabel: "SCREENING", subNum: "MAX", subLabel: "ENTERTAINMENT" },
+    ctaText: "SECURE_SEAT"
   },
   {
     id: "evt2",
@@ -91,12 +90,31 @@ const eventsData: EventData[] = [
         </svg>
       </div>
     ),
-    coordinator: "TECHNICAL HEADS",
+    coordinator: "NILIM CHUTIA, JYOTISMITA SONOWAL (6003449424, 9101305174)",
     timing: "30 OCT: 10:30 AM",
     fullDescription: "An immersive laboratory session exploring the intersection of modern technologies. Participants will interface with new protocols to build reactive structures.",
     tags: ["SKILL_NODE", "PRACTICAL_IMPL", "SYNTH_CODE"],
     stats: { mainNum: "50", mainLabel: "WORKSTATIONS", subNum: "03", subLabel: "HOURS" },
     ctaText: "ENROLL_SECURE_ACCESS"
+  },
+  {
+    id: "evt_ss",
+    unit: "UNIT_011",
+    title: "Student Seminar",
+    shortCode: "S s",
+    field: "SEMINAR // KNOWLEDGE",
+    width: "half",
+    icon: (
+      <div className="w-32 h-32 border-4 border-white/30 group-hover:border-black relative transition-all duration-500 group-hover:scale-105 rounded-full flex items-center justify-center">
+        <div className="w-12 h-12 bg-white group-hover:bg-black rounded-full" />
+      </div>
+    ),
+    coordinator: "BICHITRA BIKRAM HAZARIKA (8723044263)",
+    timing: "28 OCT: 10:00 AM",
+    fullDescription: "Interactive sessions presented by students covering cutting edge trends and theoretical research.",
+    tags: ["KNOWLEDGE", "RESEARCH", "PEER_LEARNING"],
+    stats: { mainNum: "MAX", mainLabel: "LEARNING", subNum: "100%", subLabel: "ENGAGEMENT" },
+    ctaText: "ATTEND_SEMINAR"
   },
   {
     id: "evt4",
@@ -114,7 +132,7 @@ const eventsData: EventData[] = [
         </svg>
       </div>
     ),
-    coordinator: "INNOVATION CELL",
+    coordinator: "MANAV AGARWALLA (7002193308)",
     timing: "31 OCT: 10:00 AM",
     fullDescription: "A central ideation track challenging participants to formulate cutting-edge solutions for real-world systemic anomalies. Present your conceptual frameworks to a panel of expert evaluators.",
     tags: ["LOGIC_GATE", "SYSTEM_DESIGN", "PITCH_DECK"],
@@ -133,7 +151,7 @@ const eventsData: EventData[] = [
         <div className="w-12 h-12 bg-white group-hover:bg-black rounded-full" />
       </div>
     ),
-    coordinator: "DR. KAUSHIK DAS",
+    coordinator: "DEBASISH GOGOI, PRAGNYA JYOTI BORA (7099895406, 7635917414)",
     timing: "31 OCT: 01:30 PM",
     fullDescription: "High-bandwidth data transfer sessions from industry veterans. Deep dive into architectural paradigms, quantum computing trends, and AI acceleration.",
     tags: ["DATA_STREAM", "KNOWLEDGE_TRANSFER", "Q_A_NODE"],
@@ -143,21 +161,40 @@ const eventsData: EventData[] = [
   {
     id: "evt6",
     unit: "UNIT_006",
-    title: "Online Gaming",
+    title: "LAN events",
     shortCode: "O g",
     field: "ESPORTS // TOURNAMENT",
-    width: "full",
+    width: "half",
     icon: (
-      <div className="w-48 h-48 border-4 border-white/30 group-hover:border-black transition-colors flex items-center justify-center transition-transform duration-500 group-hover:scale-105 bg-white/20">
-        <div className="w-24 h-12 border-4 border-white/30 group-hover:border-black rounded-full" />
+      <div className="w-32 h-32 border-4 border-white/30 group-hover:border-black transition-colors flex items-center justify-center transition-transform duration-500 group-hover:scale-105 bg-white/20">
+        <div className="w-16 h-8 border-4 border-white/30 group-hover:border-black rounded-full" />
       </div>
     ),
-    coordinator: "ESPORTS CLUB",
+    coordinator: "DEBASISH DUTTA (8099743133)",
     timing: "31 OCT: 10:00 AM",
     fullDescription: "Engage in competitive simulation environments. Tactical execution, team coordination, and raw reflexes are required to dominate the digital battlefield.",
     tags: ["FPS_MAX", "LATENCY_LOW", "TACTICAL_OPS"],
     stats: { mainNum: "32", mainLabel: "TEAMS", subNum: "01", subLabel: "CHAMPION" },
     ctaText: "JOIN_LOBBY"
+  },
+  {
+    id: "evt_th",
+    unit: "UNIT_012",
+    title: "Treasure Hunt",
+    shortCode: "T h",
+    field: "ACTIVITY // FUN",
+    width: "full",
+    icon: (
+      <div className="w-32 h-32 border-4 border-white/30 group-hover:border-black transition-colors flex items-center justify-center transition-transform duration-500 group-hover:scale-105 bg-white/20">
+        <span className="heading-font text-6xl text-white group-hover:text-black">X</span>
+      </div>
+    ),
+    coordinator: "PRATICK NIRMALIA, JYOTISHMITA SONOWAL (9387063891, 9101305174)",
+    timing: "31 OCT: 03:00 PM",
+    fullDescription: "Follow the clues, decode the mysteries and race against time in our campus wide treasure hunt.",
+    tags: ["CLUES", "MYSTERY", "RACE"],
+    stats: { mainNum: "MAX", mainLabel: "FUN", subNum: "1", subLabel: "WINNER" },
+    ctaText: "JOIN_HUNT"
   },
   {
     id: "evt7",
@@ -174,8 +211,8 @@ const eventsData: EventData[] = [
         </svg>
       </div>
     ),
-    coordinator: "DEV WING",
-    timing: "01 NOV: 09:30 AM",
+    coordinator: "MOHARNAB GOGOI, MAYUREE KHANIKAR (9101974916, 9365482841)",
+    timing: "01 NOV: 09:00 AM",
     fullDescription: "The flagship prototype competition. Teams must strictly select and build a prototype addressing one of the official problem statements under severe time constraints.",
     tags: ["TEAM_SIZE: 04", "LIVE_DEMO", "NO_SLEEP"],
     stats: { mainNum: "24", mainLabel: "HOURS", subNum: "MAX", subLabel: "CAFFEINE" },
@@ -193,7 +230,7 @@ const eventsData: EventData[] = [
         <span className="heading-font text-6xl text-white group-hover:text-black">?</span>
       </div>
     ),
-    coordinator: "QUIZ CLUB",
+    coordinator: "NISHANKA BORTHAKUR, PRIYANCHI BARUA (6003102573, 6003825746)",
     timing: "01 NOV: 03:30 PM",
     fullDescription: "Test your memory banks and processing speed. A high-stakes trivia confrontation spanning technology, pop culture, and logical deduction.",
     tags: ["MEMORY_ACCESS", "FAST_IO", "LOGIC"],
@@ -214,7 +251,7 @@ const eventsData: EventData[] = [
         </div>
       </div>
     ),
-    coordinator: "MEDIA CELL",
+    coordinator: "GAURAV DEORI (6003275519)",
     timing: "01 NOV: 10:30 AM",
     fullDescription: "Document the technical symposium through your optical sensors. Judged on composition, lighting, and thematic relevance.",
     tags: ["OPTICAL_SENSOR", "RGB_MATRIX", "STORY_ARC"],
@@ -233,7 +270,7 @@ const eventsData: EventData[] = [
         <div className="w-8 h-16 bg-white group-hover:bg-black rounded-t-full" />
       </div>
     ),
-    coordinator: "CULTURAL WING",
+    coordinator: "HRITWIK BARMAN (9395496045)",
     timing: "01 NOV: 04:00 PM",
     fullDescription: "A platform for creative expression. Decompress from the technical grid and share your vocal or instrumental algorithms with the collective.",
     tags: ["AUDIO_WAVE", "UNPLUGGED", "EXPRESSION"],
@@ -257,7 +294,6 @@ function EventPopupHandler({ onEventFound }: { onEventFound: (id: string) => voi
 
 export default function EventsPage() {
   const [selectedEvent, setSelectedEvent] = useState<EventData | null>(null);
-  const [isAlumniFormOpen, setIsAlumniFormOpen] = useState(false);
   const [modalScale, setModalScale] = useState(1);
 
   const handleEventFound = useCallback((id: string) => {
@@ -510,11 +546,6 @@ export default function EventsPage() {
               {/* Footer CTA Button */}
               <button 
                 className="w-full bg-black text-accent py-5 px-4 heading-font text-4xl uppercase hover:bg-white hover:text-black transition-colors border-t-4 border-black/30 shrink-0"
-                onClick={() => {
-                  if (selectedEvent.id === "evt1") {
-                    setIsAlumniFormOpen(true);
-                  }
-                }}
               >
                 {selectedEvent.ctaText}
               </button>
@@ -522,11 +553,6 @@ export default function EventsPage() {
           </div>
         </div>
       )}
-
-      <AlumniRegistrationModal 
-        isOpen={isAlumniFormOpen} 
-        onClose={() => setIsAlumniFormOpen(false)} 
-      />
     </div>
   );
 }

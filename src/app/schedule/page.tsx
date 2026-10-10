@@ -10,9 +10,10 @@ export default function SchedulePage() {
   const scheduleData = [
     {
       dayStr: "PRE-FEST",
-      dateStr: "15.10.26",
+      dateStr: "27.10.26 - 28.10.26",
       events: [
-        { time: "10:30 AM", type: "NETWORKING", title: "ALUMNI MEET", location: "VIRTUAL_NODE", eventId: "evt1" },
+        { time: "04:00 PM", type: "ENTERTAINMENT", title: "CINEMA SCREENING", location: "MAIN_AUDITORIUM", eventId: "evt1", lead: "Bichitra Bikram Hazarika", contact: "8723044263" },
+        { time: "10:00 AM", type: "SEMINAR", title: "STUDENT SEMINAR", location: "SEMINAR_HALL", eventId: "evt_ss", lead: "Bichitra Bikram Hazarika", contact: "8723044263" },
       ]
     },
     {
@@ -20,26 +21,27 @@ export default function SchedulePage() {
       dateStr: "30.10.26",
       events: [
         { time: "10:00 AM", type: "KEYNOTE", title: "INAUGURAL CEREMONY", location: "MAIN_AUDITORIUM", eventId: "evt2" },
-        { time: "10:30 AM", type: "WORKSHOP", title: "TECHNICAL WORKSHOP", location: "LAB_02", eventId: "evt3" },
+        { time: "10:30 AM", type: "WORKSHOP", title: "TECHNICAL WORKSHOP", location: "LAB_02", eventId: "evt3", lead: "Nilim Chutia, Jyotismita Sonowal", contact: "6003449424, 9101305174" },
       ]
     },
     {
       dayStr: "DAY_02",
       dateStr: "31.10.26",
       events: [
-        { time: "10:00 AM", type: "COMPETITION", title: "IDEATHON", location: "VOID_MAIN", eventId: "evt4" },
-        { time: "10:00 AM", type: "ESPORTS", title: "ONLINE GAMING COMPETITION", location: "VIRTUAL_NODE", eventId: "evt6" },
-        { time: "01:30 PM", type: "SEMINAR", title: "TECHNICAL SEMINAR", location: "SEMINAR_HALL", eventId: "evt5" },
+        { time: "10:00 AM", type: "COMPETITION", title: "IDEATHON", location: "VOID_MAIN", eventId: "evt4", lead: "Manav Agarwalla", contact: "7002193308" },
+        { time: "10:00 AM", type: "ESPORTS", title: "LAN EVENTS", location: "VIRTUAL_NODE", eventId: "evt6", lead: "Debasish Dutta", contact: "8099743133" },
+        { time: "01:30 PM", type: "SEMINAR", title: "TECHNICAL SEMINAR", location: "SEMINAR_HALL", eventId: "evt5", lead: "Debasish Gogoi, Pragnya jyoti Bora", contact: "7099895406, 7635917414" },
+        { time: "03:00 PM", type: "ACTIVITY", title: "TREASURE HUNT", location: "CAMPUS_WIDE", eventId: "evt_th", lead: "Pratick Nirmalia, Jyotishmita Sonowal", contact: "9387063891, 9101305174" },
       ]
     },
     {
       dayStr: "DAY_03",
       dateStr: "01.11.26",
       events: [
-        { time: "09:30 AM", type: "HACKATHON", title: "HACKATHON", location: "VOID_MAIN", eventId: "evt7" },
-        { time: "10:30 AM", type: "COMPETITION", title: "PHOTOGRAPHY COMPETITION", location: "CAMPUS_WIDE", eventId: "evt9" },
-        { time: "03:30 PM", type: "COMPETITION", title: "OPEN QUIZ", location: "MAIN_AUDITORIUM", eventId: "evt8" },
-        { time: "04:00 PM", type: "PERFORMANCE", title: "OPEN MIC COMPETITION", location: "STAGE_BETA", eventId: "evt10" },
+        { time: "09:00 AM", type: "HACKATHON", title: "HACKATHON", location: "VOID_MAIN", eventId: "evt7", lead: "Moharnab Gogoi, Mayuree Khanikar", contact: "9101974916, 9365482841" },
+        { time: "10:30 AM", type: "COMPETITION", title: "PHOTOGRAPHY COMPETITION", location: "CAMPUS_WIDE", eventId: "evt9", lead: "Gaurav Deori", contact: "6003275519" },
+        { time: "03:30 PM", type: "COMPETITION", title: "OPEN QUIZ", location: "MAIN_AUDITORIUM", eventId: "evt8", lead: "Nishanka Borthakur, Priyanchi Barua", contact: "6003102573, 6003825746" },
+        { time: "04:00 PM", type: "PERFORMANCE", title: "OPEN MIC", location: "STAGE_BETA", eventId: "evt10", lead: "Hritwik Barman", contact: "9395496045" },
       ]
     }
   ];
@@ -162,6 +164,15 @@ export default function SchedulePage() {
                       <span className="w-2 h-2 rounded-full bg-current"></span>
                       {event.location}
                     </div>
+
+                    {(event as any).lead && (
+                      <div className="mt-4 pt-4 border-t-2 border-white/20 group-hover:border-black/20 mono-font text-[10px] uppercase space-y-1">
+                        <div className="text-white/70 group-hover:text-black/70 font-bold">LEAD: {(event as any).lead}</div>
+                        {(event as any).contact && (
+                          <div className="text-white/70 group-hover:text-black/70 font-bold">CONTACT: {(event as any).contact}</div>
+                        )}
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
