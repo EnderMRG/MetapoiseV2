@@ -27,14 +27,20 @@ const facultyAdvisors = [
   {
     name: "Dr. Kaushik Das",
     role: "Faculty Advisor // Assistant Professor",
-    desc: "Bridging the gap between complex algorithmic research and real-world execution, Dr. Das transforms academic rigor into high-impact products, continually inspiring builders to construct the next era of digital infrastructure. 9+ Publications, 2 Patents, 6 Book Chapters, 3 Projects.",
+    email: "kaushik.das@dibru.ac.in",
+    bio: "Bridging the gap between complex algorithmic research and real-world execution, Dr. Das transforms academic rigor into high-impact products, continually inspiring builders to construct the next era of digital infrastructure.",
+    abstractTitle: "RESEARCH & PATENTS",
+    abstract: "9+ Publications, 2 Patents, 6 Book Chapters, 3 Projects.",
     image: "/kd.webp",
     initials: "KD"
   },
   {
     name: "Dr. Sudipta Majumder",
     role: "Faculty Advisor // Associate Professor",
-    desc: "Dedicated to advancing research in IoT and Network Security, driving innovation through optimized machine learning techniques. Expertise in Internet of Things, Machine Learning, Optimization Techniques, Network Security.",
+    email: "sudiptamajumder@dibru.ac.in",
+    bio: "Dedicated to advancing research in IoT and Network Security, driving innovation through optimized machine learning techniques.",
+    abstractTitle: "RESEARCH EXPERTISE",
+    abstract: "Internet of Things, Machine Learning, Optimization Techniques, Network Security.",
     image: "/faculty/sudipta.webp",
     initials: "SM"
   }
@@ -44,14 +50,20 @@ const studentCoordinators = [
   {
     name: "Arjun Bora",
     role: "Student Convenor",
-    desc: "Having competed in my fair share of hackathons, I wanted to curate the kind of event I always loved participating in. Bringing this hackathon under the METAPOISE banner was all about creating the ultimate sandbox for builders to collaborate, break things, and ship cool projects.",
+    email: "berrykappa135@gmail.com",
+    bio: "Having competed in my fair share of hackathons, I wanted to curate the kind of event I always loved participating in. Bringing this hackathon under the METAPOISE banner was all about creating the ultimate sandbox for builders to collaborate, break things, and ship cool projects.",
+    abstractTitle: "MISSION OBJECTIVE",
+    abstract: "I’m here to make sure you have the best hackathon experience possible - come say hi and let’s build something incredible!",
     image: "/arjun.webp",
     initials: "AB"
   },
   {
     name: "Moharnab Gogoi",
     role: "Technical Head // Student Coordinator",
-    desc: "As the Technical Head of METAPOISE, I bridge the gap between complex infrastructure, bold design, and flawless execution. Case in point: I'm the developer behind the digital mainframe you're exploring right now, engineering its entire architecture from the ground up. I thrive on solving impossible problems, breaking limits with bleeding-edge technology, and pushing radical ideas straight into reality.",
+    email: "moharnabgogoi@gmail.com",
+    bio: "As the Technical Head of METAPOISE, I bridge the gap between complex infrastructure, bold design, and flawless execution. Case in point: I'm the developer behind the digital mainframe you're exploring right now, engineering its entire architecture from the ground up.",
+    abstractTitle: "ENGINEERING",
+    abstract: "Full-stack development, System Architecture, UI/UX Design, and Performance Optimization.",
     image: "/Core/Moharnab.webp",
     initials: "MG",
     portfolio: "https://moharnabgogoi.vercel.app"
@@ -546,28 +558,44 @@ export default function AboutUs() {
           </p>
         </div>
 
-        <div className="max-w-2xl mx-auto grid grid-cols-2 gap-3 sm:gap-6">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
           {facultyAdvisors.map((member, i) => (
             <div 
               key={i}
-              onClick={() => setSelectedMember(member)}
-              className="group cursor-pointer bg-white/5 border-2 sm:border-4 border-white/30/20 hover:border-white/50 hover:bg-white/10 transition-all duration-200 flex flex-col overflow-hidden"
+              className="w-full bg-white/5 border-4 border-white/30/20 flex flex-col overflow-hidden"
             >
-              <div className="p-2 sm:p-4 border-b-2 sm:border-b-4 border-white/30/20 bg-black/40 aspect-[4/5] flex items-center justify-center relative">
-                {member.image ? (
-                  <Image src={member.image} alt={member.name} fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover" />
-                ) : (
-                  <span className="text-4xl sm:text-6xl font-bold text-white/20 heading-font">{member.initials}</span>
-                )}
+              <div className="w-full min-h-[300px] relative border-b-4 border-white/30/20 p-8 flex items-center justify-center bg-white/5">
+                <div className="relative w-full max-w-[240px] sm:max-w-xs aspect-[4/5] mx-auto border-4 border-white/30/20 bg-white/10 overflow-hidden">
+                  {member.image ? (
+                    <Image src={member.image} alt={member.name} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
+                  ) : (
+                    <span className="flex items-center justify-center w-full h-full text-4xl sm:text-6xl font-bold text-white/20 heading-font">{member.initials}</span>
+                  )}
+                </div>
               </div>
-              <div className="p-3 sm:p-4 flex-1 flex flex-col bg-transparent text-white">
-                <h3 className="heading-font text-lg sm:text-2xl uppercase font-bold leading-none mb-2 sm:mb-3">
-                  {member.name}
-                </h3>
-                <div className="mb-0 sm:mb-4">
-                  <span className="bg-accent text-black mono-font text-[8px] sm:text-[10px] font-bold px-1.5 py-1 sm:px-2 uppercase tracking-wider inline-block w-fit">
-                    {member.role.replace(" / ", "_")}
+              <div className="w-full flex-1 flex flex-col">
+                <div className="p-6 sm:p-8 border-b-4 border-white/30/20 flex flex-col justify-center">
+                  <div className="mb-6 flex flex-col gap-2">
+                    <h3 className="heading-font text-4xl sm:text-5xl uppercase leading-none text-white">
+                      {member.name}
+                    </h3>
+                    {member.email && (
+                      <span className="mono-font text-[10px] sm:text-xs uppercase tracking-widest text-accent font-bold">
+                        [EMAIL: {member.email}]
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-base sm:text-lg font-bold uppercase leading-snug">
+                    "{member.bio}"
+                  </p>
+                </div>
+                <div className="p-6 sm:p-8 flex-1 flex flex-col justify-center">
+                  <span className="mono-font text-[10px] sm:text-xs font-bold block mb-4 uppercase tracking-widest text-white/60">
+                    {member.abstractTitle} // {member.role}
                   </span>
+                  <p className="text-xs sm:text-sm font-medium uppercase leading-relaxed text-white/90">
+                    {member.abstract}
+                  </p>
                 </div>
               </div>
             </div>
@@ -587,28 +615,44 @@ export default function AboutUs() {
           </p>
         </div>
 
-        <div className="max-w-2xl mx-auto grid grid-cols-2 gap-3 sm:gap-6">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
           {studentCoordinators.map((member, i) => (
             <div 
               key={i}
-              onClick={() => setSelectedMember(member)}
-              className="group cursor-pointer bg-white/5 border-2 sm:border-4 border-white/30/20 hover:border-white/50 hover:bg-white/10 transition-all duration-200 flex flex-col overflow-hidden"
+              className="w-full bg-white/5 border-4 border-white/30/20 flex flex-col overflow-hidden"
             >
-              <div className="p-2 sm:p-4 border-b-2 sm:border-b-4 border-white/30/20 bg-black/40 aspect-[4/5] flex items-center justify-center relative">
-                {member.image ? (
-                  <Image src={member.image} alt={member.name} fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover" />
-                ) : (
-                  <span className="text-4xl sm:text-6xl font-bold text-white/20 heading-font">{member.initials}</span>
-                )}
+              <div className="w-full min-h-[300px] relative border-b-4 border-white/30/20 p-8 flex items-center justify-center bg-white/5">
+                <div className="relative w-full max-w-[240px] sm:max-w-xs aspect-[4/5] mx-auto border-4 border-white/30/20 bg-white/10 overflow-hidden">
+                  {member.image ? (
+                    <Image src={member.image} alt={member.name} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
+                  ) : (
+                    <span className="flex items-center justify-center w-full h-full text-4xl sm:text-6xl font-bold text-white/20 heading-font">{member.initials}</span>
+                  )}
+                </div>
               </div>
-              <div className="p-3 sm:p-4 flex-1 flex flex-col bg-transparent text-white">
-                <h3 className="heading-font text-lg sm:text-2xl uppercase font-bold leading-none mb-2 sm:mb-3">
-                  {member.name}
-                </h3>
-                <div className="mb-0 sm:mb-4">
-                  <span className="bg-accent text-black mono-font text-[8px] sm:text-[10px] font-bold px-1.5 py-1 sm:px-2 uppercase tracking-wider inline-block w-fit">
-                    {member.role.replace(" / ", "_")}
+              <div className="w-full flex-1 flex flex-col">
+                <div className="p-6 sm:p-8 border-b-4 border-white/30/20 flex flex-col justify-center">
+                  <div className="mb-6 flex flex-col gap-2">
+                    <h3 className="heading-font text-4xl sm:text-5xl uppercase leading-none text-white">
+                      {member.name}
+                    </h3>
+                    {member.email && (
+                      <span className="mono-font text-[10px] sm:text-xs uppercase tracking-widest text-accent font-bold">
+                        [EMAIL: {member.email}]
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-base sm:text-lg font-bold uppercase leading-snug">
+                    "{member.bio}"
+                  </p>
+                </div>
+                <div className="p-6 sm:p-8 flex-1 flex flex-col justify-center">
+                  <span className="mono-font text-[10px] sm:text-xs font-bold block mb-4 uppercase tracking-widest text-white/60">
+                    {member.abstractTitle} // {member.role}
                   </span>
+                  <p className="text-xs sm:text-sm font-medium uppercase leading-relaxed text-white/90">
+                    {member.abstract}
+                  </p>
                 </div>
               </div>
             </div>
