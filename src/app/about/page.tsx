@@ -589,7 +589,7 @@ export default function AboutUs() {
                     "{member.bio}"
                   </p>
                 </div>
-                <div className="p-6 sm:p-8 flex flex-col justify-center">
+                <div className="p-6 sm:p-8 h-[160px] flex flex-col justify-center">
                   <span className="mono-font text-[10px] sm:text-xs font-bold block mb-4 uppercase tracking-widest text-white/60">
                     {member.abstractTitle} // {member.role}
                   </span>
@@ -646,7 +646,7 @@ export default function AboutUs() {
                     "{member.bio}"
                   </p>
                 </div>
-                <div className="p-6 sm:p-8 flex flex-col justify-center">
+                <div className="p-6 sm:p-8 h-[160px] flex flex-col justify-center">
                   <span className="mono-font text-[10px] sm:text-xs font-bold block mb-4 uppercase tracking-widest text-white/60">
                     {member.abstractTitle} // {member.role}
                   </span>
