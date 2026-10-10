@@ -547,10 +547,10 @@ export default function AboutUs() {
       </section>
 
       {/* Faculty Advisor Profile */}
-      <section className="py-16 md:py-24 px-4 sm:px-8 md:px-16 border-b-4 grid-line">
+      <section className="py-16 md:py-24 px-4 sm:px-8 md:px-16 border-b-4 grid-line overflow-hidden">
         <div className="mb-12 border-b-2 border-white/30/20 pb-8 text-center sm:text-left">
           <span className="mono-font text-xs text-white/90 font-bold block mb-4 tracking-widest">[LEADERSHIP]</span>
-          <h2 className="heading-font text-5xl sm:text-7xl uppercase leading-none mb-6">
+          <h2 className="heading-font text-4xl sm:text-6xl md:text-7xl uppercase leading-none mb-6 break-words">
             Faculty Advisor
           </h2>
           <p className="text-xl sm:text-2xl font-medium leading-relaxed text-white/90">
@@ -574,13 +574,13 @@ export default function AboutUs() {
                 </div>
               </div>
               <div className="w-full flex-1 flex flex-col">
-                <div className="p-6 sm:p-8 border-b-4 border-white/30/20 flex flex-col justify-center">
+                <div className="p-6 sm:p-8 border-b-4 border-white/30/20 flex-1 flex flex-col justify-center">
                   <div className="mb-6 flex flex-col gap-2">
-                    <h3 className="heading-font text-4xl sm:text-5xl uppercase leading-none text-white">
+                    <h3 className="heading-font text-3xl sm:text-4xl md:text-5xl uppercase leading-none text-white break-words">
                       {member.name}
                     </h3>
                     {member.email && (
-                      <span className="mono-font text-[10px] sm:text-xs uppercase tracking-widest text-accent font-bold">
+                      <span className="mono-font text-[10px] sm:text-xs uppercase tracking-widest text-accent font-bold break-all">
                         [EMAIL: {member.email}]
                       </span>
                     )}
@@ -589,7 +589,7 @@ export default function AboutUs() {
                     "{member.bio}"
                   </p>
                 </div>
-                <div className="p-6 sm:p-8 flex-1 flex flex-col justify-center">
+                <div className="p-6 sm:p-8 flex flex-col justify-center">
                   <span className="mono-font text-[10px] sm:text-xs font-bold block mb-4 uppercase tracking-widest text-white/60">
                     {member.abstractTitle} // {member.role}
                   </span>
@@ -604,10 +604,10 @@ export default function AboutUs() {
       </section>
 
       {/* Student Coordinators Profile */}
-      <section className="py-16 md:py-24 px-4 sm:px-8 md:px-16 border-b-4 grid-line">
+      <section className="py-16 md:py-24 px-4 sm:px-8 md:px-16 border-b-4 grid-line overflow-hidden">
         <div className="mb-12 border-b-2 border-white/30/20 pb-8 text-center sm:text-left">
           <span className="mono-font text-xs text-white/90 font-bold block mb-4 tracking-widest">[LEADERSHIP]</span>
-          <h2 className="heading-font text-5xl sm:text-7xl uppercase leading-none mb-6">
+          <h2 className="heading-font text-4xl sm:text-6xl md:text-7xl uppercase leading-none mb-6 break-words">
             Student Coordinators
           </h2>
           <p className="text-xl sm:text-2xl font-medium leading-relaxed text-white/90">
@@ -631,13 +631,13 @@ export default function AboutUs() {
                 </div>
               </div>
               <div className="w-full flex-1 flex flex-col">
-                <div className="p-6 sm:p-8 border-b-4 border-white/30/20 flex flex-col justify-center">
+                <div className="p-6 sm:p-8 border-b-4 border-white/30/20 flex-1 flex flex-col justify-center">
                   <div className="mb-6 flex flex-col gap-2">
-                    <h3 className="heading-font text-4xl sm:text-5xl uppercase leading-none text-white">
+                    <h3 className="heading-font text-3xl sm:text-4xl md:text-5xl uppercase leading-none text-white break-words">
                       {member.name}
                     </h3>
                     {member.email && (
-                      <span className="mono-font text-[10px] sm:text-xs uppercase tracking-widest text-accent font-bold">
+                      <span className="mono-font text-[10px] sm:text-xs uppercase tracking-widest text-accent font-bold break-all">
                         [EMAIL: {member.email}]
                       </span>
                     )}
@@ -646,7 +646,7 @@ export default function AboutUs() {
                     "{member.bio}"
                   </p>
                 </div>
-                <div className="p-6 sm:p-8 flex-1 flex flex-col justify-center">
+                <div className="p-6 sm:p-8 flex flex-col justify-center">
                   <span className="mono-font text-[10px] sm:text-xs font-bold block mb-4 uppercase tracking-widest text-white/60">
                     {member.abstractTitle} // {member.role}
                   </span>
