@@ -9,6 +9,7 @@ import { ArrowRight, Code, Cpu, Globe } from "@phosphor-icons/react";
 import Grainient from "@/components/Grainient";
 import Footer from "@/components/Footer";
 import HackathonRegistrationModal from "@/components/HackathonRegistrationModal";
+import ComingSoonModal from "@/components/ComingSoonModal";
 
 type EventPhase = {
   title: string;
@@ -33,6 +34,7 @@ type EventData = {
   tags: string[];
   stats: { mainNum: string; mainLabel: string; subNum: string; subLabel: string };
   ctaText: string;
+  registrationUrl?: string;
   downloadUrl?: string;
   downloadText?: string;
   phases?: EventPhase[];
@@ -331,8 +333,21 @@ function EventPopupHandler({
 export default function EventsPage() {
   const [selectedEvent, setSelectedEvent] = useState<EventData | null>(null);
   const [isHackathonModalOpen, setIsHackathonModalOpen] = useState(false);
+  const [isComingSoonOpen, setIsComingSoonOpen] = useState(false);
   const [modalScale, setModalScale] = useState(1);
   const modalContentRef = useRef<HTMLDivElement>(null);
+
+  const handleRegistrationClick = useCallback((event: EventData) => {
+    if (event.registrationUrl) {
+      window.open(event.registrationUrl, "_blank", "noopener,noreferrer");
+      return;
+    }
+    if (event.ctaText === "ACCESS_COMPILER" || event.id === "evt7") {
+      setIsHackathonModalOpen(true);
+      return;
+    }
+    setIsComingSoonOpen(true);
+  }, []);
 
   const handleEventFound = useCallback((id: string) => {
     const event = eventsData.find(e => e.id === id);
@@ -651,11 +666,7 @@ export default function EventsPage() {
                     <span>{selectedEvent.downloadText || "DOWNLOAD_BRIEF"}</span>
                   </a>
                   <button 
-                    onClick={() => {
-                      if (selectedEvent.ctaText === "ACCESS_COMPILER" || selectedEvent.id === "evt7") {
-                        setIsHackathonModalOpen(true);
-                      }
-                    }}
+                    onClick={() => handleRegistrationClick(selectedEvent)}
                     className="w-full bg-black text-accent py-4 sm:py-5 px-3 sm:px-4 heading-font text-xl sm:text-2xl uppercase hover:bg-white hover:text-black transition-colors flex items-center justify-center text-center cursor-pointer"
                   >
                     {selectedEvent.ctaText}
@@ -663,11 +674,7 @@ export default function EventsPage() {
                 </div>
               ) : (
                 <button 
-                  onClick={() => {
-                    if (selectedEvent.ctaText === "ACCESS_COMPILER" || selectedEvent.id === "evt7") {
-                      setIsHackathonModalOpen(true);
-                    }
-                  }}
+                  onClick={() => handleRegistrationClick(selectedEvent)}
                   className="w-full bg-black text-accent py-5 px-4 heading-font text-4xl uppercase hover:bg-white hover:text-black transition-colors border-t-4 border-black/30 shrink-0 cursor-pointer"
                 >
                   {selectedEvent.ctaText}
@@ -683,6 +690,13 @@ export default function EventsPage() {
         isOpen={isHackathonModalOpen}
         onClose={() => setIsHackathonModalOpen(false)}
         onBackToEvent={() => setIsHackathonModalOpen(false)}
+      />
+
+      {/* COMING SOON REGISTRATION MODAL */}
+      <ComingSoonModal
+        isOpen={isComingSoonOpen}
+        onClose={() => setIsComingSoonOpen(false)}
+        event={selectedEvent}
       />
     </div>
   );
