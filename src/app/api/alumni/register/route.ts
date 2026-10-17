@@ -60,124 +60,131 @@ export async function POST(request: Request) {
       });
 
       const mailOptions = {
-        from: `"Metapoise V2.0" <${user}>`,
+        from: `"Moharnab from Metapoise" <${user}>`,
         to: email,
-        subject: 'Connection Established - Metapoise Alumni Network',
-        text: `Welcome ${name},\n\nYour registration as an Alumni Node has been successfully authenticated. We await your arrival at the symposium.\n\nGraduation Year: ${year}\nDate: Oct 15, 2026\nHost: Metapoise & DUIET\n\nPlease check your HTML email for your secure token and access details.\n\nMetapoise V2.0 // Dept. of CSE, DUIET`,
-        html: `
-<!DOCTYPE html>
-<html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
-<body style="margin:0;padding:40px 20px;background-color:#1a4084;background:linear-gradient(to bottom right, #1a4084, #3b6d8e);font-family:'Courier New',Courier,monospace;">
-  <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;margin:0 auto;border:4px solid #000;background:#fff;box-shadow:8px 8px 0 #000;">
-
-    <!-- HEADER -->
+        replyTo: user,
+        subject: `METAPOISE V2.0 - Alumni Registration Confirmed for ${name}`,
+        text: `Hello ${name},\n\nYour registration as an Alumni Delegate for METAPOISE V2.0 has been authenticated.\n\nREGISTRATION DETAILS:\nAttendee: ${name}\nGraduation Class: ${year}\nPhone: ${phone}\nHost: Department of Computer Science & Engineering, DUIET & Metapoise\nDates: October 30 — November 01, 2026\nVenue: Dept. of CSE, DUIET, Dibrugarh University\n\nWe look forward to welcoming you home to DUIET.\n\nWarm regards,\nAlumni Relations Committee\nMETAPOISE V2.0\nDepartment of Computer Science & Engineering, DUIET\nDibrugarh University, Assam 786004, India`,
+        html: `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alumni Registration Confirmed</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #f1f5f9; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #1e293b; -webkit-font-smoothing: antialiased; line-height: 1.6;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color: #f1f5f9; padding: 32px 16px;">
     <tr>
-      <td style="padding:20px 24px;border-bottom:3px solid #000;">
-        <table width="100%" cellpadding="0" cellspacing="0">
+      <td align="center">
+        <!-- Main Container -->
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width: 600px; background-color: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
+          
+          <!-- Header Bar -->
           <tr>
-            <td>
-              <span style="font-size:22px;font-weight:900;text-transform:uppercase;letter-spacing:2px;">METAPOISE V2.0</span>
-            </td>
-            <td align="right">
-              <span style="border:2px solid #000;padding:4px 8px;font-weight:900;font-size:14px;">[X]</span>
+            <td style="background-color: #0f172a; padding: 24px 28px; border-bottom: 3px solid #2563eb;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td>
+                    <h1 style="margin: 0; font-size: 20px; font-weight: 800; color: #ffffff; letter-spacing: 1px; text-transform: uppercase;">
+                      METAPOISE V2.0
+                    </h1>
+                    <p style="margin: 4px 0 0 0; font-size: 12px; color: #94a3b8; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px;">
+                      Alumni Homecoming • Department of CSE, DUIET
+                    </p>
+                  </td>
+                  <td align="right">
+                    <span style="display: inline-block; background-color: #1e293b; color: #38bdf8; padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 4px; border: 1px solid #334155;">
+                      CLASS OF ${year}
+                    </span>
+                  </td>
+                </tr>
+              </table>
             </td>
           </tr>
-        </table>
-      </td>
-    </tr>
 
-    <!-- SUBHEADER -->
-    <tr>
-      <td style="padding:14px 24px;border-bottom:3px solid #000;background:#000;">
-        <span style="color:#fff;font-size:11px;letter-spacing:3px;text-transform:uppercase;">ALUMNI NODE REGISTRATION — CONFIRMED</span>
-      </td>
-    </tr>
-
-    <!-- BODY: LEFT + RIGHT COLUMNS -->
-    <tr>
-      <td style="padding:0;">
-        <table width="100%" cellpadding="0" cellspacing="0">
-          <tr valign="top">
-
-            <!-- LEFT COLUMN -->
-            <td width="62%" style="padding:24px;border-right:3px solid #000;">
-              <p style="margin:0 0 4px 0;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#555;">ALIAS / RECIPIENT</p>
-              <p style="margin:0 0 16px 0;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">${name}</p>
-              <hr style="border:none;border-top:2px solid #000;margin:0 0 16px 0;" />
-              <p style="margin:0 0 4px 0;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#555;">SECURE LINE (PHONE)</p>
-              <p style="margin:0 0 16px 0;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">${phone}</p>
-              <hr style="border:none;border-top:2px solid #000;margin:0 0 16px 0;" />
-              <p style="margin:0 0 4px 0;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#555;">HOST / ORGANIZER</p>
-              <p style="margin:0 0 4px 0;font-size:12px;font-weight:700;text-transform:uppercase;">METAPOISE & DUIET</p>
-              <p style="margin:0 0 20px 0;font-size:12px;font-weight:700;text-transform:uppercase;">DATE: OCT 15, 2026</p>
-              <hr style="border:none;border-top:2px solid #000;margin:0 0 16px 0;" />
-              <p style="margin:0 0 20px 0;font-size:13px;font-weight:700;line-height:1.6;text-transform:uppercase;">
-                YOUR REGISTRATION AS AN ALUMNI NODE HAS BEEN SUCCESSFULLY AUTHENTICATED. WE AWAIT YOUR ARRIVAL AT THE SYMPOSIUM.
+          <!-- Body Content -->
+          <tr>
+            <td style="padding: 28px;">
+              <h2 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 700; color: #0f172a;">
+                Alumni Registration Confirmed
+              </h2>
+              <p style="margin: 0 0 20px 0; font-size: 14px; color: #475569; line-height: 1.6;">
+                Welcome <strong>${name}</strong>, your alumni delegate registration for METAPOISE V2.0 has been successfully recorded in the department alumni directory.
               </p>
 
-              <!-- TAGS -->
-              <table cellpadding="0" cellspacing="0">
+              <!-- Details Box -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; margin: 0 0 24px 0;">
                 <tr>
-                  <td style="border:2px solid #000;padding:4px 10px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-right:8px;">ALUMNI</td>
-                  <td style="width:8px;"></td>
-                  <td style="border:2px solid #000;padding:4px 10px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">CLASS_${year}</td>
-                  <td style="width:8px;"></td>
-                  <td style="border:2px solid #000;padding:4px 10px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">VERIFIED</td>
-                </tr>
-              </table>
-            </td>
+                  <td style="padding: 18px 20px;">
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-size: 13px;">
+                      <tr>
+                        <td width="35%" style="padding: 6px 0; color: #64748b; font-weight: 600;">Alumnus Name:</td>
+                        <td width="65%" style="padding: 6px 0; color: #0f172a; font-weight: 700;">${name}</td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 6px 0; color: #64748b; font-weight: 600;">Class of:</td>
+                        <td style="padding: 6px 0; color: #0f172a; font-weight: 600;">${year}</td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 6px 0; color: #64748b; font-weight: 600;">Contact Phone:</td>
+                        <td style="padding: 6px 0; color: #0f172a;">${phone}</td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 6px 0; color: #64748b; font-weight: 600;">Registered Email:</td>
+                        <td style="padding: 6px 0; color: #0f172a;">${email}</td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 6px 0; color: #64748b; font-weight: 600;">Symposium Dates:</td>
+                        <td style="padding: 6px 0; color: #0f172a; font-weight: 600;">October 30 — November 01, 2026</td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 6px 0; color: #64748b; font-weight: 600;">Venue:</td>
+                        <td style="padding: 6px 0; color: #0f172a;">Dept. of CSE, DUIET, Dibrugarh University</td>
+                      </tr>
+                    </table>
 
-            <!-- RIGHT COLUMN -->
-            <td width="38%" style="padding:0;vertical-align:top;">
-              <!-- STAT 1 -->
-              <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:3px solid #000;">
-                <tr>
-                  <td style="padding:20px;text-align:center;">
-                    <p style="margin:0;font-size:48px;font-weight:900;line-height:1;">${year}</p>
-                    <p style="margin:6px 0 0 0;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;">GRADUATION YEAR</p>
+                    <!-- Pure HTML/CSS Ticket Pass (Zero external tracker calls) -->
+                    <div style="margin-top: 18px; padding-top: 14px; border-top: 1px dashed #cbd5e1; text-align: center;">
+                      <div style="display: inline-block; padding: 6px 14px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 4px;">
+                        <span style="font-family: monospace; font-size: 13px; font-weight: 700; letter-spacing: 3px; color: #0f172a;">
+                          ||| | |||| | || |||| | |||
+                        </span>
+                        <div style="font-family: monospace; font-size: 10px; color: #64748b; letter-spacing: 2px; margin-top: 2px;">
+                          ALUMNI-${year}-${Buffer.from(email).toString('hex').slice(0, 6).toUpperCase()}
+                        </div>
+                      </div>
+                    </div>
                   </td>
                 </tr>
               </table>
-              <!-- STAT 2 -->
-              <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:3px solid #000;background:#000;">
-                <tr>
-                  <td style="padding:20px;text-align:center;">
-                    <p style="margin:0;font-size:42px;font-weight:900;line-height:1;color:#fff;">V2.0</p>
-                    <p style="margin:6px 0 0 0;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#fff;">ACCESS GRANTED</p>
-                  </td>
-                </tr>
-              </table>
-              <!-- BARCODE PLACEHOLDER -->
-              <table width="100%" cellpadding="0" cellspacing="0">
-                <tr>
-                  <td style="padding:16px;text-align:center;">
-                    <img src="https://barcode.tec-it.com/barcode.ashx?data=ALUMNI_${year}&code=Code128&dpi=96&unit=Min&imagetype=Png&rotation=0&color=%23000000&bgcolor=%23ffffff" alt="Invite Barcode" width="140" style="display:block;margin:0 auto;" />
-                    <p style="margin:6px 0 0 0;font-size:8px;font-weight:700;letter-spacing:1px;color:#555;">SCAN AT ENTRY</p>
-                  </td>
-                </tr>
-              </table>
+
+              <p style="margin: 0; font-size: 13px; color: #64748b; line-height: 1.5;">
+                We look forward to your valuable presence and interaction with students and faculty.
+              </p>
             </td>
           </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="background-color: #f8fafc; padding: 20px 28px; border-top: 1px solid #e2e8f0; font-size: 12px; color: #94a3b8; text-align: center; line-height: 1.5;">
+              <p style="margin: 0 0 4px 0; font-weight: 600; color: #64748b;">
+                METAPOISE V2.0 • DUIET, Dibrugarh University
+              </p>
+              <p style="margin: 0 0 4px 0;">
+                Department of Computer Science & Engineering, Dibrugarh, Assam 786004
+              </p>
+              <p style="margin: 0; font-size: 11px;">
+                This email was sent to ${email} regarding your alumni registration.
+              </p>
+            </td>
+          </tr>
+
         </table>
       </td>
     </tr>
-
-    <!-- FOOTER -->
-    <tr>
-      <td style="background:#000;padding:20px 24px;border-top:3px solid #000;">
-        <p style="margin:0;color:#fff;font-size:18px;font-weight:900;letter-spacing:4px;text-transform:uppercase;text-align:center;">CONNECTION_ESTABLISHED</p>
-      </td>
-    </tr>
-
   </table>
-
-  <p style="text-align:center;font-size:10px;color:#fff;margin-top:20px;letter-spacing:1px;text-transform:uppercase;opacity:0.7;">
-    METAPOISE V2.0 // DEPT. OF CSE, DUIET // SYSTEM_GENERATED
-  </p>
 </body>
-</html>
-        `
+</html>`,
       };
 
       await transporter.sendMail(mailOptions);

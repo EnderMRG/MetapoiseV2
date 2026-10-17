@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, Suspense } from "react";
+import { useState, useEffect, useCallback, useRef, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -8,6 +8,15 @@ import { Metadata } from "next";
 import { ArrowRight, Code, Cpu, Globe } from "@phosphor-icons/react";
 import Grainient from "@/components/Grainient";
 import Footer from "@/components/Footer";
+import HackathonRegistrationModal from "@/components/HackathonRegistrationModal";
+
+type EventPhase = {
+  title: string;
+  badge?: string;
+  deadline?: string;
+  desc?: string;
+  points?: { label?: string; text: string }[];
+};
 
 type EventData = {
   id: string;
@@ -24,6 +33,9 @@ type EventData = {
   tags: string[];
   stats: { mainNum: string; mainLabel: string; subNum: string; subLabel: string };
   ctaText: string;
+  downloadUrl?: string;
+  downloadText?: string;
+  phases?: EventPhase[];
 };
 
 const eventsData: EventData[] = [
@@ -212,11 +224,26 @@ const eventsData: EventData[] = [
       </div>
     ),
     coordinator: "MOHARNAB GOGOI, MAYUREE KHANIKAR (9101974916, 9365482841)",
-    timing: "01 NOV: 09:00 AM",
-    fullDescription: "The flagship prototype competition. Teams must strictly select and build a prototype addressing one of the official problem statements under severe time constraints.",
-    tags: ["TEAM_SIZE: 04", "LIVE_DEMO", "NO_SLEEP"],
-    stats: { mainNum: "24", mainLabel: "HOURS", subNum: "MAX", subLabel: "CAFFEINE" },
-    ctaText: "ACCESS_COMPILER"
+    timing: "01 NOV: 09:00 AM – 05:00 PM",
+    fullDescription: "Flagship prototype competition across official Software & Hardware tracks.",
+    tags: ["TEAM_SIZE: 04", "DEADLINE: 25 OCT", "PHASE 1: FREE", "PHASE 2: ₹200"],
+    stats: { mainNum: "15", mainLabel: "FINALISTS", subNum: "MAX", subLabel: "CAFFEINE" },
+    ctaText: "ACCESS_COMPILER",
+    downloadUrl: "/Docs/crecendo_hackathon.pdf",
+    downloadText: "DOWNLOAD_GUIDELINES",
+    phases: [
+      {
+        title: "PHASE 1: ONLINE BUILD & SUBMISSION",
+        badge: "FREE ENTRY",
+        deadline: "25 OCT",
+        desc: "Remote async prototype build addressing official Software or Hardware tracks. Submit digital dossier (architecture, GitHub repo, live demo). Top 15 teams advance."
+      },
+      {
+        title: "PHASE 2: ON-SITE FINALS & DEMO",
+        badge: "INR 200 / TEAM",
+        desc: "Strictly for the top 15 shortlisted teams. Live demonstration & judging at Dept. of CSE, DUIET (09:00 AM – 05:00 PM with 2-hour setup window)."
+      }
+    ]
   },
   {
     id: "evt8",
@@ -279,22 +306,33 @@ const eventsData: EventData[] = [
   }
 ];
 
-function EventPopupHandler({ onEventFound }: { onEventFound: (id: string) => void }) {
+function EventPopupHandler({ 
+  onEventFound, 
+  onOpenCompiler 
+}: { 
+  onEventFound: (id: string) => void;
+  onOpenCompiler?: () => void;
+}) {
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    const eventId = searchParams.get('eventId');
+    const eventId = searchParams.get('eventId') || searchParams.get('event');
     if (eventId) {
       onEventFound(eventId);
     }
-  }, [searchParams, onEventFound]);
+    if (searchParams.get('compiler') === '1' || searchParams.get('action') === 'access_compiler') {
+      onOpenCompiler?.();
+    }
+  }, [searchParams, onEventFound, onOpenCompiler]);
 
   return null;
 }
 
 export default function EventsPage() {
   const [selectedEvent, setSelectedEvent] = useState<EventData | null>(null);
+  const [isHackathonModalOpen, setIsHackathonModalOpen] = useState(false);
   const [modalScale, setModalScale] = useState(1);
+  const modalContentRef = useRef<HTMLDivElement>(null);
 
   const handleEventFound = useCallback((id: string) => {
     const event = eventsData.find(e => e.id === id);
@@ -313,22 +351,30 @@ export default function EventsPage() {
 
   const handleResize = useCallback(() => {
     // 850 is base ticket width, 650 is base ticket height. 32px is for padding.
+    const modalHeight = modalContentRef.current ? modalContentRef.current.offsetHeight : 650;
     const scaleX = (window.innerWidth - 32) / 850;
-    const scaleY = (window.innerHeight - 32) / 650;
+    const scaleY = (window.innerHeight - 32) / Math.max(650, modalHeight);
     setModalScale(Math.min(1, scaleX, scaleY));
   }, []);
 
   useEffect(() => {
     if (!selectedEvent) return;
     handleResize();
+    const timer = setTimeout(handleResize, 50);
     window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', handleResize);
+    };
   }, [selectedEvent, handleResize]);
 
   return (
     <div className="min-h-screen relative w-full overflow-x-clip text-white">
       <Suspense fallback={null}>
-        <EventPopupHandler onEventFound={handleEventFound} />
+        <EventPopupHandler 
+          onEventFound={handleEventFound} 
+          onOpenCompiler={() => setIsHackathonModalOpen(true)}
+        />
       </Suspense>
       <div className="scanline z-[99]"></div>
 
@@ -472,7 +518,7 @@ export default function EventsPage() {
               transformOrigin: 'center'
             }}
           >
-            <div className="relative w-[800px] shrink-0 bg-accent text-black border-4 border-black/30 shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] flex flex-col z-10 animate-in zoom-in-95 duration-200 pointer-events-auto">
+            <div ref={modalContentRef} className="relative w-[800px] shrink-0 bg-accent text-black border-4 border-black/30 shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] flex flex-col z-10 animate-in zoom-in-95 duration-200 pointer-events-auto">
 
               {/* Header */}
               <div className="border-b-4 border-black/30 p-5 flex justify-between items-start bg-accent">
@@ -497,20 +543,60 @@ export default function EventsPage() {
                     <p className="mono-font text-sm font-bold uppercase mb-1">
                       INSTRUCTOR/LEAD: {selectedEvent.coordinator}
                     </p>
-                    <p className="mono-font text-sm font-bold uppercase mb-6">
+                    <p className="mono-font text-sm font-bold uppercase mb-4">
                       DURATION/TIMING: {selectedEvent.timing}
                     </p>
 
-                    <div className="w-full h-1 bg-black mb-6"></div>
+                    <div className="w-full h-1 bg-black mb-4"></div>
 
-                    <p className="text-xl uppercase leading-snug font-medium mb-8">
-                      {selectedEvent.fullDescription}
-                    </p>
+                    {selectedEvent.phases && selectedEvent.phases.length > 0 ? (
+                      <div className="space-y-3">
+                        {selectedEvent.phases.map((phase, pIndex) => (
+                          <div
+                            key={pIndex}
+                            className="border-2 border-black/40 bg-black/[0.04] p-3 text-black space-y-2"
+                          >
+                            <div className="flex items-center justify-between border-b border-black/20 pb-1 gap-2">
+                              <span className="mono-font text-xs font-black uppercase tracking-wider">
+                                {phase.title}
+                              </span>
+                              {phase.badge && (
+                                <span className="mono-font text-[10px] font-bold bg-black text-accent px-1.5 py-0.5 uppercase whitespace-nowrap shrink-0">
+                                  {phase.badge}
+                                </span>
+                              )}
+                            </div>
+
+                            {phase.deadline && (
+                              <div className="bg-black text-accent px-2.5 py-1 flex items-center justify-between mono-font text-[11px] font-black uppercase tracking-wider border border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,0.3)]">
+                                <span className="flex items-center gap-1.5">
+                                  <span className="inline-block w-2 h-2 bg-red-500 animate-pulse rounded-full"></span>
+                                  REGISTRATION DEADLINE:
+                                </span>
+                                <span className="bg-white text-black px-1.5 py-0.5 font-black text-[11px]">
+                                  {phase.deadline}
+                                </span>
+                              </div>
+                            )}
+
+                            {phase.desc && (
+                              <p className="mono-font text-[11px] uppercase leading-relaxed text-black/90">
+                                {phase.desc}
+                              </p>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <p className="text-xl uppercase leading-snug font-medium mb-8">
+                        {selectedEvent.fullDescription}
+                      </p>
+                    )}
                   </div>
 
-                  <div className="flex flex-wrap gap-3 mt-auto pt-4">
+                  <div className="flex flex-wrap gap-2 pt-4 border-t-2 border-black/10 mt-auto">
                     {selectedEvent.tags.map(tag => (
-                      <span key={tag} className="border-4 border-black/30 px-3 py-2 mono-font text-xs font-bold uppercase bg-transparent">
+                      <span key={tag} className="border-2 border-black/30 px-2.5 py-1.5 mono-font text-[11px] font-bold uppercase bg-transparent">
                         {tag}
                       </span>
                     ))}
@@ -543,16 +629,61 @@ export default function EventsPage() {
                 </div>
               </div>
 
-              {/* Footer CTA Button */}
-              <button 
-                className="w-full bg-black text-accent py-5 px-4 heading-font text-4xl uppercase hover:bg-white hover:text-black transition-colors border-t-4 border-black/30 shrink-0"
-              >
-                {selectedEvent.ctaText}
-              </button>
+              {/* Footer CTA Button(s) */}
+              {selectedEvent.downloadUrl ? (
+                <div className="grid grid-cols-2 border-t-4 border-black/30 shrink-0">
+                  <a
+                    href={selectedEvent.downloadUrl}
+                    download="crecendo_hackathon.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-black text-accent py-4 sm:py-5 px-3 sm:px-4 heading-font text-xl sm:text-2xl uppercase hover:bg-white hover:text-black transition-colors border-r-4 border-white/20 flex items-center justify-center gap-2 group text-center"
+                  >
+                    <svg
+                      className="w-5 h-5 sm:w-6 sm:h-6 shrink-0 transition-transform group-hover:translate-y-0.5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2.5}
+                    >
+                      <path strokeLinecap="square" strokeLinejoin="miter" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V3" />
+                    </svg>
+                    <span>{selectedEvent.downloadText || "DOWNLOAD_BRIEF"}</span>
+                  </a>
+                  <button 
+                    onClick={() => {
+                      if (selectedEvent.ctaText === "ACCESS_COMPILER" || selectedEvent.id === "evt7") {
+                        setIsHackathonModalOpen(true);
+                      }
+                    }}
+                    className="w-full bg-black text-accent py-4 sm:py-5 px-3 sm:px-4 heading-font text-xl sm:text-2xl uppercase hover:bg-white hover:text-black transition-colors flex items-center justify-center text-center cursor-pointer"
+                  >
+                    {selectedEvent.ctaText}
+                  </button>
+                </div>
+              ) : (
+                <button 
+                  onClick={() => {
+                    if (selectedEvent.ctaText === "ACCESS_COMPILER" || selectedEvent.id === "evt7") {
+                      setIsHackathonModalOpen(true);
+                    }
+                  }}
+                  className="w-full bg-black text-accent py-5 px-4 heading-font text-4xl uppercase hover:bg-white hover:text-black transition-colors border-t-4 border-black/30 shrink-0 cursor-pointer"
+                >
+                  {selectedEvent.ctaText}
+                </button>
+              )}
             </div>
           </div>
         </div>
       )}
+
+      {/* HACKATHON ACCESS COMPILER REGISTRATION MODAL */}
+      <HackathonRegistrationModal
+        isOpen={isHackathonModalOpen}
+        onClose={() => setIsHackathonModalOpen(false)}
+        onBackToEvent={() => setIsHackathonModalOpen(false)}
+      />
     </div>
   );
 }

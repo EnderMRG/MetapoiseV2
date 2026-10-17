@@ -69,6 +69,24 @@ html {
   scrollbar-width: none;
 }
 
+.ticket-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.ticket-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.08);
+  border-left: 2px solid rgba(0, 0, 0, 0.2);
+}
+.ticket-scrollbar::-webkit-scrollbar-thumb {
+  background: #000000;
+}
+.ticket-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #333333;
+}
+.ticket-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #000000 rgba(0, 0, 0, 0.08);
+}
+
 body {
   font-family: var(--font-space-grotesk), sans-serif;
   color: #ffffff;
