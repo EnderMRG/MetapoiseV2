@@ -316,14 +316,28 @@ function EventPopupHandler({
   onOpenCompiler?: () => void;
 }) {
   const searchParams = useSearchParams();
+  const handledEventRef = useRef<string | null>(null);
+  const handledCompilerRef = useRef(false);
 
   useEffect(() => {
     const eventId = searchParams.get('eventId') || searchParams.get('event');
     if (eventId) {
-      onEventFound(eventId);
+      if (eventId !== handledEventRef.current) {
+        handledEventRef.current = eventId;
+        onEventFound(eventId);
+      }
+    } else {
+      handledEventRef.current = null;
     }
-    if (searchParams.get('compiler') === '1' || searchParams.get('action') === 'access_compiler') {
-      onOpenCompiler?.();
+
+    const hasCompilerParam = searchParams.get('compiler') === '1' || searchParams.get('action') === 'access_compiler';
+    if (hasCompilerParam) {
+      if (!handledCompilerRef.current) {
+        handledCompilerRef.current = true;
+        onOpenCompiler?.();
+      }
+    } else {
+      handledCompilerRef.current = false;
     }
   }, [searchParams, onEventFound, onOpenCompiler]);
 
@@ -336,6 +350,26 @@ export default function EventsPage() {
   const [isComingSoonOpen, setIsComingSoonOpen] = useState(false);
   const [modalScale, setModalScale] = useState(1);
   const modalContentRef = useRef<HTMLDivElement>(null);
+
+  const closeModal = useCallback(() => {
+    setSelectedEvent(null);
+    if (typeof window !== "undefined") {
+      const url = new URL(window.location.href);
+      if (
+        url.searchParams.has("eventId") ||
+        url.searchParams.has("event") ||
+        url.searchParams.has("compiler") ||
+        url.searchParams.has("action")
+      ) {
+        url.searchParams.delete("eventId");
+        url.searchParams.delete("event");
+        url.searchParams.delete("compiler");
+        url.searchParams.delete("action");
+        const newUrl = url.pathname + (url.search ? url.search : "");
+        window.history.replaceState({}, "", newUrl);
+      }
+    }
+  }, []);
 
   const handleRegistrationClick = useCallback((event: EventData) => {
     if (event.registrationUrl) {
@@ -354,6 +388,10 @@ export default function EventsPage() {
     if (event) setSelectedEvent(event);
   }, []);
 
+  const handleOpenCompiler = useCallback(() => {
+    setIsHackathonModalOpen(true);
+  }, []);
+
   // Lock body scroll when modal is open
   useEffect(() => {
     if (selectedEvent) {
@@ -363,6 +401,18 @@ export default function EventsPage() {
     }
     return () => { document.body.style.overflow = ''; };
   }, [selectedEvent]);
+
+  // Escape key closes modal
+  useEffect(() => {
+    if (!selectedEvent) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        closeModal();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedEvent, closeModal]);
 
   const handleResize = useCallback(() => {
     // 850 is base ticket width, 650 is base ticket height. 32px is for padding.
@@ -388,7 +438,7 @@ export default function EventsPage() {
       <Suspense fallback={null}>
         <EventPopupHandler 
           onEventFound={handleEventFound} 
-          onOpenCompiler={() => setIsHackathonModalOpen(true)}
+          onOpenCompiler={handleOpenCompiler}
         />
       </Suspense>
       <div className="scanline z-[99]"></div>
@@ -524,7 +574,7 @@ export default function EventsPage() {
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8 animate-in fade-in duration-200">
           <div
             className="absolute inset-0 bg-black/40 backdrop-blur-sm cursor-pointer"
-            onClick={() => setSelectedEvent(null)}
+            onClick={closeModal}
           ></div>
           <div
             className="flex items-center justify-center w-full h-full pointer-events-none"
@@ -541,8 +591,8 @@ export default function EventsPage() {
                   {selectedEvent.unit}: {selectedEvent.title}
                 </h2>
                 <button
-                  onClick={() => setSelectedEvent(null)}
-                  className="bg-black text-accent w-10 h-10 flex-shrink-0 flex items-center justify-center text-lg font-bold hover:bg-white hover:text-black transition-colors border-4 border-black/30"
+                  onClick={closeModal}
+                  className="bg-black text-accent w-10 h-10 flex-shrink-0 flex items-center justify-center text-lg font-bold hover:bg-white hover:text-black transition-colors border-4 border-black/30 cursor-pointer"
                   aria-label="Close modal"
                 >
                   [X]
@@ -688,7 +738,18 @@ export default function EventsPage() {
       {/* HACKATHON ACCESS COMPILER REGISTRATION MODAL */}
       <HackathonRegistrationModal
         isOpen={isHackathonModalOpen}
-        onClose={() => setIsHackathonModalOpen(false)}
+        onClose={() => {
+          setIsHackathonModalOpen(false);
+          if (typeof window !== "undefined") {
+            const url = new URL(window.location.href);
+            if (url.searchParams.has("compiler") || url.searchParams.has("action")) {
+              url.searchParams.delete("compiler");
+              url.searchParams.delete("action");
+              const newUrl = url.pathname + (url.search ? url.search : "");
+              window.history.replaceState({}, "", newUrl);
+            }
+          }
+        }}
         onBackToEvent={() => setIsHackathonModalOpen(false)}
       />
 
