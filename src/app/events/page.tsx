@@ -38,6 +38,7 @@ type EventData = {
   downloadUrl?: string;
   downloadText?: string;
   phases?: EventPhase[];
+  customButtons?: { label: string; url: string }[];
 };
 
 const eventsData: EventData[] = [
@@ -186,10 +187,20 @@ const eventsData: EventData[] = [
     ),
     coordinator: "DEBASISH DUTTA (8099743133)",
     timing: "31 OCT: 10:00 AM",
-    fullDescription: "Engage in competitive simulation environments. Tactical execution, team coordination, and raw reflexes are required to dominate the digital battlefield.",
-    tags: ["FPS_MAX", "LATENCY_LOW", "TACTICAL_OPS"],
-    stats: { mainNum: "32", mainLabel: "TEAMS", subNum: "01", subLabel: "CHAMPION" },
-    ctaText: "JOIN_LOBBY"
+    fullDescription: "Engage in competitive simulation environments across BGMI and MLBB. Tactical execution, team coordination, and raw reflexes are required to dominate the digital battlefield.",
+    tags: ["BGMI", "MLBB", "FPS_MAX", "TACTICAL_OPS"],
+    stats: { mainNum: "02", mainLabel: "TOURNAMENTS", subNum: "02", subLabel: "CHAMPIONS" },
+    ctaText: "JOIN_LOBBY",
+    customButtons: [
+      {
+        label: "BGMI REGISTRATION",
+        url: "https://forms.gle/kvSnPkoucq6KAPQZ6"
+      },
+      {
+        label: "MLBB REGISTRATION",
+        url: "https://forms.gle/YgznJwmJs3UPyLpa9"
+      }
+    ]
   },
   {
     id: "evt_th",
@@ -695,7 +706,23 @@ export default function EventsPage() {
               </div>
 
               {/* Footer CTA Button(s) */}
-              {selectedEvent.downloadUrl ? (
+              {selectedEvent.customButtons && selectedEvent.customButtons.length > 0 ? (
+                <div className="grid grid-cols-2 border-t-4 border-black/30 shrink-0">
+                  {selectedEvent.customButtons.map((btn, idx) => (
+                    <a
+                      key={idx}
+                      href={btn.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`bg-black text-accent py-4 sm:py-5 px-2 sm:px-4 heading-font text-lg sm:text-2xl md:text-3xl uppercase hover:bg-white hover:text-black transition-colors flex items-center justify-center text-center cursor-pointer overflow-hidden whitespace-nowrap ${
+                        idx === 0 ? "border-r-4 border-white/20" : ""
+                      }`}
+                    >
+                      {btn.label}
+                    </a>
+                  ))}
+                </div>
+              ) : selectedEvent.downloadUrl ? (
                 <div className="grid grid-cols-2 border-t-4 border-black/30 shrink-0">
                   <a
                     href={selectedEvent.downloadUrl}
