@@ -306,7 +306,7 @@ export default function HackathonRegistrationModal({
                 className="flex-1 min-w-[160px] bg-white text-black border-2 border-black py-3 px-4 mono-font text-xs font-bold uppercase hover:bg-black hover:text-white transition-colors flex items-center justify-center gap-2"
               >
                 <FileText className="w-4 h-4" />
-                <span>DOWNLOAD_GUIDELINES</span>
+                <span>DOWNLOAD_PROBLEM_STATEMENT</span>
               </a>
               <button
                 type="button"

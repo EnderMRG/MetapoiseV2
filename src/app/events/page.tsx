@@ -232,7 +232,7 @@ const eventsData: EventData[] = [
     stats: { mainNum: "15", mainLabel: "FINALISTS", subNum: "MAX", subLabel: "CAFFEINE" },
     ctaText: "ACCESS_COMPILER",
     downloadUrl: "/Docs/crecendo_hackathon.pdf",
-    downloadText: "DOWNLOAD_GUIDELINES",
+    downloadText: "DOWNLOAD_PROBLEM_STATEMENT",
     phases: [
       {
         title: "PHASE 1: ONLINE BUILD & SUBMISSION",
@@ -702,10 +702,10 @@ export default function EventsPage() {
                     download="crecendo_hackathon.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-black text-accent py-4 sm:py-5 px-3 sm:px-4 heading-font text-xl sm:text-2xl uppercase hover:bg-white hover:text-black transition-colors border-r-4 border-white/20 flex items-center justify-center gap-2 group text-center"
+                    className="bg-black text-accent py-4 sm:py-5 px-2 sm:px-3 heading-font text-base sm:text-lg uppercase hover:bg-white hover:text-black transition-colors border-r-4 border-white/20 flex items-center justify-center gap-1.5 sm:gap-2 group text-center overflow-hidden"
                   >
                     <svg
-                      className="w-5 h-5 sm:w-6 sm:h-6 shrink-0 transition-transform group-hover:translate-y-0.5"
+                      className="w-5 h-5 shrink-0 transition-transform group-hover:translate-y-0.5"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -713,11 +713,11 @@ export default function EventsPage() {
                     >
                       <path strokeLinecap="square" strokeLinejoin="miter" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V3" />
                     </svg>
-                    <span>{selectedEvent.downloadText || "DOWNLOAD_BRIEF"}</span>
+                    <span className="whitespace-nowrap">{selectedEvent.downloadText || "DOWNLOAD_BRIEF"}</span>
                   </a>
                   <button 
                     onClick={() => handleRegistrationClick(selectedEvent)}
-                    className="w-full bg-black text-accent py-4 sm:py-5 px-3 sm:px-4 heading-font text-xl sm:text-2xl uppercase hover:bg-white hover:text-black transition-colors flex items-center justify-center text-center cursor-pointer"
+                    className="w-full bg-black text-accent py-4 sm:py-5 px-2 sm:px-3 heading-font text-base sm:text-lg uppercase hover:bg-white hover:text-black transition-colors flex items-center justify-center text-center cursor-pointer overflow-hidden whitespace-nowrap"
                   >
                     {selectedEvent.ctaText}
                   </button>
