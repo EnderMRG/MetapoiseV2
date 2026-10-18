@@ -59,10 +59,10 @@ const studentCoordinators = [
   },
   {
     name: "Moharnab Gogoi",
-    role: "Technical Head // Student Coordinator",
+    role: "Technical Head",
     email: "moharnabgogoi@gmail.com",
     bio: "As the Technical Head of METAPOISE, I bridge the gap between complex infrastructure, bold design, and flawless execution. Case in point: I'm the developer behind the digital mainframe you're exploring right now, engineering its entire architecture from the ground up.",
-    abstractTitle: "ENGINEERING",
+    abstractTitle: "Student Co-convenor",
     abstract: "Full-stack development, System Architecture, UI/UX Design, and Performance Optimization.",
     image: "/Core/Moharnab.webp",
     initials: "MG",
@@ -636,11 +636,24 @@ export default function AboutUs() {
                     <h3 className="heading-font text-3xl sm:text-4xl md:text-5xl uppercase leading-none text-white break-words">
                       {member.name}
                     </h3>
-                    {member.email && (
-                      <span className="mono-font text-[10px] sm:text-xs uppercase tracking-widest text-accent font-bold break-all">
-                        [EMAIL: {member.email}]
-                      </span>
-                    )}
+                    <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                      {member.email && (
+                        <span className="mono-font text-[10px] sm:text-xs uppercase tracking-widest text-accent font-bold break-all">
+                          [EMAIL: {member.email}]
+                        </span>
+                      )}
+                      {"portfolio" in member && (member as any).portfolio && (
+                        <a 
+                          href={(member as any).portfolio}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 bg-accent text-black hover:bg-white hover:text-black mono-font text-[10px] sm:text-xs font-bold uppercase tracking-wider px-2.5 py-1 transition-colors group w-fit"
+                        >
+                          My portfolio
+                          <ArrowRight weight="bold" className="group-hover:translate-x-0.5 transition-transform w-3 h-3" />
+                        </a>
+                      )}
+                    </div>
                   </div>
                   <p className="text-base sm:text-lg font-bold uppercase leading-snug">
                     "{member.bio}"
