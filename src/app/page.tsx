@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 import { motion, useScroll, useTransform } from "framer-motion";
 import LoadingScreen from "@/components/LoadingScreen";
 import SecureAccessModal from "@/components/SecureAccessModal";
+import MerchSection from "@/components/MerchSection";
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -285,8 +286,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Highlights / Agenda Split */}
-
+        {/* Official Merchandise / T-Shirt Drop Section */}
+        <MerchSection />
 
         {/* Final CTA */}
         <section
